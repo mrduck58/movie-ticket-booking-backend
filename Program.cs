@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Movie_Ticket_Booking_Backend.Data;
-using Movie_Ticket_Booking_Backend.Services;
+using Movie_Ticket_Booking_Backend.Services.Implementations;
 using System.Text;
 
 namespace Movie_Ticket_Booking_Backend
