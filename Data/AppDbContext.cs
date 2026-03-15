@@ -30,6 +30,7 @@ namespace Movie_Ticket_Booking_Backend.Data
         public DbSet<MovieGenre> MovieGenres { get; set; }
         public DbSet<MovieCast> MovieCasts { get; set; }
         public DbSet<MovieRating> MovieRatings { get; set; }
+        public DbSet<WatchList> WatchLists { get; set; }
 
         //Cinema related tables
         public DbSet<Cinema> Cinemas { get; set; }
@@ -290,6 +291,19 @@ namespace Movie_Ticket_Booking_Backend.Data
                 .HasOne(mr => mr.User)
                 .WithMany(u => u.MovieRatings)
                 .HasForeignKey(mr => mr.UserId);
+
+            // ========================
+            // WatchList
+            // ========================
+            modelBuilder.Entity<WatchList>()
+            .HasOne(w => w.User)
+            .WithMany(u => u.WatchLists)
+            .HasForeignKey(w => w.UserId);
+
+            modelBuilder.Entity<WatchList>()
+            .HasOne(w => w.Movie)
+            .WithMany(m => m.WatchLists)
+            .HasForeignKey(w => w.MovieId);
 
             // ========================
             // Indexes and constraints
