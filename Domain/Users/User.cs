@@ -34,5 +34,6 @@ namespace Movie_Ticket_Booking_Backend.Domain.Users
         public ICollection<SeatLock> SeatLocks { get; set; }
         public ICollection<BlogPost> BlogPosts { get; set; }
         public ICollection<Comment> Comments { get; set; }
+        public ICollection<WatchList> WatchLists { get; set; }
     }
 }
