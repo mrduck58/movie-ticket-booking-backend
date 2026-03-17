@@ -1,12 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Movie_Ticket_Booking_Backend.DTOs.Showtime;
 
-namespace Movie_Ticket_Booking_Backend.Controllers.Showtime
+[ApiController]
+[Route("api/showtimes")]
+public class ShowtimeController : ControllerBase
 {
-    public class ShowtimeController : Controller
+    private readonly IShowtimeService _showtimeService;
+
+    public ShowtimeController(IShowtimeService showtimeService)
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        _showtimeService = showtimeService;
+    }
+
+    [HttpGet("movie/{movieId}")]
+    public async Task<IActionResult> GetShowtimes(string movieId)
+    {
+        var showtimes = await _showtimeService.GetShowtimesByMovie(movieId);
+
+        return Ok(showtimes);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateShowtime(CreateShowtimeRequest request)
+    {
+        var showtime = await _showtimeService.CreateShowtime(request);
+
+        return Ok(showtime);
     }
 }

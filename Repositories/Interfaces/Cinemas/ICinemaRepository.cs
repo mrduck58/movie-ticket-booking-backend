@@ -1,0 +1,14 @@
+﻿using Movie_Ticket_Booking_Backend.Domain.Cinemas;
+
+namespace Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas
+{
+    public interface ICinemaRepository
+    {
+        Task<List<Cinema>> GetCinemas();
+        Task<Cinema?> GetCinemaById(string id);
+        Task AddCinema(Cinema cinema);
+        void UpdateCinema(Cinema cinema);
+        void DeleteCinema(Cinema cinema);
+        Task Save();
+    }
+}

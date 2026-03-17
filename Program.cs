@@ -10,8 +10,6 @@ using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Movies;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Notifications;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Payments;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Search;
-using Movie_Ticket_Booking_Backend.Services;
-using Movie_Ticket_Booking_Backend.Services.Implementations;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Movie;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Notifications;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Payments;
@@ -21,6 +19,9 @@ using Movie_Ticket_Booking_Backend.Services.Interfaces.Notifications;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Payments;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Search;
 using System.Text;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.Cinemas;
+using Movie_Ticket_Booking_Backend.Services.Implementations.User;
+using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas;
 
 namespace Movie_Ticket_Booking_Backend
 {
@@ -86,6 +87,27 @@ namespace Movie_Ticket_Booking_Backend
                     )
                 };
             });
+
+            builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+            builder.Services.AddScoped<IMovieService, MovieService>();
+
+            builder.Services.AddScoped<ICinemaRepository, CinemaRepository>();
+            builder.Services.AddScoped<ICinemaService, CinemaService>();
+
+            builder.Services.AddScoped<IGenreRepository, GenreRepository>();
+            builder.Services.AddScoped<IGenreService, GenreService>();
+
+            builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+            builder.Services.AddScoped<IRoomService, RoomService>();
+
+            builder.Services.AddScoped<IShowtimeRepository, ShowtimeRepository>();
+            builder.Services.AddScoped<IShowtimeService, ShowtimeService>();
+
+            builder.Services.AddScoped<ISeatRepository, SeatRepository>();
+            builder.Services.AddScoped<ISeatService, SeatService>();
+
+            builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+            builder.Services.AddScoped<IBookingService, BookingService>();
 
             var app = builder.Build();
 

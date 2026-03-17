@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Movie_Ticket_Booking_Backend.DTOs.User;
-using Movie_Ticket_Booking_Backend.Services;
+using Movie_Ticket_Booking_Backend.Services.Implementations.User;
 
 namespace Movie_Ticket_Booking_Backend.Controllers
 {
