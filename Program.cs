@@ -2,10 +2,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Movie_Ticket_Booking_Backend.Data;
-using Movie_Ticket_Booking_Backend.Repositories.Implementations;
-using Movie_Ticket_Booking_Backend.Repositories.Interfaces;
-using Movie_Ticket_Booking_Backend.Services.Implementations;
-using Movie_Ticket_Booking_Backend.Services.Interfaces;
 using Movie_Ticket_Booking_Backend.Repositories.Implementations.Movies;
 using Movie_Ticket_Booking_Backend.Repositories.Implementations.Notificaions;
 using Movie_Ticket_Booking_Backend.Repositories.Implementations.Payments;
@@ -14,8 +10,6 @@ using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Movies;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Notifications;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Payments;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Search;
-using Movie_Ticket_Booking_Backend.Services;
-using Movie_Ticket_Booking_Backend.Services.Implementations;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Movie;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Notifications;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Payments;
@@ -25,6 +19,9 @@ using Movie_Ticket_Booking_Backend.Services.Interfaces.Notifications;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Payments;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Search;
 using System.Text;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.Cinemas;
+using Movie_Ticket_Booking_Backend.Services.Implementations.User;
+using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas;
 
 namespace Movie_Ticket_Booking_Backend
 {

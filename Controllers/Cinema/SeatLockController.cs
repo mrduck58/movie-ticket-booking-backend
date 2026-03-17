@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Movie_Ticket_Booking_Backend.DTOs.Seat;
-using Movie_Ticket_Booking_Backend.Services.Interfaces;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.Cinemas;
 
 [ApiController]
 [Route("api/seat-lock")]

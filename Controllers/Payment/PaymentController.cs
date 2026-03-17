@@ -1,7 +1,7 @@
 ﻿using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 using Movie_Ticket_Booking_Backend.DTOs.Payment;
-using Movie_Ticket_Booking_Backend.Services.Interfaces;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.Payments;
 
 [ApiController]
 [Route("api/payments")]

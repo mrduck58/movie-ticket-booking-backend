@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Movie_Ticket_Booking_Backend.DTOs;
 using Movie_Ticket_Booking_Backend.DTOs.User;
-using Movie_Ticket_Booking_Backend.Services.Implementations;
+using Movie_Ticket_Booking_Backend.Services.Implementations.User;
 
 namespace Movie_Ticket_Booking_Backend.Controllers.User
 {
@@ -23,7 +22,7 @@ namespace Movie_Ticket_Booking_Backend.Controllers.User
         {
             var user = await _authService.Login(request.Email, request.Password);
 
-            if (user == null)
+            if (user is null) 
                 return Unauthorized("Invalid email or password");
 
             var token = _jwtService.GenerateToken(user);
