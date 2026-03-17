@@ -62,6 +62,7 @@ namespace Movie_Ticket_Booking_Backend.Data
         //Blog related tables
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<UserGenre> UserGenres { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -304,6 +305,21 @@ namespace Movie_Ticket_Booking_Backend.Data
             .HasOne(w => w.Movie)
             .WithMany(m => m.WatchLists)
             .HasForeignKey(w => w.MovieId);
+            // ========================
+            // UserGenre
+            // ========================
+            modelBuilder.Entity<UserGenre>()
+           .HasKey(ug => new { ug.UserId, ug.GenreId });
+
+            modelBuilder.Entity<UserGenre>()
+                .HasOne(ug => ug.User)
+                .WithMany(u => u.UserGenres)
+                .HasForeignKey(ug => ug.UserId);
+
+            modelBuilder.Entity<UserGenre>()
+                .HasOne(ug => ug.Genre)
+                .WithMany(g => g.UserGenres)
+                .HasForeignKey(ug => ug.GenreId);
 
             // ========================
             // Indexes and constraints
@@ -312,5 +328,6 @@ namespace Movie_Ticket_Booking_Backend.Data
                 .HasIndex(bs => new { bs.SeatId, bs.ShowtimeTicketTypeId })
                 .IsUnique();
         }
+
     }
 }
