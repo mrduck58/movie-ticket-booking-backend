@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Movie_Ticket_Booking_Backend.Data;
 
@@ -11,9 +12,11 @@ using Movie_Ticket_Booking_Backend.Data;
 namespace Movie_Ticket_Booking_Backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260316085828_FixBookingSeatSeed")]
+    partial class FixBookingSeatSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,7 +63,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             BlogPostId = "BLOG001",
                             Content = "Marvel movies have changed the superhero genre forever...",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8675),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1700),
                             ImageUrl = "https://images.unsplash.com/photo-1",
                             Likes = 120,
                             Title = "Top 10 Marvel Movies You Must Watch",
@@ -70,7 +73,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             BlogPostId = "BLOG002",
                             Content = "Horror movies give audiences a thrilling experience...",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8677),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1702),
                             ImageUrl = "https://images.unsplash.com/photo-2",
                             Likes = 85,
                             Title = "Why Horror Movies Are So Popular",
@@ -80,7 +83,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             BlogPostId = "BLOG003",
                             Content = "Science fiction movies explore the future and technology...",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8678),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1704),
                             ImageUrl = "https://images.unsplash.com/photo-3",
                             Likes = 95,
                             Title = "Best Sci-Fi Movies of the Decade",
@@ -90,7 +93,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             BlogPostId = "BLOG004",
                             Content = "These romantic films will make your evening unforgettable...",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8679),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1705),
                             ImageUrl = "https://images.unsplash.com/photo-4",
                             Likes = 60,
                             Title = "Romantic Movies Perfect for Date Night",
@@ -100,7 +103,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             BlogPostId = "BLOG005",
                             Content = "Many exciting movies are coming to theaters next year...",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8680),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1707),
                             ImageUrl = "https://images.unsplash.com/photo-5",
                             Likes = 150,
                             Title = "Upcoming Blockbusters in 2026",
@@ -142,7 +145,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT001",
                             BlogPostId = "BLOG001",
                             Content = "Great list! I love Marvel movies.",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8701),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1745),
                             UserId = "USR002"
                         },
                         new
@@ -150,7 +153,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT002",
                             BlogPostId = "BLOG001",
                             Content = "Avengers Endgame is my favorite.",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8702),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1749),
                             UserId = "USR003"
                         },
                         new
@@ -158,7 +161,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT003",
                             BlogPostId = "BLOG001",
                             Content = "Nice recommendations!",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8703),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1751),
                             UserId = "USR004"
                         },
                         new
@@ -166,7 +169,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT004",
                             BlogPostId = "BLOG002",
                             Content = "Horror movies are so thrilling!",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8704),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1752),
                             UserId = "USR001"
                         },
                         new
@@ -174,7 +177,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT005",
                             BlogPostId = "BLOG002",
                             Content = "The Conjuring series is amazing.",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8705),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1754),
                             UserId = "USR005"
                         },
                         new
@@ -182,7 +185,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT006",
                             BlogPostId = "BLOG002",
                             Content = "I love watching horror at night.",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8706),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1756),
                             UserId = "USR003"
                         },
                         new
@@ -190,7 +193,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT007",
                             BlogPostId = "BLOG003",
                             Content = "Interstellar is a masterpiece.",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8707),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1757),
                             UserId = "USR001"
                         },
                         new
@@ -198,7 +201,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT008",
                             BlogPostId = "BLOG003",
                             Content = "Sci-Fi movies inspire imagination.",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8708),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1758),
                             UserId = "USR002"
                         },
                         new
@@ -206,7 +209,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT009",
                             BlogPostId = "BLOG003",
                             Content = "I love futuristic technology.",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8709),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1759),
                             UserId = "USR005"
                         },
                         new
@@ -214,7 +217,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT010",
                             BlogPostId = "BLOG004",
                             Content = "Perfect movies for couples.",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8710),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1761),
                             UserId = "USR003"
                         },
                         new
@@ -222,7 +225,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT011",
                             BlogPostId = "BLOG004",
                             Content = "Titanic will always be iconic.",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8710),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1762),
                             UserId = "USR002"
                         },
                         new
@@ -230,7 +233,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT012",
                             BlogPostId = "BLOG004",
                             Content = "Romantic movies are emotional.",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8711),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1763),
                             UserId = "USR001"
                         },
                         new
@@ -238,7 +241,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT013",
                             BlogPostId = "BLOG005",
                             Content = "Can't wait for next year's movies!",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8713),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1765),
                             UserId = "USR004"
                         },
                         new
@@ -246,7 +249,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT014",
                             BlogPostId = "BLOG005",
                             Content = "So many exciting releases.",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8714),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1767),
                             UserId = "USR003"
                         },
                         new
@@ -254,7 +257,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT015",
                             BlogPostId = "BLOG005",
                             Content = "Hope Marvel releases new films!",
-                            CreatedDate = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8715),
+                            CreatedDate = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1768),
                             UserId = "USR002"
                         });
                 });
@@ -955,177 +958,177 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             GenreId = "GEN001",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8433),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1287),
                             Name = "Action",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8436)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1291)
                         },
                         new
                         {
                             GenreId = "GEN002",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8437),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1292),
                             Name = "Adventure",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8437)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1293)
                         },
                         new
                         {
                             GenreId = "GEN003",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8438),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1294),
                             Name = "Animation",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8438)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1295)
                         },
                         new
                         {
                             GenreId = "GEN004",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8439),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1296),
                             Name = "Biography",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8439)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1296)
                         },
                         new
                         {
                             GenreId = "GEN005",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8440),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1297),
                             Name = "Comedy",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8440)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1298)
                         },
                         new
                         {
                             GenreId = "GEN006",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8441),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1299),
                             Name = "Crime",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8441)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1299)
                         },
                         new
                         {
                             GenreId = "GEN007",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8442),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1301),
                             Name = "Documentary",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8442)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1301)
                         },
                         new
                         {
                             GenreId = "GEN008",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8443),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1303),
                             Name = "Drama",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8443)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1303)
                         },
                         new
                         {
                             GenreId = "GEN009",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8444),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1305),
                             Name = "Family",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8444)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1305)
                         },
                         new
                         {
                             GenreId = "GEN010",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8445),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1307),
                             Name = "Fantasy",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8445)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1307)
                         },
                         new
                         {
                             GenreId = "GEN011",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8446),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1308),
                             Name = "History",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8446)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1309)
                         },
                         new
                         {
                             GenreId = "GEN012",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8447),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1310),
                             Name = "Horror",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8448)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1310)
                         },
                         new
                         {
                             GenreId = "GEN013",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8448),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1311),
                             Name = "Music",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8449)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1312)
                         },
                         new
                         {
                             GenreId = "GEN014",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8449),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1313),
                             Name = "Mystery",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8450)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1313)
                         },
                         new
                         {
                             GenreId = "GEN015",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8450),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1314),
                             Name = "Romance",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8451)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1315)
                         },
                         new
                         {
                             GenreId = "GEN016",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8451),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1316),
                             Name = "Sci-Fi",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8452)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1316)
                         },
                         new
                         {
                             GenreId = "GEN017",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8452),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1317),
                             Name = "Sport",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8453)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1318)
                         },
                         new
                         {
                             GenreId = "GEN018",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8453),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1319),
                             Name = "Thriller",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8454)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1319)
                         },
                         new
                         {
                             GenreId = "GEN019",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8454),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1320),
                             Name = "War",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8455)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1321)
                         },
                         new
                         {
                             GenreId = "GEN020",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8455),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1321),
                             Name = "Western",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8456)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1322)
                         },
                         new
                         {
                             GenreId = "GEN021",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8457),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1323),
                             Name = "Superhero",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8457)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1323)
                         },
                         new
                         {
                             GenreId = "GEN022",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8458),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1324),
                             Name = "Psychological",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8458)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1325)
                         },
                         new
                         {
                             GenreId = "GEN023",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8459),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1326),
                             Name = "Anime",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8459)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1326)
                         },
                         new
                         {
                             GenreId = "GEN024",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8460),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1327),
                             Name = "Disaster",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8460)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1328)
                         },
                         new
                         {
                             GenreId = "GEN025",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8461),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1329),
                             Name = "Martial Arts",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8462)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1329)
                         });
                 });
 
@@ -1801,7 +1804,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL001",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8644),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1646),
                             MovieId = "MOV001",
                             UserId = "USR001",
                             type = "FAVORITE"
@@ -1809,7 +1812,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL002",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8645),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1648),
                             MovieId = "MOV003",
                             UserId = "USR001",
                             type = "FAVORITE"
@@ -1817,7 +1820,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL003",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8646),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1649),
                             MovieId = "MOV002",
                             UserId = "USR002",
                             type = "WATCH_LATER"
@@ -1825,7 +1828,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL004",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8648),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1651),
                             MovieId = "MOV005",
                             UserId = "USR002",
                             type = "WATCH_LATER"
@@ -1833,7 +1836,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL005",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8649),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1653),
                             MovieId = "MOV004",
                             UserId = "USR003",
                             type = "FAVORITE"
@@ -1841,7 +1844,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL006",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8650),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1654),
                             MovieId = "MOV007",
                             UserId = "USR003",
                             type = "WATCH_LATER"
@@ -1849,7 +1852,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL007",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8651),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1655),
                             MovieId = "MOV006",
                             UserId = "USR004",
                             type = "FAVORITE"
@@ -1857,7 +1860,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL008",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8652),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1657),
                             MovieId = "MOV008",
                             UserId = "USR004",
                             type = "WATCH_LATER"
@@ -1865,7 +1868,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL009",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8653),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1658),
                             MovieId = "MOV009",
                             UserId = "USR005",
                             type = "FAVORITE"
@@ -1873,7 +1876,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL010",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8654),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1660),
                             MovieId = "MOV010",
                             UserId = "USR005",
                             type = "WATCH_LATER"
@@ -1911,26 +1914,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.HasIndex("PaymentMethodId");
 
                     b.ToTable("Payments");
-
-                    b.HasData(
-                        new
-                        {
-                            PaymentId = "PAY001",
-                            Amount = 120000.0,
-                            BookingId = "BK001",
-                            CreatedDate = new DateTime(2026, 3, 16, 16, 9, 31, 360, DateTimeKind.Local).AddTicks(9059),
-                            PaymentMethodId = "PM001",
-                            Status = "PAID"
-                        },
-                        new
-                        {
-                            PaymentId = "PAY002",
-                            Amount = 150000.0,
-                            BookingId = "BK002",
-                            CreatedDate = new DateTime(2026, 3, 16, 16, 9, 31, 360, DateTimeKind.Local).AddTicks(9067),
-                            PaymentMethodId = "PM002",
-                            Status = "PAID"
-                        });
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Payments.PaymentMethod", b =>
@@ -1959,35 +1942,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.HasKey("PaymentMethodId");
 
                     b.ToTable("PaymentMethods");
-
-                    b.HasData(
-                        new
-                        {
-                            PaymentMethodId = "PM001",
-                            CreatedDate = new DateTime(2026, 3, 16, 16, 9, 31, 360, DateTimeKind.Local).AddTicks(9033),
-                            ImageUrl = "https://example.com/creditcard.png",
-                            Name = "Credit Card",
-                            Status = "ACTIVE",
-                            UpdatedDate = new DateTime(2026, 3, 16, 16, 9, 31, 360, DateTimeKind.Local).AddTicks(9041)
-                        },
-                        new
-                        {
-                            PaymentMethodId = "PM002",
-                            CreatedDate = new DateTime(2026, 3, 16, 16, 9, 31, 360, DateTimeKind.Local).AddTicks(9042),
-                            ImageUrl = "https://example.com/momo.png",
-                            Name = "Momo",
-                            Status = "ACTIVE",
-                            UpdatedDate = new DateTime(2026, 3, 16, 16, 9, 31, 360, DateTimeKind.Local).AddTicks(9043)
-                        },
-                        new
-                        {
-                            PaymentMethodId = "PM003",
-                            CreatedDate = new DateTime(2026, 3, 16, 16, 9, 31, 360, DateTimeKind.Local).AddTicks(9044),
-                            ImageUrl = "https://example.com/zalopay.png",
-                            Name = "ZaloPay",
-                            Status = "ACTIVE",
-                            UpdatedDate = new DateTime(2026, 3, 16, 16, 9, 31, 360, DateTimeKind.Local).AddTicks(9044)
-                        });
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Showtimes.Showtime", b =>
@@ -2279,66 +2233,66 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             UserId = "USR001",
                             AvatarUrl = "https://i.pravatar.cc/150?img=1",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8541),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1470),
                             Email = "john@example.com",
                             FullName = "John Smith",
                             PasswordHash = "123456",
                             Phone = "0900000001",
                             RoleId = "ROLE002",
                             Status = "ACTIVE",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8541)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1470)
                         },
                         new
                         {
                             UserId = "USR002",
                             AvatarUrl = "https://i.pravatar.cc/150?img=2",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8543),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1474),
                             Email = "emma@example.com",
                             FullName = "Emma Watson",
                             PasswordHash = "123456",
                             Phone = "0900000002",
                             RoleId = "ROLE002",
                             Status = "ACTIVE",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8544)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1474)
                         },
                         new
                         {
                             UserId = "USR003",
                             AvatarUrl = "https://i.pravatar.cc/150?img=3",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8545),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1476),
                             Email = "robert@example.com",
                             FullName = "Robert Downey Jr",
                             PasswordHash = "123456",
                             Phone = "0900000003",
                             RoleId = "ROLE002",
                             Status = "ACTIVE",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8546)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1477)
                         },
                         new
                         {
                             UserId = "USR004",
                             AvatarUrl = "https://i.pravatar.cc/150?img=4",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8547),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1479),
                             Email = "scarlett@example.com",
                             FullName = "Scarlett Johansson",
                             PasswordHash = "123456",
                             Phone = "0900000004",
                             RoleId = "ROLE002",
                             Status = "ACTIVE",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8547)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1479)
                         },
                         new
                         {
                             UserId = "USR005",
                             AvatarUrl = "https://i.pravatar.cc/150?img=5",
-                            CreatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8549),
+                            CreatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1482),
                             Email = "chris@example.com",
                             FullName = "Chris Evans",
                             PasswordHash = "123456",
                             Phone = "0900000005",
                             RoleId = "ROLE002",
                             Status = "ACTIVE",
-                            UpdatedAt = new DateTime(2026, 3, 16, 9, 9, 31, 360, DateTimeKind.Utc).AddTicks(8549)
+                            UpdatedAt = new DateTime(2026, 3, 16, 8, 58, 28, 345, DateTimeKind.Utc).AddTicks(1483)
                         });
                 });
 

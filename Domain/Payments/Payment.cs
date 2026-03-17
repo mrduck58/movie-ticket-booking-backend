@@ -14,3 +14,4 @@ namespace Movie_Ticket_Booking_Backend.Domain.Payments
         public DateTime CreatedDate { get; set; }
     }
 }
+    
