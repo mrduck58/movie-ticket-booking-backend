@@ -10,6 +10,7 @@ using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Movies;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Notifications;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Payments;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Search;
+using Movie_Ticket_Booking_Backend.Services;
 using Movie_Ticket_Booking_Backend.Services.Implementations;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Movie;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Notifications;
@@ -36,6 +37,7 @@ namespace Movie_Ticket_Booking_Backend
             // Services
             builder.Services.AddScoped<AuthService>();
             builder.Services.AddScoped<JwtService>();
+            builder.Services.AddScoped<UserService>();
 
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();

@@ -8,5 +8,6 @@
         public DateTime UpdatedAt { get; set; }
 
         public ICollection<MovieGenre> MovieGenres { get; set; }
+        public ICollection<UserGenre> UserGenres { get; set; }
     }
 }
