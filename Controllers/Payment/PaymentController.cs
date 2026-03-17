@@ -1,12 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Movie_Ticket_Booking_Backend.DTOs.Payment;
+using Movie_Ticket_Booking_Backend.Services.Interfaces;
 
-namespace Movie_Ticket_Booking_Backend.Controllers.Payment
+[ApiController]
+[Route("api/payments")]
+public class PaymentController : ControllerBase
 {
-    public class PaymentController : Controller
+    private readonly IPaymentService _paymentService;
+
+    public PaymentController(IPaymentService paymentService)
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        _paymentService = paymentService;
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Pay(CreatePaymentRequest request)
+    {
+        var result = await _paymentService.Pay(request.BookingId);
+
+        if (!result)
+            return BadRequest();
+
+        return Ok();
     }
 }
