@@ -4,6 +4,7 @@ using Movie_Ticket_Booking_Backend.Domain.Bookings;
 using Movie_Ticket_Booking_Backend.Domain.Cinemas;
 using Movie_Ticket_Booking_Backend.Domain.Foods;
 using Movie_Ticket_Booking_Backend.Domain.Movies;
+using Movie_Ticket_Booking_Backend.Domain.Notificaions;
 using Movie_Ticket_Booking_Backend.Domain.Payments;
 using Movie_Ticket_Booking_Backend.Domain.Showtimes;
 using Movie_Ticket_Booking_Backend.Domain.Users;
@@ -62,6 +63,7 @@ namespace Movie_Ticket_Booking_Backend.Data
         //Blog related tables
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -304,6 +306,37 @@ namespace Movie_Ticket_Booking_Backend.Data
             .HasOne(w => w.Movie)
             .WithMany(m => m.WatchLists)
             .HasForeignKey(w => w.MovieId);
+            // ========================
+            // Notification
+            // ========================
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.User)
+                .WithMany(u => u.Notifications)
+                .HasForeignKey(n => n.UserId);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.WatchList)
+                .WithMany(w => w.Notifications)
+                .HasForeignKey(n => n.WatchListId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.BlogPost)
+                .WithMany(b => b.Notifications)
+                .HasForeignKey(n => n.BlogPostId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.Comment)
+                .WithMany(c => c.Notifications)
+                .HasForeignKey(n => n.CommentId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.BookingSeat)
+                .WithMany(b => b.Notifications)
+                .HasForeignKey(n => n.BookingSeatId)
+                .OnDelete(DeleteBehavior.SetNull);
 
             // ========================
             // Indexes and constraints
