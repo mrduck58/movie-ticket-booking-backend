@@ -2,6 +2,7 @@
 using Movie_Ticket_Booking_Backend.Domain.Cinemas;
 using Movie_Ticket_Booking_Backend.Domain.Movies;
 using Movie_Ticket_Booking_Backend.Domain.Bookings;
+using Movie_Ticket_Booking_Backend.Domain.Notificaions;
 
 
 namespace Movie_Ticket_Booking_Backend.Domain.Users
@@ -38,5 +39,6 @@ namespace Movie_Ticket_Booking_Backend.Domain.Users
         public ICollection<Comment> Comments { get; set; }
         public ICollection<WatchList> WatchLists { get; set; }
         public ICollection<UserGenre> UserGenres { get; set; }
+        public ICollection<Notification> Notifications { get; set; }
     }
 }

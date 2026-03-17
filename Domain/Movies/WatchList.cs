@@ -1,4 +1,5 @@
-﻿using Movie_Ticket_Booking_Backend.Domain.Users;
+﻿using Movie_Ticket_Booking_Backend.Domain.Notificaions;
+using Movie_Ticket_Booking_Backend.Domain.Users;
 
 namespace Movie_Ticket_Booking_Backend.Domain.Movies
 {
@@ -11,9 +12,8 @@ namespace Movie_Ticket_Booking_Backend.Domain.Movies
         public string MovieId { get; set; }
         public string type { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
         public User User { get; set; }
-
         public Movie Movie { get; set; }
+        public ICollection<Notification> Notifications { get; set; }
     }
 }
