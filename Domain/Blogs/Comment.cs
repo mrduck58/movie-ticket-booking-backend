@@ -1,4 +1,5 @@
-﻿using Movie_Ticket_Booking_Backend.Domain.Users;
+﻿using Movie_Ticket_Booking_Backend.Domain.Notificaions;
+using Movie_Ticket_Booking_Backend.Domain.Users;
 
 namespace Movie_Ticket_Booking_Backend.Domain.Blogs
 {
@@ -11,5 +12,7 @@ namespace Movie_Ticket_Booking_Backend.Domain.Blogs
         public BlogPost BlogPost { get; set; }
         public string Content { get; set; }
         public DateTime CreatedDate { get; set; }
+
+        public ICollection<Notification> Notifications { get; set; }
     }
 }
