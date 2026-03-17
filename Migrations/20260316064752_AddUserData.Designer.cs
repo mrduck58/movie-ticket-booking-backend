@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Movie_Ticket_Booking_Backend.Data;
 
@@ -11,9 +12,11 @@ using Movie_Ticket_Booking_Backend.Data;
 namespace Movie_Ticket_Booking_Backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260316064752_AddUserData")]
+    partial class AddUserData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -518,21 +521,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.ToTable("Posters");
                 });
 
-            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Movies.UserGenre", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("GenreId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId", "GenreId");
-
-                    b.HasIndex("GenreId");
-
-                    b.ToTable("UserGenre");
-                });
-
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Movies.WatchList", b =>
                 {
                     b.Property<string>("WatchListId")
@@ -560,52 +548,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("WatchLists");
-                });
-
-            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Notificaions.Notification", b =>
-                {
-                    b.Property<string>("NotificationId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("BlogPostId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("BookingSeatId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CommentId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRead")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("WatchListId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("NotificationId");
-
-                    b.HasIndex("BlogPostId");
-
-                    b.HasIndex("BookingSeatId");
-
-                    b.HasIndex("CommentId");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("WatchListId");
-
-                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Payments.Payment", b =>
@@ -1084,25 +1026,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Movies.UserGenre", b =>
-                {
-                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Movies.Genre", "Genre")
-                        .WithMany("UserGenres")
-                        .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Users.User", "User")
-                        .WithMany("UserGenres")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Genre");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Movies.WatchList", b =>
                 {
                     b.HasOne("Movie_Ticket_Booking_Backend.Domain.Movies.Movie", "Movie")
@@ -1120,45 +1043,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.Navigation("Movie");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Notificaions.Notification", b =>
-                {
-                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Blogs.BlogPost", "BlogPost")
-                        .WithMany("Notifications")
-                        .HasForeignKey("BlogPostId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Bookings.BookingSeat", "BookingSeat")
-                        .WithMany("Notifications")
-                        .HasForeignKey("BookingSeatId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Blogs.Comment", "Comment")
-                        .WithMany("Notifications")
-                        .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Users.User", "User")
-                        .WithMany("Notifications")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Movies.WatchList", "WatchList")
-                        .WithMany("Notifications")
-                        .HasForeignKey("WatchListId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("BlogPost");
-
-                    b.Navigation("BookingSeat");
-
-                    b.Navigation("Comment");
-
-                    b.Navigation("User");
-
-                    b.Navigation("WatchList");
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Payments.Payment", b =>
@@ -1232,13 +1116,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Blogs.BlogPost", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("Notifications");
-                });
-
-            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Blogs.Comment", b =>
-                {
-                    b.Navigation("Notifications");
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Bookings.Booking", b =>
@@ -1251,11 +1128,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.Navigation("Payment")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Bookings.BookingSeat", b =>
-                {
-                    b.Navigation("Notifications");
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Cinemas.Cinema", b =>
@@ -1290,8 +1162,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Movies.Genre", b =>
                 {
                     b.Navigation("MovieGenres");
-
-                    b.Navigation("UserGenres");
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Movies.Movie", b =>
@@ -1307,11 +1177,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.Navigation("Showtimes");
 
                     b.Navigation("WatchLists");
-                });
-
-            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Movies.WatchList", b =>
-                {
-                    b.Navigation("Notifications");
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Payments.PaymentMethod", b =>
@@ -1353,11 +1218,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.Navigation("MovieRatings");
 
-                    b.Navigation("Notifications");
-
                     b.Navigation("SeatLocks");
-
-                    b.Navigation("UserGenres");
 
                     b.Navigation("WatchLists");
                 });
