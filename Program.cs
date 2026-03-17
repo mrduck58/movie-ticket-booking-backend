@@ -2,8 +2,24 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Movie_Ticket_Booking_Backend.Data;
+using Movie_Ticket_Booking_Backend.Repositories.Implementations.Movies;
+using Movie_Ticket_Booking_Backend.Repositories.Implementations.Notificaions;
+using Movie_Ticket_Booking_Backend.Repositories.Implementations.Payments;
+using Movie_Ticket_Booking_Backend.Repositories.Implementations.Search;
+using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Movies;
+using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Notifications;
+using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Payments;
+using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Search;
 using Movie_Ticket_Booking_Backend.Services;
 using Movie_Ticket_Booking_Backend.Services.Implementations;
+using Movie_Ticket_Booking_Backend.Services.Implementations.Movie;
+using Movie_Ticket_Booking_Backend.Services.Implementations.Notifications;
+using Movie_Ticket_Booking_Backend.Services.Implementations.Payments;
+using Movie_Ticket_Booking_Backend.Services.Implementations.Search;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.Movies;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.Notifications;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.Payments;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.Search;
 using System.Text;
 
 namespace Movie_Ticket_Booking_Backend
@@ -26,6 +42,21 @@ namespace Movie_Ticket_Booking_Backend
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
 
+            ///watchlist
+            builder.Services.AddScoped<IWatchListRepository, WatchListRepository>();
+            builder.Services.AddScoped<IWatchListService, WatchListService>();
+
+            ///search
+            builder.Services.AddScoped<ISearchRepository, SearchRepository>();
+            builder.Services.AddScoped<ISearchService, SearchService>();
+
+            //notifications
+            builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+            builder.Services.AddScoped<INotificationService, NotificationService>();
+
+            ///payment_method
+            builder.Services.AddScoped<IPaymentMethodRepository, PaymentMethodRepository>();
+            builder.Services.AddScoped<IPaymentMethodService, PaymentMethodService>();
             // CORS
             builder.Services.AddCors(options =>
             {
