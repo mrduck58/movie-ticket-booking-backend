@@ -21,5 +21,6 @@ namespace Movie_Ticket_Booking_Backend.Domain.Movies
         public ICollection<MovieCast> MovieCasts { get; set; }
         public ICollection<MovieRating> MovieRatings { get; set; }
         public ICollection<Showtime> Showtimes { get; set; }
+        public ICollection<WatchList> WatchLists { get; set; }
     }
 }
