@@ -1,4 +1,5 @@
 ﻿using Movie_Ticket_Booking_Backend.Domain.Cinemas;
+using Movie_Ticket_Booking_Backend.Domain.Notificaions;
 using Movie_Ticket_Booking_Backend.Domain.Showtimes;
 
 namespace Movie_Ticket_Booking_Backend.Domain.Bookings
@@ -16,5 +17,7 @@ namespace Movie_Ticket_Booking_Backend.Domain.Bookings
         public string QrCode { get; set; }
         public string Status { get; set; } = "BOOKED";
         public DateTime CheckinTime { get; set; }
+
+        public ICollection<Notification> Notifications { get; set; }
     }
 }
