@@ -17,9 +17,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\Payment\" />
-    <Folder Include="Services\Interfaces\" />
-  </ItemGroup>
-
 </Project>

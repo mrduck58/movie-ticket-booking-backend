@@ -2,11 +2,23 @@
 
 namespace Movie_Ticket_Booking_Backend.Controllers.Movie
 {
-    public class GenreController : Controller
+    [ApiController]
+    [Route("api/genres")]
+    public class GenreController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly IGenreService _genreService;
+
+        public GenreController(IGenreService genreService)
         {
-            return View();
+            _genreService = genreService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetGenres()
+        {
+            var genres = await _genreService.GetGenres();
+
+            return Ok(genres);
         }
     }
 }

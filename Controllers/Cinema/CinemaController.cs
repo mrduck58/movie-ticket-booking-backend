@@ -1,12 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Movie_Ticket_Booking_Backend.Controllers.Cinema
+[ApiController]
+[Route("api/cinemas")]
+public class CinemaController : ControllerBase
 {
-    public class CinemaController : Controller
+    private readonly ICinemaService _cinemaService;
+
+    public CinemaController(ICinemaService cinemaService)
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        _cinemaService = cinemaService;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetCinemas()
+    {
+        var cinemas = await _cinemaService.GetCinemas();
+
+        return Ok(cinemas);
     }
 }
