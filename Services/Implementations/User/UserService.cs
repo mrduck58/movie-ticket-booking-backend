@@ -32,7 +32,7 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.User
                 Status = "ACTIVE",
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
-                RoleId = "2"
+                RoleId = "ROLE002"
             };
 
             _context.Users.Add(user);

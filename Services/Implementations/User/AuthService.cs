@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Movie_Ticket_Booking_Backend.Data;
 using Movie_Ticket_Booking_Backend.Domain.Users;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Movie_Ticket_Booking_Backend.Services.Implementations.User
 {
@@ -22,10 +24,22 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.User
             if (user == null)
                 return null;
 
-            if (user.PasswordHash != password)
+            // 👉 HASH password người dùng nhập
+            var hashedInputPassword = HashPassword(password);
+
+            // 👉 so hash với hash
+            if (user.PasswordHash != hashedInputPassword)
                 return null;
 
             return user;
+        }
+        private string HashPassword(string password)
+        {
+            using var sha256 = SHA256.Create();
+            var bytes = Encoding.UTF8.GetBytes(password);
+            var hash = sha256.ComputeHash(bytes);
+
+            return Convert.ToBase64String(hash);
         }
     }
 }
