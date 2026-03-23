@@ -12,6 +12,29 @@ public class SeatRepository : ISeatRepository
         _context = context;
     }
 
+    public async Task<List<Seat>> GetSeatsByRoomAsync(string roomId)
+    {
+        return await _context.Seats
+            .Where(x => x.RoomId == roomId)
+            .ToListAsync();
+    }
+
+    public async Task<List<string>> GetBookedSeatIdsAsync(string showtimeId)
+    {
+        return await _context.BookingSeats
+            .Where(x => x.ShowtimeTicketType.ShowtimeId == showtimeId)
+            .Select(x => x.SeatId)
+            .ToListAsync();
+    }
+
+    public async Task<List<string>> GetLockedSeatIdsAsync(string showtimeId)
+    {
+        return await _context.SeatLocks
+            .Where(x => x.ShowtimeId == showtimeId)
+            .Select(x => x.SeatId)
+            .ToListAsync();
+    }
+
     public async Task<List<Seat>> GetSeatsByRoom(string roomId)
     {
         return await _context.Seats
@@ -19,14 +42,13 @@ public class SeatRepository : ISeatRepository
             .ToListAsync();
     }
 
-    public async Task<List<Seat>> GetSeatsByShowtime(string showtimeId)
-    {
-        return await _context.Seats
-            .Include(x => x.BookingSeats)
-            .Include(x => x.SeatLocks)
-            .Where(x => x.ShowtimeId == showtimeId)
-            .ToListAsync();
-    }
+    //public async Task<List<Seat>> GetSeatsByShowtimeAsync(string showtimeId)
+    //{
+    //    return await _context.Seats
+    //        .Where(s => s. == showtimeId)
+    //        .Include(s => s.BookingSeats)
+    //        .ToListAsync();
+    //}
 
     public async Task<Seat?> GetSeat(string seatId)
     {

@@ -1,14 +1,17 @@
 ﻿using Movie_Ticket_Booking_Backend.Domain.Cinemas;
+using Movie_Ticket_Booking_Backend.DTOs.Cinema;
 using Movie_Ticket_Booking_Backend.DTOs.Seat;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas;
 
 public class SeatService : ISeatService
 {
     private readonly ISeatRepository _seatRepository;
+    private readonly IShowtimeRepository _showtimeRepository;
 
-    public SeatService(ISeatRepository seatRepository)
+    public SeatService(ISeatRepository seatRepository, IShowtimeRepository showtimeRepository)
     {
         _seatRepository = seatRepository;
+        _showtimeRepository = showtimeRepository;
     }
 
     public async Task<List<SeatDto>> GetSeatsByRoom(string roomId)
@@ -18,42 +21,73 @@ public class SeatService : ISeatService
         return seats.Select(x => new SeatDto
         {
             SeatId = x.SeatId,
-            SeatName = x.SeatName,
-            SeatType = x.SeatType,
-            Status = x.Status,
-            RoomId = x.RoomId,
-            ShowtimeId = x.ShowtimeId
+            SeatName = x.SeatName
         }).ToList();
     }
 
-    public async Task<List<SeatDto>> GetSeatMap(string showtimeId)
+    public async Task<SeatMapDto> GetSeatMapAsync(string showtimeId)
     {
-        var seats = await _seatRepository.GetSeatsByShowtime(showtimeId);
+        var showtime = await _showtimeRepository.GetShowtimeAsync(showtimeId);
 
-        var result = new List<SeatDto>();
+        var seats = await _seatRepository.GetSeatsByRoomAsync(showtime.RoomId);
 
-        foreach (var seat in seats)
+        var booked = await _seatRepository.GetBookedSeatIdsAsync(showtimeId);
+
+        var locked = await _seatRepository.GetLockedSeatIdsAsync(showtimeId);
+
+        var seatDtos = seats.Select(seat =>
         {
-            string status = "AVAILABLE";
+            var status = "AVAILABLE";
 
-            if (seat.BookingSeats.Any())
-                status = "BOOKED";
-            else if (seat.SeatLocks.Any(x => x.ExpiredAt > DateTime.UtcNow))
+            if (booked.Contains(seat.SeatId))
+                status = "TAKEN";
+
+            else if (locked.Contains(seat.SeatId))
                 status = "LOCKED";
 
-            result.Add(new SeatDto
+            return new SeatDto
             {
                 SeatId = seat.SeatId,
                 SeatName = seat.SeatName,
-                SeatType = seat.SeatType,
-                Status = status,
-                RoomId = seat.RoomId,
-                ShowtimeId = seat.ShowtimeId
-            });
-        }
+                Status = status
+            };
 
-        return result;
+        }).ToList();
+
+        return new SeatMapDto
+        {
+            ShowtimeId = showtimeId,
+            RoomName = showtime.Room.Name,
+            Seats = seatDtos
+        };
     }
+
+    //public async Task<SeatMapDto> GetSeatMapAsync(string showtimeId)
+    //{
+    //    var seats = await _seatRepository.GetSeatsByShowtimeAsync(showtimeId);
+
+    //    var rows = seats
+    //        .GroupBy(s => s.SeatName.Substring(0, 1))
+    //        .Select(g => new SeatRowDto
+    //        {
+    //            RowName = g.Key,
+    //            Seats = g.Select(s => new SeatDto
+    //            {
+    //                SeatId = s.SeatId,
+    //                SeatName = s.SeatName,
+    //                Status = s.Status
+    //            }).OrderBy(x => x.SeatName).ToList()
+    //        })
+    //        .OrderBy(r => r.RowName)
+    //        .ToList();
+
+    //    return new SeatMapDto
+    //    {
+    //        ShowtimeId = showtimeId,
+    //        RoomId = seats.First().RoomId,
+    //        Rows = rows
+    //    };
+    //}
 
     public async Task<SeatDto> CreateSeat(CreateSeatRequest request)
     {
@@ -61,10 +95,7 @@ public class SeatService : ISeatService
         {
             SeatId = Guid.NewGuid().ToString(),
             SeatName = request.SeatName,
-            SeatType = request.SeatType,
-            RoomId = request.RoomId,
-            ShowtimeId = request.ShowtimeId,
-            Status = "AVAILABLE"
+            RoomId = request.RoomId
         };
 
         await _seatRepository.AddSeat(seat);
@@ -73,37 +104,35 @@ public class SeatService : ISeatService
         return new SeatDto
         {
             SeatId = seat.SeatId,
-            SeatName = seat.SeatName,
-            SeatType = seat.SeatType,
-            Status = seat.Status
+            SeatName = seat.SeatName
         };
     }
 
-    public async Task<bool> LockSeat(string userId, LockSeatRequest request)
-    {
-        var seat = await _seatRepository.GetSeat(request.SeatId);
+    //public async Task<bool> LockSeat(string userId, LockSeatRequest request)
+    //{
+    //    var seat = await _seatRepository.GetSeat(request.SeatId);
 
-        if (seat == null)
-            return false;
+    //    if (seat == null)
+    //        return false;
 
-        seat.Status = "LOCKED";
+    //    seat.Status = "LOCKED";
 
-        _seatRepository.UpdateSeat(seat);
+    //    _seatRepository.UpdateSeat(seat);
 
-        await _seatRepository.Save();
+    //    await _seatRepository.Save();
 
-        return true;
-    }
+    //    return true;
+    //}
 
-    public async Task UnlockSeat(string seatId, string showtimeId)
-    {
-        var seat = await _seatRepository.GetSeat(seatId);
+    //public async Task UnlockSeat(string seatId, string showtimeId)
+    //{
+    //    var seat = await _seatRepository.GetSeat(seatId);
 
-        if (seat != null)
-        {
-            seat.Status = "AVAILABLE";
-            _seatRepository.UpdateSeat(seat);
-            await _seatRepository.Save();
-        }
-    }
+    //    if (seat != null)
+    //    {
+    //        seat.Status = "AVAILABLE";
+    //        _seatRepository.UpdateSeat(seat);
+    //        await _seatRepository.Save();
+    //    }
+    //}
 }
