@@ -7,5 +7,8 @@
         public string TitleVn { get; set; } = string.Empty;
         public double Duration { get; set; }
         public double Rating { get; set; }
+        public string Director { get; set; }
+        public string PosterUrl { get; set; }
+        public DateTime ReleaseDate { get; set; }
     }
 }

@@ -7,10 +7,12 @@ using Movie_Ticket_Booking_Backend.Services.Interfaces.Movies;
 public class MovieController : ControllerBase
 {
     private readonly IMovieService _movieService;
+    private readonly ICinemaService _cinemaService;
 
-    public MovieController(IMovieService movieService)
+    public MovieController(IMovieService movieService, ICinemaService cinemaService)
     {
         _movieService = movieService;
+        _cinemaService = cinemaService;
     }
 
     [HttpGet]
@@ -30,6 +32,13 @@ public class MovieController : ControllerBase
             return NotFound();
 
         return Ok(movie);
+    }
+
+    [HttpGet("{movieId}/cinemas")]
+    public async Task<IActionResult> GetCinemasByMovie(string movieId)
+    {
+        var result = await _cinemaService.GetCinemasByMovie(movieId);
+        return Ok(result);
     }
 
     [HttpPost]

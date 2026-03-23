@@ -21,5 +21,5 @@ namespace Movie_Ticket_Booking_Backend.Domain.Showtimes
         public ICollection<Booking> Bookings { get; set; }
         public ICollection<SeatLock> SeatLocks { get; set; }
 
-        }
+    }
 }

@@ -3,7 +3,8 @@
 public interface ICinemaService
 {
     Task<List<CinemaDto>> GetCinemas();
-    Task<CinemaDto?> GetCinema(string id);
+    Task<CinemaDto?> GetCinemaById(string id);
+    Task<List<CinemaListDto>> GetCinemasByMovie(string movieId);
     Task<CinemaDto> CreateCinema(CreateCinemaRequest request);
     Task<bool> DeleteCinema(string id);
 }

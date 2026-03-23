@@ -6,10 +6,12 @@ using Movie_Ticket_Booking_Backend.Services.Interfaces.Movies;
 public class MovieService : IMovieService
 {
     private readonly IMovieRepository _movieRepository;
+    private readonly IPosterRepository _posterRepository;
 
-    public MovieService(IMovieRepository movieRepository)
+    public MovieService(IMovieRepository movieRepository, IPosterRepository posterRepository)
     {
         _movieRepository = movieRepository;
+        _posterRepository = posterRepository;
     }
 
     public async Task<List<MovieDto>> GetMovies()
@@ -23,6 +25,7 @@ public class MovieService : IMovieService
             TitleVn = x.TitleVn,
             Duration = x.Duration,
             Rating = x.Rating
+
         }).ToList();
     }
 
@@ -32,13 +35,18 @@ public class MovieService : IMovieService
 
         if (movie == null) return null;
 
+        var posters = await _posterRepository.GetPostersByMovieId(movie.MovieId);
+
         return new MovieDto
         {
             MovieId = movie.MovieId,
             Title = movie.Title,
             TitleVn = movie.TitleVn,
             Duration = movie.Duration,
-            Rating = movie.Rating
+            Rating = movie.Rating,
+            PosterUrl = posters.FirstOrDefault()?.ImageUrl,
+            ReleaseDate = movie.CreatedAt,
+            Director = movie.Director
         };
     }
 

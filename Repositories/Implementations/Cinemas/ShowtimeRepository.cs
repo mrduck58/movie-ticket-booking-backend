@@ -10,6 +10,29 @@ public class ShowtimeRepository : IShowtimeRepository
     {
         _context = context;
     }
+    public async Task<List<Showtime>> GetByMovieCinemaDate(
+        string movieId,
+        string cinemaId,
+        DateTime date)
+    {
+        return await _context.Showtimes
+            .Where(s =>
+                s.MovieId == movieId &&
+                s.Room.CinemaId == cinemaId &&
+                s.StartTime.Date == date.Date
+            )
+            .Include(s => s.Room)
+            .Include(s => s.ShowtimeTicketTypes)
+                .ThenInclude(st => st.TicketType)
+            .ToListAsync();
+    }
+
+    public async Task<Showtime> GetShowtimeAsync(string showtimeId)
+    {
+        return await _context.Showtimes
+            .Include(x => x.Room)
+            .FirstAsync(x => x.ShowtimeId == showtimeId);
+    }
 
     public async Task<List<Showtime>> GetShowtimesByMovie(string movieId)
     {

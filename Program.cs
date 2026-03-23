@@ -22,6 +22,7 @@ using System.Text;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Cinemas;
 using Movie_Ticket_Booking_Backend.Services.Implementations.User;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas;
+using Movie_Ticket_Booking_Backend.Services.Implementations.Movies;
 
 namespace Movie_Ticket_Booking_Backend
 {
@@ -43,21 +44,6 @@ namespace Movie_Ticket_Booking_Backend
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
 
-            ///watchlist
-            builder.Services.AddScoped<IWatchListRepository, WatchListRepository>();
-            builder.Services.AddScoped<IWatchListService, WatchListService>();
-
-            ///search
-            builder.Services.AddScoped<ISearchRepository, SearchRepository>();
-            builder.Services.AddScoped<ISearchService, SearchService>();
-
-            //notifications
-            builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
-            builder.Services.AddScoped<INotificationService, NotificationService>();
-
-            ///payment_method
-            builder.Services.AddScoped<IPaymentMethodRepository, PaymentMethodRepository>();
-            builder.Services.AddScoped<IPaymentMethodService, PaymentMethodService>();
             // CORS
             builder.Services.AddCors(options =>
             {
@@ -88,6 +74,22 @@ namespace Movie_Ticket_Booking_Backend
                 };
             });
 
+            ///watchlist
+            builder.Services.AddScoped<IWatchListRepository, WatchListRepository>();
+            builder.Services.AddScoped<IWatchListService, WatchListService>();
+
+            ///search
+            builder.Services.AddScoped<ISearchRepository, SearchRepository>();
+            builder.Services.AddScoped<ISearchService, SearchService>();
+
+            //notifications
+            builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+            builder.Services.AddScoped<INotificationService, NotificationService>();
+
+            ///payment_method
+            builder.Services.AddScoped<IPaymentMethodRepository, PaymentMethodRepository>();
+            builder.Services.AddScoped<IPaymentMethodService, PaymentMethodService>();
+
             builder.Services.AddScoped<IMovieRepository, MovieRepository>();
             builder.Services.AddScoped<IMovieService, MovieService>();
 
@@ -108,6 +110,9 @@ namespace Movie_Ticket_Booking_Backend
 
             builder.Services.AddScoped<IBookingRepository, BookingRepository>();
             builder.Services.AddScoped<IBookingService, BookingService>();
+
+            builder.Services.AddScoped<IPosterRepository, PosterRepository>();
+            builder.Services.AddScoped<IPosterService, PosterService>();
 
             var app = builder.Build();
 
