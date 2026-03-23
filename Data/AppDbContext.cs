@@ -307,7 +307,7 @@ namespace Movie_Ticket_Booking_Backend.Data
             .HasOne(w => w.Movie)
             .WithMany(m => m.WatchLists)
             .HasForeignKey(w => w.MovieId);
-            
+
             // ========================
             // UserGenre
             // ========================
@@ -323,7 +323,7 @@ namespace Movie_Ticket_Booking_Backend.Data
                 .HasOne(ug => ug.Genre)
                 .WithMany(g => g.UserGenres)
                 .HasForeignKey(ug => ug.GenreId);
-                
+
             // ========================
             // Notification
             // ========================
@@ -901,192 +901,437 @@ new Comment { CommentId = "CMT015", UserId = "USR002", BlogPostId = "BLOG005", C
          );
             modelBuilder.Entity<Room>().HasData(
 
-    new Room
-    {
-        RoomId = "R001",
-        Name = "Room 1",
-        CinemaId = "C001"
-    },
+               new Room
+               {
+                   RoomId = "R001",
+                   Name = "Auditorium 1",
+                   CinemaId = "C001"
+               },
 
-    new Room
-    {
-        RoomId = "R002",
-        Name = "Room 2",
-        CinemaId = "C001"
-    },
+               new Room
+               {
+                   RoomId = "R002",
+                   Name = "Auditorium 2",
+                   CinemaId = "C001"
+               },
 
-    new Room
-    {
-        RoomId = "R003",
-        Name = "Room 1",
-        CinemaId = "C002"
-    },
+               new Room
+               {
+                   RoomId = "R003",
+                   Name = "Auditorium 3",
+                   CinemaId = "C001"
+               },
 
-    new Room
-    {
-        RoomId = "R004",
-        Name = "Room 2",
-        CinemaId = "C002"
-    },
+               new Room
+               {
+                   RoomId = "R004",
+                   Name = "Auditorium 4",
+                   CinemaId = "C001"
+               },
 
-    new Room
-    {
-        RoomId = "R005",
-        Name = "Room 1",
-        CinemaId = "C003"
-    }
+               new Room
+               {
+                   RoomId = "R005",
+                   Name = "Auditorium 5",
+                   CinemaId = "C001"
+               },
 
-);
+               new Room
+               {
+                   RoomId = "R006",
+                   Name = "Auditorium 1",
+                   CinemaId = "C002"
+               },
+
+               new Room
+               {
+                   RoomId = "R007",
+                   Name = "Auditorium 2",
+                   CinemaId = "C002"
+               },
+
+               new Room
+               {
+                   RoomId = "R008",
+                   Name = "Auditorium 3",
+                   CinemaId = "C002"
+               },
+
+               new Room
+               {
+                   RoomId = "R009",
+                   Name = "Auditorium 4",
+                   CinemaId = "C002"
+               },
+
+               new Room
+               {
+                   RoomId = "R010",
+                   Name = "Auditorium 5",
+                   CinemaId = "C002"
+               },
+
+               new Room
+               {
+                   RoomId = "R011",
+                   Name = "Auditorium 1",
+                   CinemaId = "C003"
+               },
+
+               new Room
+               {
+                   RoomId = "R012",
+                   Name = "Auditorium 2",
+                   CinemaId = "C003"
+               },
+
+               new Room
+               {
+                   RoomId = "R013",
+                   Name = "Auditorium 3",
+                   CinemaId = "C003"
+               },
+
+               new Room
+               {
+                   RoomId = "R014",
+                   Name = "Auditorium 4",
+                   CinemaId = "C003"
+               },
+
+               new Room
+               {
+                   RoomId = "R015",
+                   Name = "Auditorium 5",
+                   CinemaId = "C003"
+               }
+
+           );
+
             modelBuilder.Entity<Showtime>().HasData(
 
-        new Showtime
-        {
-            ShowtimeId = "ST001",
-            MovieId = "MOV001",
-            RoomId = "R001",
-            StartTime = new DateTime(2026, 6, 10, 10, 0, 0),
-            EndTime = new DateTime(2026, 6, 10, 13, 1, 0), // 181 phút
-            Status = "AVAILABLE",
-            CreatedAt = new DateTime(2026, 1, 1),
-            UpdatedAt = new DateTime(2026, 1, 1)
-        },
+                // STANDARD
+                new Showtime
+                {
+                    ShowtimeId = "ST001",
+                    MovieId = "MOV001",
+                    RoomId = "R001",
+                    StartTime = new DateTime(2026, 6, 10, 10, 0, 0),
+                    EndTime = new DateTime(2026, 6, 10, 12, 0, 0),
+                    Status = "AVAILABLE",
+                    CreatedAt = new DateTime(2026, 1, 1),
+                    UpdatedAt = new DateTime(2026, 1, 1)
+                },
 
-        new Showtime
-        {
-            ShowtimeId = "ST002",
-            MovieId = "MOV002",
-            RoomId = "R002",
-            StartTime = new DateTime(2026, 6, 10, 13, 30, 0),
-            EndTime = new DateTime(2026, 6, 10, 15, 58, 0), // 148 phút
-            Status = "AVAILABLE",
-            CreatedAt = new DateTime(2026, 1, 1),
-            UpdatedAt = new DateTime(2026, 1, 1)
-        },
+                new Showtime
+                {
+                    ShowtimeId = "ST002",
+                    MovieId = "MOV001",
+                    RoomId = "R001",
+                    StartTime = new DateTime(2026, 6, 10, 12, 30, 0),
+                    EndTime = new DateTime(2026, 6, 10, 14, 30, 0),
+                    Status = "AVAILABLE",
+                    CreatedAt = new DateTime(2026, 1, 1),
+                    UpdatedAt = new DateTime(2026, 1, 1)
+                },
 
-        new Showtime
-        {
-            ShowtimeId = "ST003",
-            MovieId = "MOV003",
-            RoomId = "R003",
-            StartTime = new DateTime(2026, 6, 10, 16, 30, 0),
-            EndTime = new DateTime(2026, 6, 10, 19, 26, 0), // 176 phút
-            Status = "AVAILABLE",
-            CreatedAt = new DateTime(2026, 1, 1),
-            UpdatedAt = new DateTime(2026, 1, 1)
-        },
+                new Showtime
+                {
+                    ShowtimeId = "ST003",
+                    MovieId = "MOV001",
+                    RoomId = "R001",
+                    StartTime = new DateTime(2026, 6, 10, 15, 0, 0),
+                    EndTime = new DateTime(2026, 6, 10, 17, 0, 0),
+                    Status = "AVAILABLE",
+                    CreatedAt = new DateTime(2026, 1, 1),
+                    UpdatedAt = new DateTime(2026, 1, 1)
+                },
 
-        new Showtime
-        {
-            ShowtimeId = "ST004",
-            MovieId = "MOV004",
-            RoomId = "R001",
-            StartTime = new DateTime(2026, 6, 10, 20, 0, 0),
-            EndTime = new DateTime(2026, 6, 10, 22, 6, 0), // 126 phút
-            Status = "AVAILABLE",
-            CreatedAt = new DateTime(2026, 1, 1),
-            UpdatedAt = new DateTime(2026, 1, 1)
-        },
+                new Showtime
+                {
+                    ShowtimeId = "ST004",
+                    MovieId = "MOV001",
+                    RoomId = "R001",
+                    StartTime = new DateTime(2026, 6, 10, 17, 30, 0),
+                    EndTime = new DateTime(2026, 6, 10, 19, 30, 0),
+                    Status = "AVAILABLE",
+                    CreatedAt = new DateTime(2026, 1, 1),
+                    UpdatedAt = new DateTime(2026, 1, 1)
+                },
 
-        new Showtime
-        {
-            ShowtimeId = "ST005",
-            MovieId = "MOV009",
-            RoomId = "R002",
-            StartTime = new DateTime(2026, 6, 11, 10, 0, 0),
-            EndTime = new DateTime(2026, 6, 11, 13, 12, 0), // 192 phút
-            Status = "AVAILABLE",
-            CreatedAt = new DateTime(2026, 1, 1),
-            UpdatedAt = new DateTime(2026, 1, 1)
-        },
 
-        new Showtime
-        {
-            ShowtimeId = "ST006",
-            MovieId = "MOV010",
-            RoomId = "R003",
-            StartTime = new DateTime(2026, 6, 11, 14, 0, 0),
-            EndTime = new DateTime(2026, 6, 11, 16, 11, 0), // 131 phút
-            Status = "AVAILABLE",
-            CreatedAt = new DateTime(2026, 1, 1),
-            UpdatedAt = new DateTime(2026, 1, 1)
-        }
+                // IMAX
+                new Showtime
+                {
+                    ShowtimeId = "ST005",
+                    MovieId = "MOV001",
+                    RoomId = "R002",
+                    StartTime = new DateTime(2026, 6, 10, 11, 0, 0),
+                    EndTime = new DateTime(2026, 6, 10, 13, 0, 0),
+                    Status = "AVAILABLE",
+                    CreatedAt = new DateTime(2026, 1, 1),
+                    UpdatedAt = new DateTime(2026, 1, 1)
+                },
 
-    );
+                new Showtime
+                {
+                    ShowtimeId = "ST006",
+                    MovieId = "MOV001",
+                    RoomId = "R002",
+                    StartTime = new DateTime(2026, 6, 10, 13, 0, 0),
+                    EndTime = new DateTime(2026, 6, 10, 15, 0, 0),
+                    Status = "AVAILABLE",
+                    CreatedAt = new DateTime(2026, 1, 1),
+                    UpdatedAt = new DateTime(2026, 1, 1)
+                },
+
+
+                // Dolby
+                new Showtime
+                {
+                    ShowtimeId = "ST007",
+                    MovieId = "MOV001",
+                    RoomId = "R003",
+                    StartTime = new DateTime(2026, 6, 10, 12, 0, 0),
+                    EndTime = new DateTime(2026, 6, 10, 14, 0, 0),
+                    Status = "AVAILABLE",
+                    CreatedAt = new DateTime(2026, 1, 1),
+                    UpdatedAt = new DateTime(2026, 1, 1)
+                },
+
+                    new Showtime
+                    {
+                        ShowtimeId = "ST008",
+                        MovieId = "MOV001",
+                        RoomId = "R001",
+                        StartTime = new DateTime(2026, 6, 23, 10, 0, 0),
+                        EndTime = new DateTime(2026, 6, 23, 12, 0, 0),
+                        Status = "AVAILABLE",
+                        CreatedAt = new DateTime(2026, 1, 1),
+                        UpdatedAt = new DateTime(2026, 1, 1)
+                    },
+
+                new Showtime
+                {
+                    ShowtimeId = "ST009",
+                    MovieId = "MOV001",
+                    RoomId = "R001",
+                    StartTime = new DateTime(2026, 6, 23, 12, 30, 0),
+                    EndTime = new DateTime(2026, 6, 23, 14, 30, 0),
+                    Status = "AVAILABLE",
+                    CreatedAt = new DateTime(2026, 1, 1),
+                    UpdatedAt = new DateTime(2026, 1, 1)
+                },
+
+                // IMAX
+                new Showtime
+                {
+                    ShowtimeId = "ST010",
+                    MovieId = "MOV001",
+                    RoomId = "R002",
+                    StartTime = new DateTime(2026, 6, 23, 11, 0, 0),
+                    EndTime = new DateTime(2026, 6, 23, 13, 0, 0),
+                    Status = "AVAILABLE",
+                    CreatedAt = new DateTime(2026, 1, 1),
+                    UpdatedAt = new DateTime(2026, 1, 1)
+                },
+
+                // DOLBY
+                new Showtime
+                {
+                    ShowtimeId = "ST011",
+                    MovieId = "MOV001",
+                    RoomId = "R003",
+                    StartTime = new DateTime(2026, 6, 23, 12, 0, 0),
+                    EndTime = new DateTime(2026, 6, 23, 14, 0, 0),
+                    Status = "AVAILABLE",
+                    CreatedAt = new DateTime(2026, 1, 1),
+                    UpdatedAt = new DateTime(2026, 1, 1)
+                },
+
+                new Showtime
+                {
+                    ShowtimeId = "ST012",
+                    MovieId = "MOV001",
+                    RoomId = "R001",
+                    StartTime = new DateTime(2026, 6, 24, 10, 0, 0),
+                    EndTime = new DateTime(2026, 6, 24, 12, 0, 0),
+                    Status = "AVAILABLE",
+                    CreatedAt = new DateTime(2026, 1, 1),
+                    UpdatedAt = new DateTime(2026, 1, 1)
+                },
+
+                new Showtime
+                {
+                    ShowtimeId = "ST013",
+                    MovieId = "MOV001",
+                    RoomId = "R002",
+                    StartTime = new DateTime(2026, 6, 24, 11, 0, 0),
+                    EndTime = new DateTime(2026, 6, 24, 13, 0, 0),
+                    Status = "AVAILABLE",
+                    CreatedAt = new DateTime(2026, 1, 1),
+                    UpdatedAt = new DateTime(2026, 1, 1)
+                },
+
+                new Showtime
+                {
+                    ShowtimeId = "ST014",
+                    MovieId = "MOV001",
+                    RoomId = "R003",
+                    StartTime = new DateTime(2026, 6, 24, 12, 0, 0),
+                    EndTime = new DateTime(2026, 6, 24, 14, 0, 0),
+                    Status = "AVAILABLE",
+                    CreatedAt = new DateTime(2026, 1, 1),
+                    UpdatedAt = new DateTime(2026, 1, 1)
+                }
+
+            );
+
             modelBuilder.Entity<TicketType>().HasData(
 
-    new TicketType
-    {
-        TicketTypeId = "TT001",
-        Name = "Standard",
-        Status = "ACTIVE"
-    },
+                new TicketType
+                {
+                    TicketTypeId = "TT001",
+                    Name = "Standard",
+                    Status = "ACTIVE"
+                },
 
-    new TicketType
-    {
-        TicketTypeId = "TT002",
-        Name = "VIP",
-        Status = "ACTIVE"
-    },
+                new TicketType
+                {
+                    TicketTypeId = "TT002",
+                    Name = "IMAX",
+                    Status = "ACTIVE"
+                },
 
-    new TicketType
-    {
-        TicketTypeId = "TT003",
-        Name = "Couple",
-        Status = "ACTIVE"
-    }
+                new TicketType
+                {
+                    TicketTypeId = "TT003",
+                    Name = "Dolby Cinema",
+                    Status = "ACTIVE"
+                }
 
-);
+            );
+
             modelBuilder.Entity<ShowtimeTicketType>().HasData(
 
-    new ShowtimeTicketType
-    {
-        ShowtimeTicketTypeId = "STT001",
-        ShowtimeId = "ST001",
-        TicketTypeId = "TT001",
-        Price = 80000
-    },
+                // STANDARD
+                new ShowtimeTicketType
+                {
+                    ShowtimeTicketTypeId = "STT001",
+                    ShowtimeId = "ST001",
+                    TicketTypeId = "TT001",
+                    Price = 120000
+                },
 
-    new ShowtimeTicketType
-    {
-        ShowtimeTicketTypeId = "STT002",
-        ShowtimeId = "ST001",
-        TicketTypeId = "TT002",
-        Price = 120000
-    },
+                new ShowtimeTicketType
+                {
+                    ShowtimeTicketTypeId = "STT002",
+                    ShowtimeId = "ST002",
+                    TicketTypeId = "TT001",
+                    Price = 120000
+                },
 
-    new ShowtimeTicketType
-    {
-        ShowtimeTicketTypeId = "STT003",
-        ShowtimeId = "ST002",
-        TicketTypeId = "TT001",
-        Price = 85000
-    },
+                new ShowtimeTicketType
+                {
+                    ShowtimeTicketTypeId = "STT003",
+                    ShowtimeId = "ST003",
+                    TicketTypeId = "TT001",
+                    Price = 120000
+                },
 
-    new ShowtimeTicketType
-    {
-        ShowtimeTicketTypeId = "STT004",
-        ShowtimeId = "ST002",
-        TicketTypeId = "TT002",
-        Price = 125000
-    },
+                new ShowtimeTicketType
+                {
+                    ShowtimeTicketTypeId = "STT004",
+                    ShowtimeId = "ST004",
+                    TicketTypeId = "TT001",
+                    Price = 120000
+                },
 
-    new ShowtimeTicketType
-    {
-        ShowtimeTicketTypeId = "STT005",
-        ShowtimeId = "ST003",
-        TicketTypeId = "TT001",
-        Price = 90000
-    },
 
-    new ShowtimeTicketType
-    {
-        ShowtimeTicketTypeId = "STT006",
-        ShowtimeId = "ST003",
-        TicketTypeId = "TT002",
-        Price = 130000
-    }
+                // IMAX
+                new ShowtimeTicketType
+                {
+                    ShowtimeTicketTypeId = "STT005",
+                    ShowtimeId = "ST005",
+                    TicketTypeId = "TT002",
+                    Price = 170000
+                },
 
-);
+                new ShowtimeTicketType
+                {
+                    ShowtimeTicketTypeId = "STT006",
+                    ShowtimeId = "ST006",
+                    TicketTypeId = "TT002",
+                    Price = 170000
+                },
+
+
+                // Dolby
+                new ShowtimeTicketType
+                {
+                    ShowtimeTicketTypeId = "STT007",
+                    ShowtimeId = "ST007",
+                    TicketTypeId = "TT003",
+                    Price = 220000
+                },
+
+                new ShowtimeTicketType
+                {
+                    ShowtimeTicketTypeId = "STT008",
+                    ShowtimeId = "ST008",
+                    TicketTypeId = "TT001",
+                    Price = 120000
+                },
+
+                new ShowtimeTicketType
+                {
+                    ShowtimeTicketTypeId = "STT009",
+                    ShowtimeId = "ST009",
+                    TicketTypeId = "TT001",
+                    Price = 120000
+                },
+
+                new ShowtimeTicketType
+                {
+                    ShowtimeTicketTypeId = "STT010",
+                    ShowtimeId = "ST010",
+                    TicketTypeId = "TT002",
+                    Price = 170000
+                },
+
+                new ShowtimeTicketType
+                {
+                    ShowtimeTicketTypeId = "STT011",
+                    ShowtimeId = "ST011",
+                    TicketTypeId = "TT003",
+                    Price = 220000
+                },
+
+                new ShowtimeTicketType
+                {
+                    ShowtimeTicketTypeId = "STT012",
+                    ShowtimeId = "ST012",
+                    TicketTypeId = "TT001",
+                    Price = 120000
+                },
+
+                new ShowtimeTicketType
+                {
+                    ShowtimeTicketTypeId = "STT013",
+                    ShowtimeId = "ST013",
+                    TicketTypeId = "TT002",
+                    Price = 170000
+                },
+
+                new ShowtimeTicketType
+                {
+                    ShowtimeTicketTypeId = "STT014",
+                    ShowtimeId = "ST014",
+                    TicketTypeId = "TT003",
+                    Price = 220000
+                }
+
+            );
             modelBuilder.Entity<FoodCombo>().HasData(
 
     new FoodCombo
@@ -1138,47 +1383,34 @@ new Comment { CommentId = "CMT015", UserId = "USR002", BlogPostId = "BLOG005", C
     }
 
 );
-            modelBuilder.Entity<Seat>().HasData(
+            var seats = new List<Seat>();
 
-    new Seat { SeatId = "SE001", SeatName = "A1", SeatType = "NORMAL", Status = "AVAILABLE", RoomId = "R001", ShowtimeId = "ST001" },
-    new Seat { SeatId = "SE002", SeatName = "A2", SeatType = "NORMAL", Status = "AVAILABLE", RoomId = "R001", ShowtimeId = "ST001" },
-    new Seat { SeatId = "SE003", SeatName = "A3", SeatType = "VIP", Status = "AVAILABLE", RoomId = "R001", ShowtimeId = "ST001" },
-    new Seat { SeatId = "SE004", SeatName = "A4", SeatType = "VIP", Status = "AVAILABLE", RoomId = "R001", ShowtimeId = "ST001" },
+            var rows = new[] { "A", "B", "C", "D", "E", "F", "G", "H" };
+            var rooms = new[] { "R001", "R002", "R003", "R004", "R005" };
 
-    new Seat { SeatId = "SE005", SeatName = "B1", SeatType = "NORMAL", Status = "AVAILABLE", RoomId = "R002", ShowtimeId = "ST002" },
-    new Seat { SeatId = "SE006", SeatName = "B2", SeatType = "NORMAL", Status = "AVAILABLE", RoomId = "R002", ShowtimeId = "ST002" },
-    new Seat { SeatId = "SE007", SeatName = "B3", SeatType = "VIP", Status = "AVAILABLE", RoomId = "R002", ShowtimeId = "ST002" },
-    new Seat { SeatId = "SE008", SeatName = "B4", SeatType = "VIP", Status = "AVAILABLE", RoomId = "R002", ShowtimeId = "ST002" },
+            int id = 1;
 
-    new Seat { SeatId = "SE009", SeatName = "C1", SeatType = "NORMAL", Status = "AVAILABLE", RoomId = "R003", ShowtimeId = "ST003" },
-    new Seat { SeatId = "SE010", SeatName = "C2", SeatType = "NORMAL", Status = "AVAILABLE", RoomId = "R003", ShowtimeId = "ST003" },
-    new Seat { SeatId = "SE011", SeatName = "C3", SeatType = "VIP", Status = "AVAILABLE", RoomId = "R003", ShowtimeId = "ST003" },
-    new Seat { SeatId = "SE012", SeatName = "C4", SeatType = "VIP", Status = "AVAILABLE", RoomId = "R003", ShowtimeId = "ST003" }
+            foreach (var room in rooms)
+            {
+                foreach (var row in rows)
+                {
+                    for (int col = 1; col <= 10; col++)
+                    {
+                        seats.Add(new Seat
+                        {
+                            SeatId = $"SE{id.ToString("D4")}",
+                            SeatName = $"{row}{col}",
+                            RoomId = room
+                        });
 
-);
-            modelBuilder.Entity<SeatLock>().HasData(
+                        id++;
+                    }
+                }
+            }
 
-    new SeatLock
-    {
-        SeatLockId = "SL001",
-        SeatId = "SE001",
-        ShowtimeId = "ST001",
-        UserId = "USR001",
-        LockedAt = new DateTime(2026, 6, 10, 9, 50, 0),
-        ExpiredAt = new DateTime(2026, 6, 10, 9, 55, 0)
-    },
+            modelBuilder.Entity<Seat>().HasData(seats);
 
-    new SeatLock
-    {
-        SeatLockId = "SL002",
-        SeatId = "SE006",
-        ShowtimeId = "ST002",
-        UserId = "USR001",
-        LockedAt = new DateTime(2026, 6, 10, 13, 20, 0),
-        ExpiredAt = new DateTime(2026, 6, 10, 13, 25, 0)
-    }
 
-);
             modelBuilder.Entity<Voucher>().HasData(
 
         new Voucher
@@ -1242,105 +1474,105 @@ new Comment { CommentId = "CMT015", UserId = "USR002", BlogPostId = "BLOG005", C
         }
 
     );
-            modelBuilder.Entity<Booking>().HasData(
+    //        modelBuilder.Entity<Booking>().HasData(
 
-    new Booking
-    {
-        BookingId = "BK001",
-        UserId = "USR001",
-        ShowtimeId = "ST001",
-        TotalAmount = 15.5,
-        Status = "PAID",
-        CreatedAt = new DateTime(2026, 6, 10, 9, 30, 0)
-    },
+    //new Booking
+    //{
+    //    BookingId = "BK001",
+    //    UserId = "USR001",
+    //    ShowtimeId = "ST001",
+    //    TotalAmount = 15.5,
+    //    Status = "PAID",
+    //    CreatedAt = new DateTime(2026, 6, 10, 9, 30, 0)
+    //},
 
-    new Booking
-    {
-        BookingId = "BK002",
-        UserId = "USR002",
-        ShowtimeId = "ST002",
-        TotalAmount = 20,
-        Status = "PAID",
-        CreatedAt = new DateTime(2026, 6, 10, 12, 0, 0)
-    }
+    //new Booking
+    //{
+    //    BookingId = "BK002",
+    //    UserId = "USR002",
+    //    ShowtimeId = "ST002",
+    //    TotalAmount = 20,
+    //    Status = "PAID",
+    //    CreatedAt = new DateTime(2026, 6, 10, 12, 0, 0)
+    //}
 
-    );
+    //);
 
-            modelBuilder.Entity<BookingSeat>().HasData(
+    //        modelBuilder.Entity<BookingSeat>().HasData(
 
-            new BookingSeat
-            {
-                BookingSeatId = "BKS001",
-                BookingId = "BK001",
-                SeatId = "SE001",
-                ShowtimeTicketTypeId = "STT001",
-                Price = 7.5,
-                QrCode = "QR001",
-                Status = "BOOKED",
-                CheckinTime = new DateTime(2026, 6, 10, 10, 0, 0)
-            },
+    //        new BookingSeat
+    //        {
+    //            BookingSeatId = "BKS001",
+    //            BookingId = "BK001",
+    //            SeatId = "SE001",
+    //            ShowtimeTicketTypeId = "STT001",
+    //            Price = 7.5,
+    //            QrCode = "QR001",
+    //            Status = "BOOKED",
+    //            CheckinTime = new DateTime(2026, 6, 10, 10, 0, 0)
+    //        },
 
-            new BookingSeat
-            {
-                BookingSeatId = "BKS002",
-                BookingId = "BK001",
-                SeatId = "SE002",
-                ShowtimeTicketTypeId = "STT001",
-                Price = 8,
-                QrCode = "QR002",
-                Status = "BOOKED",
-                CheckinTime = new DateTime(2026, 6, 10, 10, 0, 0)
-            },
+    //        new BookingSeat
+    //        {
+    //            BookingSeatId = "BKS002",
+    //            BookingId = "BK001",
+    //            SeatId = "SE002",
+    //            ShowtimeTicketTypeId = "STT001",
+    //            Price = 8,
+    //            QrCode = "QR002",
+    //            Status = "BOOKED",
+    //            CheckinTime = new DateTime(2026, 6, 10, 10, 0, 0)
+    //        },
 
-            new BookingSeat
-            {
-                BookingSeatId = "BKS003",
-                BookingId = "BK002",
-                SeatId = "SE003",
-                ShowtimeTicketTypeId = "STT002",
-                Price = 10,
-                QrCode = "QR003",
-                Status = "BOOKED",
-                CheckinTime = new DateTime(2026, 6, 10, 13, 0, 0)
-            }
+    //        new BookingSeat
+    //        {
+    //            BookingSeatId = "BKS003",
+    //            BookingId = "BK002",
+    //            SeatId = "SE003",
+    //            ShowtimeTicketTypeId = "STT002",
+    //            Price = 10,
+    //            QrCode = "QR003",
+    //            Status = "BOOKED",
+    //            CheckinTime = new DateTime(2026, 6, 10, 13, 0, 0)
+    //        }
 
-            );
+    //        );
 
-            modelBuilder.Entity<BookingFoodCombo>().HasData(
+    //        modelBuilder.Entity<BookingFoodCombo>().HasData(
 
-            new BookingFoodCombo
-            {
-                BookingFoodComboId = "BFC001",
-                BookingId = "BK001",
-                FoodComboId = "FC001",
-                Quantity = 1
-            },
+    //        new BookingFoodCombo
+    //        {
+    //            BookingFoodComboId = "BFC001",
+    //            BookingId = "BK001",
+    //            FoodComboId = "FC001",
+    //            Quantity = 1
+    //        },
 
-            new BookingFoodCombo
-            {
-                BookingFoodComboId = "BFC002",
-                BookingId = "BK002",
-                FoodComboId = "FC002",
-                Quantity = 2
-            }
+    //        new BookingFoodCombo
+    //        {
+    //            BookingFoodComboId = "BFC002",
+    //            BookingId = "BK002",
+    //            FoodComboId = "FC002",
+    //            Quantity = 2
+    //        }
 
-            );
+    //        );
 
-            modelBuilder.Entity<BookingVoucher>().HasData(
+    //        modelBuilder.Entity<BookingVoucher>().HasData(
 
-            new BookingVoucher
-            {
-                BookingId = "BK001",
-                VoucherId = "VC001"
-            },
+    //        new BookingVoucher
+    //        {
+    //            BookingId = "BK001",
+    //            VoucherId = "VC001"
+    //        },
 
-            new BookingVoucher
-            {
-                BookingId = "BK002",
-                VoucherId = "VC002"
-            }
+    //        new BookingVoucher
+    //        {
+    //            BookingId = "BK002",
+    //            VoucherId = "VC002"
+    //        }
 
-            );
+    //        );
             modelBuilder.Entity<PaymentMethod>().HasData(
     new PaymentMethod
     {
@@ -1370,26 +1602,26 @@ new Comment { CommentId = "CMT015", UserId = "USR002", BlogPostId = "BLOG005", C
         UpdatedDate = DateTime.Now
     }
 );
-            modelBuilder.Entity<Payment>().HasData(
-    new Payment
-    {
-        PaymentId = "PAY001",
-        BookingId = "BK001",
-        PaymentMethodId = "PM001",
-        Amount = 120000,
-        Status = "PAID",
-        CreatedDate = DateTime.Now
-    },
-    new Payment
-    {
-        PaymentId = "PAY002",
-        BookingId = "BK002",
-        PaymentMethodId = "PM002",
-        Amount = 150000,
-        Status = "PAID",
-        CreatedDate = DateTime.Now
-    }
-);
+//            modelBuilder.Entity<Payment>().HasData(
+//    new Payment
+//    {
+//        PaymentId = "PAY001",
+//        BookingId = "BK001",
+//        PaymentMethodId = "PM001",
+//        Amount = 120000,
+//        Status = "PAID",
+//        CreatedDate = DateTime.Now
+//    },
+//    new Payment
+//    {
+//        PaymentId = "PAY002",
+//        BookingId = "BK002",
+//        PaymentMethodId = "PM002",
+//        Amount = 150000,
+//        Status = "PAID",
+//        CreatedDate = DateTime.Now
+//    }
+//);
         }
 
     }

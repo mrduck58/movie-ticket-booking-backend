@@ -6,6 +6,7 @@ namespace Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas
     {
         Task<List<Cinema>> GetCinemas();
         Task<Cinema?> GetCinemaById(string id);
+        Task<List<Cinema>> GetCinemasByMovieId(string movieId);
         Task AddCinema(Cinema cinema);
         void UpdateCinema(Cinema cinema);
         void DeleteCinema(Cinema cinema);

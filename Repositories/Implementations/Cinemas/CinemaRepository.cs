@@ -14,7 +14,7 @@ public class CinemaRepository : ICinemaRepository
 
     public async Task AddCinema(Cinema cinema)
     {
-         await _context.Cinemas.AddAsync(cinema);
+        await _context.Cinemas.AddAsync(cinema);
     }
 
     public void DeleteCinema(Cinema cinema)
@@ -30,6 +30,15 @@ public class CinemaRepository : ICinemaRepository
     public async Task<List<Cinema>> GetCinemas()
     {
         return await _context.Cinemas.ToListAsync();
+    }
+
+    public async Task<List<Cinema>> GetCinemasByMovieId(string movieId)
+    {
+        return await _context.Showtimes
+        .Where(s => s.MovieId == movieId)
+        .Select(s => s.Room.Cinema)
+        .Distinct()
+        .ToListAsync();
     }
 
     public async Task Save()

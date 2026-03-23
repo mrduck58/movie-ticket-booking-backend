@@ -50,9 +50,18 @@ public class CinemaService : ICinemaService
         return true;
     }
 
-    public Task<CinemaDto?> GetCinema(string id)
+    public async Task<CinemaDto?> GetCinemaById(string id)
     {
-        throw new NotImplementedException();
+        var cinema = await _cinemaRepository.GetCinemaById(id);
+
+        return new CinemaDto
+        {
+            CinemaId = cinema.CinemaId,
+            Name = cinema.Name,
+            Location = cinema.Location,
+            Rating = cinema.Rating,
+            Hotline = cinema.Hotline,
+        };
     }
 
     public async Task<List<CinemaDto>> GetCinemas()
@@ -66,6 +75,18 @@ public class CinemaService : ICinemaService
             Location = x.Location,
             Rating = x.Rating,
             Hotline = x.Hotline,
+        }).ToList();
+    }
+
+    public async Task<List<CinemaListDto>> GetCinemasByMovie(string movieId)
+    {
+        var cinemas = await _cinemaRepository.GetCinemasByMovieId(movieId);
+
+        return cinemas.Select(c => new CinemaListDto
+        {
+            CinemaId = c.CinemaId,
+            Name = c.Name,
+            Location = c.Location
         }).ToList();
     }
 }
