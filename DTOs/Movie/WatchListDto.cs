@@ -13,5 +13,10 @@
         public string type { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
+        public double Duration { get; set; }
+        public string Director { get; set; }
+        public double Rating { get; set; }
+        public List<string> Genres { get; set; }
     }
 }
