@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Movie_Ticket_Booking_Backend.Data;
@@ -47,11 +47,13 @@ namespace Movie_Ticket_Booking_Backend
             // CORS
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll",
-                    policy => policy
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost") // Chấp nhận mọi Port từ localhost
+                          .AllowAnyMethod()
+                          .AllowAnyHeader()
+                          .AllowCredentials(); // Quan trọng nếu sau này bạn dùng Cookie/Session
+                });
             });
 
             // JWT
@@ -113,6 +115,9 @@ namespace Movie_Ticket_Booking_Backend
 
             builder.Services.AddScoped<IPosterRepository, PosterRepository>();
             builder.Services.AddScoped<IPosterService, PosterService>();
+
+            builder.Services.AddMemoryCache(); // Để lưu mã OTP tạm thời
+            builder.Services.AddScoped<IEmailService, EmailService>();
 
             var app = builder.Build();
 
