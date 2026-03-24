@@ -28,6 +28,15 @@ namespace Movie_Ticket_Booking_Backend.Repositories.Implementations.Notificaions
                 .FirstOrDefaultAsync(n => n.NotificationId == notificationId);
         }
 
+        public async Task<Notification?> GetByIdAndUserId(string notificationId, string userId)
+        {
+            return await _context.Notifications
+                .FirstOrDefaultAsync(n =>
+                    n.NotificationId == notificationId &&
+                    n.UserId == userId
+                );
+        }
+
         public async Task AddAsync(Notification notification)
         {
             await _context.Notifications.AddAsync(notification);
@@ -36,6 +45,12 @@ namespace Movie_Ticket_Booking_Backend.Repositories.Implementations.Notificaions
         public async Task DeleteAsync(Notification notification)
         {
             _context.Notifications.Remove(notification);
+            await Task.CompletedTask;
+        }
+
+        public async Task DeleteRangeAsync(List<Notification> notifications)
+        {
+            _context.Notifications.RemoveRange(notifications);
             await Task.CompletedTask;
         }
 

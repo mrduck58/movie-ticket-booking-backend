@@ -3,13 +3,11 @@
     public class CreateNotificationDto
     {
         public string UserId { get; set; }
+        public string Type { get; set; }
 
         public string? WatchListId { get; set; }
-
         public string? BlogPostId { get; set; }
-
         public string? CommentId { get; set; }
-
         public string? BookingSeatId { get; set; }
 
         public string Message { get; set; }

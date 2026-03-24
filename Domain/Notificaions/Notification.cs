@@ -19,6 +19,7 @@ namespace Movie_Ticket_Booking_Backend.Domain.Notificaions
 
         public string? BookingSeatId { get; set; }
 
+        public string Type { get; set; } = null!;
         public string Message { get; set; }
 
         public bool IsRead { get; set; } = false;
