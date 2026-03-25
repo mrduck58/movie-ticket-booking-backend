@@ -22,7 +22,7 @@ public class SeatController : ControllerBase
     [HttpGet("showtime/{showtimeId}")]
     public async Task<IActionResult> GetSeatMap(string showtimeId)
     {
-        var seats = await _seatService.GetSeatMap(showtimeId);
+        var seats = await _seatService.GetSeatMapAsync(showtimeId);
         return Ok(seats);
     }
 
@@ -33,24 +33,24 @@ public class SeatController : ControllerBase
         return Ok(seat);
     }
 
-    [HttpPost("lock")]
-    public async Task<IActionResult> LockSeat(LockSeatRequest request)
-    {
-        var userId = "mock-user";
+    //[HttpPost("lock")]
+    //public async Task<IActionResult> LockSeat(LockSeatRequest request)
+    //{
+    //    var userId = "mock-user";
 
-        var result = await _seatService.LockSeat(userId, request);
+    //    var result = await _seatService.LockSeat(userId, request);
 
-        if (!result)
-            return BadRequest();
+    //    if (!result)
+    //        return BadRequest();
 
-        return Ok();
-    }
+    //    return Ok();
+    //}
 
-    [HttpDelete("unlock")]
-    public async Task<IActionResult> UnlockSeat(string seatId, string showtimeId)
-    {
-        await _seatService.UnlockSeat(seatId, showtimeId);
+    //[HttpDelete("unlock")]
+    //public async Task<IActionResult> UnlockSeat(string seatId, string showtimeId)
+    //{
+    //    await _seatService.UnlockSeat(seatId, showtimeId);
 
-        return Ok();
-    }
+    //    return Ok();
+    //}
 }
