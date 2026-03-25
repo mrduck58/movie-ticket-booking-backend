@@ -2,6 +2,7 @@
 using Movie_Ticket_Booking_Backend.Data;
 using Movie_Ticket_Booking_Backend.Domain.Movies;
 using Movie_Ticket_Booking_Backend.DTOs.Movie;
+using Movie_Ticket_Booking_Backend.Repositories.Implementations.Movies;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Movies;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Movies;
 
@@ -10,6 +11,7 @@ public class MovieService : IMovieService
     private readonly IMovieRepository _movieRepository;
     private readonly IPosterRepository _posterRepository;
     private readonly IMovieCastRepository _movieCastRepository;
+    private readonly IMovieGenreRepository _movieGenreRepository;
 
   
     private readonly AppDbContext _context;
@@ -18,11 +20,13 @@ public class MovieService : IMovieService
         IMovieRepository movieRepository,
         IPosterRepository posterRepository,
         IMovieCastRepository movieCastRepository,
+        IMovieGenreRepository movieGenreRepository,
         AppDbContext context) 
     {
         _movieRepository = movieRepository;
         _posterRepository = posterRepository;
         _movieCastRepository = movieCastRepository;
+        _movieGenreRepository = movieGenreRepository;
         _context = context; 
     }
 
@@ -63,6 +67,7 @@ public class MovieService : IMovieService
 
         var posters = await _posterRepository.GetPostersByMovieId(movie.MovieId);
         var casts = await _movieCastRepository.GetCastsByMovieId(movie.MovieId);
+        var genres = await _movieGenreRepository.GetGenresByMovieId(movie.MovieId);
 
         var ratings = await _context.MovieRatings
             .Where(r => r.MovieId == id)
@@ -78,7 +83,7 @@ public class MovieService : IMovieService
             TitleVn = movie.TitleVn,
             Duration = movie.Duration,
 
-           
+
             Rating = Math.Round(avgRating, 1),
             TotalVotes = totalVotes,
 
@@ -93,6 +98,12 @@ public class MovieService : IMovieService
             {
                 Name = c.Cast.Name,
                 ImageUrl = c.Cast.AvatarUrl
+            }).ToList(),
+
+            Genres = genres.Select(g => new GenreDto
+            {
+                GenreId = g.GenreId,
+                Name = g.Genre.Name
             }).ToList()
         };
     }
