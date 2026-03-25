@@ -2,10 +2,7 @@
 {
     public class AddWatchListDto
     {
-        public string UserId { get; set; }
-
         public string MovieId { get; set; }
-
         public string type { get; set; }
     }
 }

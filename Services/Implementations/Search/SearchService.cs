@@ -24,14 +24,21 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.Search
                 {
                     MovieId = m.MovieId,
                     Title = m.Title,
-                    PosterUrl = m.Posters.FirstOrDefault()?.ImageUrl ?? ""
+                    TitleVn = m.TitleVn,
+                    PosterUrl = m.Posters.FirstOrDefault()?.ImageUrl ?? "",
+                    Rating = m.Rating,
+                    Duration = m.Duration,
+                    Status = m.Status,
+                    Director = m.Director
                 }).ToList(),
 
                 Cinemas = cinemas.Select(c => new CinemaSearchDto
                 {
                     CinemaId = c.CinemaId,
                     Name = c.Name,
-                    Location = c.Location
+                    Location = c.Location,
+                    Rating = c.Rating,
+                    Hotline = c.Hotline
                 }).ToList()
             };
         }
