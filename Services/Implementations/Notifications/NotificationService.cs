@@ -23,31 +23,41 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.Notifications
                 NotificationId = n.NotificationId,
                 Message = n.Message,
                 IsRead = n.IsRead,
-                CreatedAt = n.CreatedAt
+                CreatedAt = n.CreatedAt,
+                Type = n.Type
             }).ToList();
         }
 
-        public async Task MarkAsRead(string notificationId)
+        public async Task MarkAsRead(string userId, string notificationId)
         {
-            var notification = await _repository.GetById(notificationId);
+            var notification = await _repository.GetByIdAndUserId(notificationId, userId);
 
             if (notification == null)
                 throw new Exception("Notification not found");
 
             notification.IsRead = true;
-
             await _repository.SaveChangesAsync();
         }
 
-        public async Task DeleteNotification(string notificationId)
+        public async Task DeleteNotification(string userId, string notificationId)
         {
-            var notification = await _repository.GetById(notificationId);
+            var notification = await _repository.GetByIdAndUserId(notificationId, userId);
 
             if (notification == null)
                 throw new Exception("Notification not found");
 
             await _repository.DeleteAsync(notification);
+            await _repository.SaveChangesAsync();
+        }
 
+        public async Task ClearAll(string userId)
+        {
+            var notifications = await _repository.GetUserNotifications(userId);
+
+            if (!notifications.Any())
+                return;
+
+            await _repository.DeleteRangeAsync(notifications);
             await _repository.SaveChangesAsync();
         }
 
@@ -57,6 +67,7 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.Notifications
             {
                 NotificationId = Guid.NewGuid().ToString(),
                 UserId = dto.UserId,
+                Type = dto.Type,
                 WatchListId = dto.WatchListId,
                 BlogPostId = dto.BlogPostId,
                 CommentId = dto.CommentId,
@@ -65,7 +76,6 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.Notifications
             };
 
             await _repository.AddAsync(notification);
-
             await _repository.SaveChangesAsync();
         }
     }
