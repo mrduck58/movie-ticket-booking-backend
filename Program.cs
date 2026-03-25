@@ -1,28 +1,40 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Movie_Ticket_Booking_Backend.Data;
+using Movie_Ticket_Booking_Backend.Repositories.Implementations.BlogPost;
 using Movie_Ticket_Booking_Backend.Repositories.Implementations.Movies;
 using Movie_Ticket_Booking_Backend.Repositories.Implementations.Notificaions;
 using Movie_Ticket_Booking_Backend.Repositories.Implementations.Payments;
+using Movie_Ticket_Booking_Backend.Repositories.Implementations.Profile;
 using Movie_Ticket_Booking_Backend.Repositories.Implementations.Search;
+using Movie_Ticket_Booking_Backend.Repositories.Implementations.Ticket;
+using Movie_Ticket_Booking_Backend.Repositories.Interfaces.BlogPost;
+using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Movies;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Notifications;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Payments;
+using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Profile;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Search;
+using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Ticket;
+using Movie_Ticket_Booking_Backend.Services.Implementations.BlogPost;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Movie;
+using Movie_Ticket_Booking_Backend.Services.Implementations.Movies;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Notifications;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Payments;
+using Movie_Ticket_Booking_Backend.Services.Implementations.Profile;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Search;
+using Movie_Ticket_Booking_Backend.Services.Implementations.Ticket;
+using Movie_Ticket_Booking_Backend.Services.Implementations.User;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.BlogPost;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.Cinemas;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Movies;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Notifications;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Payments;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.Profile;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Search;
-using System.Text;
-using Movie_Ticket_Booking_Backend.Services.Interfaces.Cinemas;
-using Movie_Ticket_Booking_Backend.Services.Implementations.User;
-using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas;
-using Movie_Ticket_Booking_Backend.Services.Implementations.Movies;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.Ticket;
 
 namespace Movie_Ticket_Booking_Backend
 {
@@ -75,7 +87,19 @@ namespace Movie_Ticket_Booking_Backend
                     )
                 };
             });
-
+            //blogpost
+            builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+            builder.Services.AddScoped<IBlogService, BlogService>();
+            //comment
+            builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+            builder.Services.AddScoped<ICommentService, CommentService>();
+            builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+            // Ticket
+            builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+            builder.Services.AddScoped<ITicketService, TicketService>();
+            // Profile
+            builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+            builder.Services.AddScoped<IProfileService, ProfileService>();
             ///watchlist
             builder.Services.AddScoped<IWatchListRepository, WatchListRepository>();
             builder.Services.AddScoped<IWatchListService, WatchListService>();
