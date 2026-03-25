@@ -6,9 +6,11 @@ namespace Movie_Ticket_Booking_Backend.Services.Interfaces.Notifications
     {
         Task<List<NotificationDto>> GetUserNotifications(string userId);
 
-        Task MarkAsRead(string notificationId);
+        Task MarkAsRead(string userId, string notificationId);
 
-        Task DeleteNotification(string notificationId);
+        Task DeleteNotification(string userId, string notificationId);
+
+        Task ClearAll(string userId);
 
         Task CreateNotification(CreateNotificationDto dto);
     }

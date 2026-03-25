@@ -1,28 +1,36 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Movie_Ticket_Booking_Backend.Data;
+using Movie_Ticket_Booking_Backend.Repositories.Implementations.Foods;
 using Movie_Ticket_Booking_Backend.Repositories.Implementations.Movies;
 using Movie_Ticket_Booking_Backend.Repositories.Implementations.Notificaions;
 using Movie_Ticket_Booking_Backend.Repositories.Implementations.Payments;
 using Movie_Ticket_Booking_Backend.Repositories.Implementations.Search;
+using Movie_Ticket_Booking_Backend.Repositories.Implementations.Vouchers;
+using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas;
+using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Foods;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Movies;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Notifications;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Payments;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Search;
+using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Vouchers;
+using Movie_Ticket_Booking_Backend.Services.Implementations.Foods;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Movie;
+using Movie_Ticket_Booking_Backend.Services.Implementations.Movies;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Notifications;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Payments;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Search;
+using Movie_Ticket_Booking_Backend.Services.Implementations.User;
+using Movie_Ticket_Booking_Backend.Services.Implementations.Vouchers;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.Cinemas;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.Foods;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Movies;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Notifications;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Payments;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Search;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.Vouchers;
 using System.Text;
-using Movie_Ticket_Booking_Backend.Services.Interfaces.Cinemas;
-using Movie_Ticket_Booking_Backend.Services.Implementations.User;
-using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas;
-using Movie_Ticket_Booking_Backend.Services.Implementations.Movies;
 
 namespace Movie_Ticket_Booking_Backend
 {
@@ -47,11 +55,13 @@ namespace Movie_Ticket_Booking_Backend
             // CORS
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll",
-                    policy => policy
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost") // Chấp nhận mọi Port từ localhost
+                          .AllowAnyMethod()
+                          .AllowAnyHeader()
+                          .AllowCredentials(); // Quan trọng nếu sau này bạn dùng Cookie/Session
+                });
             });
 
             // JWT
@@ -108,6 +118,12 @@ namespace Movie_Ticket_Booking_Backend
             builder.Services.AddScoped<ISeatRepository, SeatRepository>();
             builder.Services.AddScoped<ISeatService, SeatService>();
 
+            builder.Services.AddScoped<IComboRepository, ComboRepository>();
+            builder.Services.AddScoped<IComboService, ComboService>();
+
+            builder.Services.AddScoped<IVoucherRepository, VoucherRepository>();
+            builder.Services.AddScoped<IVoucherService, VoucherService>();
+
             builder.Services.AddScoped<IBookingRepository, BookingRepository>();
             builder.Services.AddScoped<IBookingService, BookingService>();
 
@@ -122,7 +138,13 @@ namespace Movie_Ticket_Booking_Backend
                           .AllowAnyHeader());
             });
 
+<<<<<<< api_backend_rating
             
+=======
+            builder.Services.AddMemoryCache(); // Để lưu mã OTP tạm thời
+            builder.Services.AddScoped<IEmailService, EmailService>();
+
+>>>>>>> develop
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
