@@ -10,5 +10,11 @@
         public string Director { get; set; }
         public string PosterUrl { get; set; }
         public DateTime ReleaseDate { get; set; }
+        public string TrailerUrl { get; set; }
+        public string Status { get; set; }
+        public int TotalVotes { get; set; }
+        public string Description { get; set; } = string.Empty;
+        public List<CastDto> Casts { get; set; } = new();
+
     }
 }
