@@ -53,7 +53,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("BlogPosts");
+                    b.ToTable("BlogPosts", (string)null);
 
                     b.HasData(
                         new
@@ -134,7 +134,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
 
                     b.HasData(
                         new
@@ -288,7 +288,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Bookings");
+                    b.ToTable("Bookings", (string)null);
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Bookings.BookingFoodCombo", b =>
@@ -313,7 +313,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("FoodComboId");
 
-                    b.ToTable("BookingFoodCombos");
+                    b.ToTable("BookingFoodCombos", (string)null);
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Bookings.BookingSeat", b =>
@@ -356,7 +356,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.HasIndex("SeatId", "ShowtimeTicketTypeId")
                         .IsUnique();
 
-                    b.ToTable("BookingSeats");
+                    b.ToTable("BookingSeats", (string)null);
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Bookings.BookingVoucher", b =>
@@ -371,7 +371,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("VoucherId");
 
-                    b.ToTable("BookingVouchers");
+                    b.ToTable("BookingVouchers", (string)null);
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Cinemas.Cinema", b =>
@@ -403,7 +403,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasKey("CinemaId");
 
-                    b.ToTable("Cinemas");
+                    b.ToTable("Cinemas", (string)null);
 
                     b.HasData(
                         new
@@ -455,7 +455,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("CinemaId");
 
-                    b.ToTable("Rooms");
+                    b.ToTable("Rooms", (string)null);
 
                     b.HasData(
                         new
@@ -567,7 +567,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("Seats");
+                    b.ToTable("Seats", (string)null);
 
                     b.HasData(
                         new
@@ -3003,7 +3003,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("SeatLocks");
+                    b.ToTable("SeatLocks", (string)null);
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Foods.FoodCombo", b =>
@@ -3038,7 +3038,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasKey("FoodComboId");
 
-                    b.ToTable("FoodCombos");
+                    b.ToTable("FoodCombos", (string)null);
 
                     b.HasData(
                         new
@@ -3102,7 +3102,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasKey("CastId");
 
-                    b.ToTable("Casts");
+                    b.ToTable("Casts", (string)null);
 
                     b.HasData(
                         new
@@ -3184,7 +3184,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasKey("GenreId");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
 
                     b.HasData(
                         new
@@ -3407,7 +3407,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasKey("MovieId");
 
-                    b.ToTable("Movies");
+                    b.ToTable("Movies", (string)null);
 
                     b.HasData(
                         new
@@ -3572,7 +3572,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("CastId");
 
-                    b.ToTable("MovieCasts");
+                    b.ToTable("MovieCasts", (string)null);
 
                     b.HasData(
                         new
@@ -3659,7 +3659,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("MovieGenres");
+                    b.ToTable("MovieGenres", (string)null);
 
                     b.HasData(
                         new
@@ -3791,7 +3791,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("MovieRatings");
+                    b.ToTable("MovieRatings", (string)null);
 
                     b.HasData(
                         new
@@ -3957,7 +3957,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("Posters");
+                    b.ToTable("Posters", (string)null);
 
                     b.HasData(
                         new
@@ -4044,7 +4044,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("UserGenres");
+                    b.ToTable("UserGenres", (string)null);
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Movies.WatchList", b =>
@@ -4073,7 +4073,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("WatchLists");
+                    b.ToTable("WatchLists", (string)null);
 
                     b.HasData(
                         new
@@ -4205,7 +4205,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("WatchListId");
 
-                    b.ToTable("Notifications");
+                    b.ToTable("Notifications", (string)null);
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Payments.Payment", b =>
@@ -4286,7 +4286,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasKey("PaymentMethodId");
 
-                    b.ToTable("PaymentMethods");
+                    b.ToTable("PaymentMethods", (string)null);
 
                     b.HasData(
                         new
@@ -4353,7 +4353,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("Showtimes");
+                    b.ToTable("Showtimes", (string)null);
 
                     b.HasData(
                         new
@@ -4534,7 +4534,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("TicketTypeId");
 
-                    b.ToTable("ShowtimeTicketTypes");
+                    b.ToTable("ShowtimeTicketTypes", (string)null);
 
                     b.HasData(
                         new
@@ -4652,7 +4652,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasKey("TicketTypeId");
 
-                    b.ToTable("TicketTypes");
+                    b.ToTable("TicketTypes", (string)null);
 
                     b.HasData(
                         new
@@ -4686,7 +4686,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasKey("RoleId");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
 
                     b.HasData(
                         new
@@ -4747,7 +4747,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
 
                     b.HasData(
                         new
@@ -4854,7 +4854,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasKey("VoucherId");
 
-                    b.ToTable("Vouchers");
+                    b.ToTable("Vouchers", (string)null);
 
                     b.HasData(
                         new

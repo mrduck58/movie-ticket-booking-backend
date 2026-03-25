@@ -59,6 +59,7 @@ namespace Movie_Ticket_Booking_Backend.Data
 
         //Voucher related tables
         public DbSet<Voucher> Vouchers { get; set; }
+        public DbSet<UserVoucher> UserVouchers { get; set; }
 
         //Blog related tables
         public DbSet<BlogPost> BlogPosts { get; set; }
@@ -323,6 +324,22 @@ namespace Movie_Ticket_Booking_Backend.Data
                 .HasOne(ug => ug.Genre)
                 .WithMany(g => g.UserGenres)
                 .HasForeignKey(ug => ug.GenreId);
+
+            // ========================
+            // UserVoucher
+            // ========================
+            modelBuilder.Entity<UserVoucher>()
+           .HasKey(ug => new { ug.UserId, ug.VoucherId });
+
+            modelBuilder.Entity<UserVoucher>()
+                .HasOne(ug => ug.User)
+                .WithMany(u => u.UserVouchers)
+                .HasForeignKey(ug => ug.UserId);
+
+            modelBuilder.Entity<UserVoucher>()
+                .HasOne(ug => ug.Voucher)
+                .WithMany(g => g.UserVouchers)
+                .HasForeignKey(ug => ug.VoucherId);
 
             // ========================
             // Notification
@@ -1419,6 +1436,7 @@ new Comment { CommentId = "CMT015", UserId = "USR002", BlogPostId = "BLOG005", C
             Code = "WELCOME10",
             Title = "Welcome Discount",
             Description = "10% discount for new users",
+            Type = "PERCENTAGE",
             Value = 10,
             Status = "ACTIVE",
             CreatedDate = new DateTime(2024, 1, 1),
@@ -1431,6 +1449,7 @@ new Comment { CommentId = "CMT015", UserId = "USR002", BlogPostId = "BLOG005", C
             Code = "MOVIE50K",
             Title = "50K Off",
             Description = "Get 50,000 VND discount on booking",
+            Type = "FIX_AMOUNT",
             Value = 50000,
             Status = "ACTIVE",
             CreatedDate = new DateTime(2024, 1, 1),
@@ -1443,6 +1462,7 @@ new Comment { CommentId = "CMT015", UserId = "USR002", BlogPostId = "BLOG005", C
             Code = "WEEKEND20",
             Title = "Weekend Discount",
             Description = "20% off for weekend bookings",
+            Type = "PERCENTAGE",
             Value = 20,
             Status = "ACTIVE",
             CreatedDate = new DateTime(2024, 1, 1),
@@ -1455,6 +1475,7 @@ new Comment { CommentId = "CMT015", UserId = "USR002", BlogPostId = "BLOG005", C
             Code = "STUDENT15",
             Title = "Student Offer",
             Description = "15% discount for students",
+            Type = "PERCENTAGE",
             Value = 15,
             Status = "ACTIVE",
             CreatedDate = new DateTime(2024, 1, 1),
@@ -1467,6 +1488,7 @@ new Comment { CommentId = "CMT015", UserId = "USR002", BlogPostId = "BLOG005", C
             Code = "COMBO30",
             Title = "Combo Discount",
             Description = "30% off when buying food combo",
+            Type = "PERCENTAGE",
             Value = 30,
             Status = "ACTIVE",
             CreatedDate = new DateTime(2024, 1, 1),
