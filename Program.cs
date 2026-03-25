@@ -129,7 +129,10 @@ namespace Movie_Ticket_Booking_Backend
 
             builder.Services.AddScoped<IPosterRepository, PosterRepository>();
             builder.Services.AddScoped<IPosterService, PosterService>();
+
             builder.Services.AddScoped<IMovieCastRepository, MovieCastRepository>();
+            builder.Services.AddScoped<IMovieGenreRepository, MovieGenreRepository>();
+
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",

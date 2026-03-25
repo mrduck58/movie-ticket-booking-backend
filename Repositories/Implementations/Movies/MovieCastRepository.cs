@@ -16,7 +16,7 @@ public class MovieCastRepository : IMovieCastRepository
     {
         return await _context.MovieCasts
             .Where(x => x.MovieId == movieId)
-            .Include(x => x.Cast) // 🔥 bắt buộc
+            .Include(x => x.Cast) 
             .ToListAsync();
     }
 }

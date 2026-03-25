@@ -15,6 +15,7 @@
         public int TotalVotes { get; set; }
         public string Description { get; set; } = string.Empty;
         public List<CastDto> Casts { get; set; } = new();
+        public List<GenreDto> Genres { get; set; } = new();
 
     }
 }
