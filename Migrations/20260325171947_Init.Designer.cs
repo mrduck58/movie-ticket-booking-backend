@@ -12,7 +12,7 @@ using Movie_Ticket_Booking_Backend.Data;
 namespace Movie_Ticket_Booking_Backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260325120845_Init")]
+    [Migration("20260325171947_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -24,6 +24,61 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("MovieRating", b =>
+                {
+                    b.Property<string>("MovieRatingId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("MovieId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Stars")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("MovieRatingId");
+
+                    b.HasIndex("MovieId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("MovieRatings");
+
+                    b.HasData(
+                        new
+                        {
+                            MovieRatingId = "RAT001",
+                            MovieId = "MOV001",
+                            Stars = 5,
+                            UserId = "USR001"
+                        },
+                        new
+                        {
+                            MovieRatingId = "RAT002",
+                            MovieId = "MOV001",
+                            Stars = 4,
+                            UserId = "USR002"
+                        },
+                        new
+                        {
+                            MovieRatingId = "RAT003",
+                            MovieId = "MOV002",
+                            Stars = 3,
+                            UserId = "USR003"
+                        },
+                        new
+                        {
+                            MovieRatingId = "RAT004",
+                            MovieId = "MOV002",
+                            Stars = 5,
+                            UserId = "USR004"
+                        });
+                });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Blogs.BlogPost", b =>
                 {
@@ -262,6 +317,103 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Blogs.PostLike", b =>
+                {
+                    b.Property<string>("PostLikeId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("BlogPostId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("PostLikeId");
+
+                    b.HasIndex("BlogPostId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PostLikes");
+
+                    b.HasData(
+                        new
+                        {
+                            PostLikeId = "LIKE001",
+                            BlogPostId = "BLOG001",
+                            CreatedAt = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "USR001"
+                        },
+                        new
+                        {
+                            PostLikeId = "LIKE002",
+                            BlogPostId = "BLOG001",
+                            CreatedAt = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "USR002"
+                        },
+                        new
+                        {
+                            PostLikeId = "LIKE003",
+                            BlogPostId = "BLOG002",
+                            CreatedAt = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "USR003"
+                        },
+                        new
+                        {
+                            PostLikeId = "LIKE004",
+                            BlogPostId = "BLOG003",
+                            CreatedAt = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "USR001"
+                        },
+                        new
+                        {
+                            PostLikeId = "LIKE005",
+                            BlogPostId = "BLOG004",
+                            CreatedAt = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "USR005"
+                        },
+                        new
+                        {
+                            PostLikeId = "LIKE006",
+                            BlogPostId = "BLOG002",
+                            CreatedAt = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "USR001"
+                        },
+                        new
+                        {
+                            PostLikeId = "LIKE007",
+                            BlogPostId = "BLOG003",
+                            CreatedAt = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "USR002"
+                        },
+                        new
+                        {
+                            PostLikeId = "LIKE008",
+                            BlogPostId = "BLOG004",
+                            CreatedAt = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "USR003"
+                        },
+                        new
+                        {
+                            PostLikeId = "LIKE009",
+                            BlogPostId = "BLOG005",
+                            CreatedAt = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "USR004"
+                        },
+                        new
+                        {
+                            PostLikeId = "LIKE010",
+                            BlogPostId = "BLOG001",
+                            CreatedAt = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "USR005"
+                        });
+                });
+
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Bookings.Booking", b =>
                 {
                     b.Property<string>("BookingId")
@@ -292,6 +444,53 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Bookings");
+
+                    b.HasData(
+                        new
+                        {
+                            BookingId = "BK400",
+                            CreatedAt = new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified),
+                            ShowtimeId = "ST001",
+                            Status = "CONFIRMED",
+                            TotalAmount = 200000.0,
+                            UserId = "USR002"
+                        },
+                        new
+                        {
+                            BookingId = "BK401",
+                            CreatedAt = new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified),
+                            ShowtimeId = "ST002",
+                            Status = "CONFIRMED",
+                            TotalAmount = 300000.0,
+                            UserId = "USR002"
+                        },
+                        new
+                        {
+                            BookingId = "BK402",
+                            CreatedAt = new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified),
+                            ShowtimeId = "ST003",
+                            Status = "CONFIRMED",
+                            TotalAmount = 150000.0,
+                            UserId = "USR002"
+                        },
+                        new
+                        {
+                            BookingId = "BK403",
+                            CreatedAt = new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified),
+                            ShowtimeId = "ST004",
+                            Status = "CONFIRMED",
+                            TotalAmount = 400000.0,
+                            UserId = "USR002"
+                        },
+                        new
+                        {
+                            BookingId = "BK404",
+                            CreatedAt = new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified),
+                            ShowtimeId = "ST005",
+                            Status = "CONFIRMED",
+                            TotalAmount = 250000.0,
+                            UserId = "USR002"
+                        });
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Bookings.BookingFoodCombo", b =>
@@ -360,6 +559,118 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         .IsUnique();
 
                     b.ToTable("BookingSeats");
+
+                    b.HasData(
+                        new
+                        {
+                            BookingSeatId = "BS400",
+                            BookingId = "BK400",
+                            CheckinTime = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Price = 100000.0,
+                            QrCode = "QR400",
+                            SeatId = "SE0001",
+                            ShowtimeTicketTypeId = "STT001",
+                            Status = "BOOKED"
+                        },
+                        new
+                        {
+                            BookingSeatId = "BS401",
+                            BookingId = "BK400",
+                            CheckinTime = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Price = 100000.0,
+                            QrCode = "QR401",
+                            SeatId = "SE0002",
+                            ShowtimeTicketTypeId = "STT001",
+                            Status = "BOOKED"
+                        },
+                        new
+                        {
+                            BookingSeatId = "BS402",
+                            BookingId = "BK401",
+                            CheckinTime = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Price = 150000.0,
+                            QrCode = "QR402",
+                            SeatId = "SE0003",
+                            ShowtimeTicketTypeId = "STT001",
+                            Status = "BOOKED"
+                        },
+                        new
+                        {
+                            BookingSeatId = "BS403",
+                            BookingId = "BK401",
+                            CheckinTime = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Price = 150000.0,
+                            QrCode = "QR403",
+                            SeatId = "SE0004",
+                            ShowtimeTicketTypeId = "STT001",
+                            Status = "BOOKED"
+                        },
+                        new
+                        {
+                            BookingSeatId = "BS404",
+                            BookingId = "BK402",
+                            CheckinTime = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Price = 75000.0,
+                            QrCode = "QR404",
+                            SeatId = "SE0005",
+                            ShowtimeTicketTypeId = "STT001",
+                            Status = "BOOKED"
+                        },
+                        new
+                        {
+                            BookingSeatId = "BS405",
+                            BookingId = "BK402",
+                            CheckinTime = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Price = 75000.0,
+                            QrCode = "QR405",
+                            SeatId = "SE0006",
+                            ShowtimeTicketTypeId = "STT001",
+                            Status = "BOOKED"
+                        },
+                        new
+                        {
+                            BookingSeatId = "BS406",
+                            BookingId = "BK403",
+                            CheckinTime = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Price = 200000.0,
+                            QrCode = "QR406",
+                            SeatId = "SE0007",
+                            ShowtimeTicketTypeId = "STT001",
+                            Status = "BOOKED"
+                        },
+                        new
+                        {
+                            BookingSeatId = "BS407",
+                            BookingId = "BK403",
+                            CheckinTime = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Price = 200000.0,
+                            QrCode = "QR407",
+                            SeatId = "SE0008",
+                            ShowtimeTicketTypeId = "STT001",
+                            Status = "BOOKED"
+                        },
+                        new
+                        {
+                            BookingSeatId = "BS408",
+                            BookingId = "BK404",
+                            CheckinTime = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Price = 125000.0,
+                            QrCode = "QR408",
+                            SeatId = "SE0009",
+                            ShowtimeTicketTypeId = "STT001",
+                            Status = "BOOKED"
+                        },
+                        new
+                        {
+                            BookingSeatId = "BS409",
+                            BookingId = "BK404",
+                            CheckinTime = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Price = 125000.0,
+                            QrCode = "QR409",
+                            SeatId = "SE0010",
+                            ShowtimeTicketTypeId = "STT001",
+                            Status = "BOOKED"
+                        });
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Bookings.BookingVoucher", b =>
@@ -3111,61 +3422,61 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             CastId = "CAST001",
-                            AvatarUrl = "https://image.tmdb.org/t/p/w500/rdj.jpg",
+                            AvatarUrl = "https://image.tmdb.org/t/p/w500/1YjdSym1jTG7xjHSI0yGGWEsw5i.jpg",
                             Name = "Robert Downey Jr."
                         },
                         new
                         {
                             CastId = "CAST002",
-                            AvatarUrl = "https://image.tmdb.org/t/p/w500/cevans.jpg",
+                            AvatarUrl = "https://image.tmdb.org/t/p/w500/3bOGNsHlrswhyW79uvIHH1V43JI.jpg",
                             Name = "Chris Evans"
                         },
                         new
                         {
                             CastId = "CAST003",
-                            AvatarUrl = "https://image.tmdb.org/t/p/w500/scarlett.jpg",
+                            AvatarUrl = "https://image.tmdb.org/t/p/w500/6NsMbJXRlDZuDzatN2akFdGuTvx.jpg",
                             Name = "Scarlett Johansson"
                         },
                         new
                         {
                             CastId = "CAST004",
-                            AvatarUrl = "https://image.tmdb.org/t/p/w500/tomholland.jpg",
+                            AvatarUrl = "https://image.tmdb.org/t/p/w500/2qhIDp44cAqP2clOgt2afQI07X8.jpg",
                             Name = "Tom Holland"
                         },
                         new
                         {
                             CastId = "CAST005",
-                            AvatarUrl = "https://image.tmdb.org/t/p/w500/zendaya.jpg",
+                            AvatarUrl = "https://image.tmdb.org/t/p/w500/soCzE1b0E4W3F7h2mXc4L0bXc2n.jpg",
                             Name = "Zendaya"
                         },
                         new
                         {
                             CastId = "CAST006",
-                            AvatarUrl = "https://image.tmdb.org/t/p/w500/pattinson.jpg",
+                            AvatarUrl = "https://image.tmdb.org/t/p/w500/8A4PS5iG7GWEAVFftyqMZKl3lbA.jpg",
                             Name = "Robert Pattinson"
                         },
                         new
                         {
                             CastId = "CAST007",
-                            AvatarUrl = "https://image.tmdb.org/t/p/w500/zoe.jpg",
-                            Name = "Zoë Kravitz"
+                            AvatarUrl = "https://image.tmdb.org/t/p/w500/d81K0RH8UX7tZj49tZaQhZ9ewH.jpg",
+                            Name = "Zoe Kravitz"
                         },
                         new
                         {
                             CastId = "CAST008",
-                            AvatarUrl = "https://image.tmdb.org/t/p/w500/cumberbatch.jpg",
+                            AvatarUrl = "https://image.tmdb.org/t/p/w500/fBEucxECxGLKVHBznO0qHtCGiMO.jpg",
                             Name = "Benedict Cumberbatch"
                         },
                         new
                         {
                             CastId = "CAST009",
-                            AvatarUrl = "https://image.tmdb.org/t/p/w500/olsen.jpg",
+                            AvatarUrl = "https://image.tmdb.org/t/p/w500/wIU675y4lOQMj2mc7vo5Wy7Z8bZ.jpg",
                             Name = "Elizabeth Olsen"
                         },
                         new
                         {
                             CastId = "CAST010",
-                            AvatarUrl = "https://image.tmdb.org/t/p/w500/reynolds.jpg",
+                            AvatarUrl = "https://image.tmdb.org/t/p/w500/4SYTH5FdB0dAORV98Nwg3llgVnY.jpg",
                             Name = "Ryan Reynolds"
                         });
                 });
@@ -3772,173 +4083,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Movies.MovieRating", b =>
-                {
-                    b.Property<string>("MovieRatingId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("MovieId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<double>("Value")
-                        .HasColumnType("float");
-
-                    b.HasKey("MovieRatingId");
-
-                    b.HasIndex("MovieId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("MovieRatings");
-
-                    b.HasData(
-                        new
-                        {
-                            MovieRatingId = "RAT001",
-                            MovieId = "MOV001",
-                            UserId = "USR001",
-                            Value = 8.5
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT002",
-                            MovieId = "MOV001",
-                            UserId = "USR002",
-                            Value = 9.0
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT003",
-                            MovieId = "MOV002",
-                            UserId = "USR003",
-                            Value = 7.7999999999999998
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT004",
-                            MovieId = "MOV002",
-                            UserId = "USR004",
-                            Value = 8.1999999999999993
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT005",
-                            MovieId = "MOV003",
-                            UserId = "USR002",
-                            Value = 8.5999999999999996
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT006",
-                            MovieId = "MOV003",
-                            UserId = "USR005",
-                            Value = 8.9000000000000004
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT007",
-                            MovieId = "MOV004",
-                            UserId = "USR001",
-                            Value = 6.9000000000000004
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT008",
-                            MovieId = "MOV004",
-                            UserId = "USR003",
-                            Value = 7.4000000000000004
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT009",
-                            MovieId = "MOV005",
-                            UserId = "USR002",
-                            Value = 7.7000000000000002
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT010",
-                            MovieId = "MOV005",
-                            UserId = "USR004",
-                            Value = 8.0999999999999996
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT011",
-                            MovieId = "MOV006",
-                            UserId = "USR003",
-                            Value = 8.6999999999999993
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT012",
-                            MovieId = "MOV006",
-                            UserId = "USR005",
-                            Value = 9.1999999999999993
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT013",
-                            MovieId = "MOV007",
-                            UserId = "USR001",
-                            Value = 7.5
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT014",
-                            MovieId = "MOV007",
-                            UserId = "USR004",
-                            Value = 7.9000000000000004
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT015",
-                            MovieId = "MOV008",
-                            UserId = "USR002",
-                            Value = 9.0999999999999996
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT016",
-                            MovieId = "MOV008",
-                            UserId = "USR003",
-                            Value = 8.8000000000000007
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT017",
-                            MovieId = "MOV009",
-                            UserId = "USR004",
-                            Value = 7.5999999999999996
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT018",
-                            MovieId = "MOV009",
-                            UserId = "USR005",
-                            Value = 8.0
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT019",
-                            MovieId = "MOV010",
-                            UserId = "USR001",
-                            Value = 8.4000000000000004
-                        },
-                        new
-                        {
-                            MovieRatingId = "RAT020",
-                            MovieId = "MOV010",
-                            UserId = "USR002",
-                            Value = 8.9000000000000004
-                        });
-                });
-
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Movies.Poster", b =>
                 {
                     b.Property<string>("PosterId")
@@ -3966,72 +4110,72 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             PosterId = "POS001",
-                            ImageUrl = "https://image.tmdb.org/t/p/w500/1.jpg",
+                            ImageUrl = "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
                             MovieId = "MOV001",
                             Title = "Avengers Poster"
                         },
                         new
                         {
                             PosterId = "POS002",
-                            ImageUrl = "https://image.tmdb.org/t/p/w500/2.jpg",
+                            ImageUrl = "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
                             MovieId = "MOV002",
-                            Title = "Batman Poster"
+                            Title = "Spider-Man Poster"
                         },
                         new
                         {
                             PosterId = "POS003",
-                            ImageUrl = "https://image.tmdb.org/t/p/w500/3.jpg",
+                            ImageUrl = "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
                             MovieId = "MOV003",
-                            Title = "Titanic Poster"
+                            Title = "Batman Poster"
                         },
                         new
                         {
                             PosterId = "POS004",
-                            ImageUrl = "https://image.tmdb.org/t/p/w500/4.jpg",
+                            ImageUrl = "https://image.tmdb.org/t/p/w500/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg",
                             MovieId = "MOV004",
-                            Title = "Conjuring Poster"
+                            Title = "Doctor Strange Poster"
                         },
                         new
                         {
                             PosterId = "POS005",
-                            ImageUrl = "https://image.tmdb.org/t/p/w500/5.jpg",
+                            ImageUrl = "https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
                             MovieId = "MOV005",
-                            Title = "Minions Poster"
+                            Title = "Deadpool Poster"
                         },
                         new
                         {
                             PosterId = "POS006",
-                            ImageUrl = "https://image.tmdb.org/t/p/w500/6.jpg",
+                            ImageUrl = "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
                             MovieId = "MOV006",
-                            Title = "Interstellar Poster"
+                            Title = "Joker Poster"
                         },
                         new
                         {
                             PosterId = "POS007",
-                            ImageUrl = "https://image.tmdb.org/t/p/w500/7.jpg",
+                            ImageUrl = "https://image.tmdb.org/t/p/w500/wWt4JYXTg5Wr3xBW2phBrMKgp3x.jpg",
                             MovieId = "MOV007",
-                            Title = "Fast X Poster"
+                            Title = "Kung Fu Panda Poster"
                         },
                         new
                         {
                             PosterId = "POS008",
-                            ImageUrl = "https://image.tmdb.org/t/p/w500/8.jpg",
+                            ImageUrl = "https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg",
                             MovieId = "MOV008",
-                            Title = "Demon Slayer Poster"
+                            Title = "Mission Impossible Poster"
                         },
                         new
                         {
                             PosterId = "POS009",
-                            ImageUrl = "https://image.tmdb.org/t/p/w500/9.jpg",
+                            ImageUrl = "https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
                             MovieId = "MOV009",
-                            Title = "Oppenheimer Poster"
+                            Title = "Avatar Poster"
                         },
                         new
                         {
                             PosterId = "POS010",
-                            ImageUrl = "https://image.tmdb.org/t/p/w500/10.jpg",
+                            ImageUrl = "https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg",
                             MovieId = "MOV010",
-                            Title = "2012 Poster"
+                            Title = "Top Gun Poster"
                         });
                 });
 
@@ -4275,29 +4419,29 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             PaymentMethodId = "PM001",
-                            CreatedDate = new DateTime(2026, 3, 25, 19, 8, 44, 217, DateTimeKind.Local).AddTicks(3372),
+                            CreatedDate = new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5041),
                             ImageUrl = "https://example.com/creditcard.png",
                             Name = "Credit Card",
                             Status = "ACTIVE",
-                            UpdatedDate = new DateTime(2026, 3, 25, 19, 8, 44, 217, DateTimeKind.Local).AddTicks(3380)
+                            UpdatedDate = new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5051)
                         },
                         new
                         {
                             PaymentMethodId = "PM002",
-                            CreatedDate = new DateTime(2026, 3, 25, 19, 8, 44, 217, DateTimeKind.Local).AddTicks(3383),
+                            CreatedDate = new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5053),
                             ImageUrl = "https://example.com/momo.png",
                             Name = "Momo",
                             Status = "ACTIVE",
-                            UpdatedDate = new DateTime(2026, 3, 25, 19, 8, 44, 217, DateTimeKind.Local).AddTicks(3384)
+                            UpdatedDate = new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5054)
                         },
                         new
                         {
                             PaymentMethodId = "PM003",
-                            CreatedDate = new DateTime(2026, 3, 25, 19, 8, 44, 217, DateTimeKind.Local).AddTicks(3386),
+                            CreatedDate = new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5056),
                             ImageUrl = "https://example.com/zalopay.png",
                             Name = "ZaloPay",
                             Status = "ACTIVE",
-                            UpdatedDate = new DateTime(2026, 3, 25, 19, 8, 44, 217, DateTimeKind.Local).AddTicks(3386)
+                            UpdatedDate = new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5057)
                         });
                 });
 
@@ -4689,8 +4833,14 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("AvatarUrl")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CCCD")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -4705,6 +4855,12 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.Property<string>("FullName")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Hometown")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
@@ -4931,6 +5087,25 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         });
                 });
 
+            modelBuilder.Entity("MovieRating", b =>
+                {
+                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Movies.Movie", "Movie")
+                        .WithMany("MovieRatings")
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Users.User", "User")
+                        .WithMany("MovieRatings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Blogs.BlogPost", b =>
                 {
                     b.HasOne("Movie_Ticket_Booking_Backend.Domain.Users.User", "User")
@@ -4952,6 +5127,25 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasOne("Movie_Ticket_Booking_Backend.Domain.Users.User", "User")
                         .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("BlogPost");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Blogs.PostLike", b =>
+                {
+                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Blogs.BlogPost", "BlogPost")
+                        .WithMany("PostLikes")
+                        .HasForeignKey("BlogPostId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Users.User", "User")
+                        .WithMany("PostLikes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -5130,25 +5324,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.Navigation("Genre");
 
                     b.Navigation("Movie");
-                });
-
-            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Movies.MovieRating", b =>
-                {
-                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Movies.Movie", "Movie")
-                        .WithMany("MovieRatings")
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Users.User", "User")
-                        .WithMany("MovieRatings")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Movie");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Movies.Poster", b =>
@@ -5331,6 +5506,8 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Notifications");
+
+                    b.Navigation("PostLikes");
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Blogs.Comment", b =>
@@ -5451,6 +5628,8 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.Navigation("MovieRatings");
 
                     b.Navigation("Notifications");
+
+                    b.Navigation("PostLikes");
 
                     b.Navigation("SeatLocks");
 

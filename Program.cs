@@ -138,13 +138,9 @@ namespace Movie_Ticket_Booking_Backend
                           .AllowAnyHeader());
             });
 
-<<<<<<< api_backend_rating
-            
-=======
             builder.Services.AddMemoryCache(); // Để lưu mã OTP tạm thời
             builder.Services.AddScoped<IEmailService, EmailService>();
 
->>>>>>> develop
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())

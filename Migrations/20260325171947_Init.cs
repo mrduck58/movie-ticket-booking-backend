@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Movie_Ticket_Booking_Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class InitFinal : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -145,6 +145,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Value = table.Column<double>(type: "float", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -258,7 +259,11 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CCCD = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Hometown = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -390,6 +395,33 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserVouchers",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    VoucherId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserVoucherId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UsedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserVouchers", x => new { x.UserId, x.VoucherId });
+                    table.ForeignKey(
+                        name: "FK_UserVouchers_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserVouchers_Vouchers_VoucherId",
+                        column: x => x.VoucherId,
+                        principalTable: "Vouchers",
+                        principalColumn: "VoucherId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -536,6 +568,32 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PostLikes",
+                columns: table => new
+                {
+                    PostLikeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    BlogPostId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PostLikes", x => x.PostLikeId);
+                    table.ForeignKey(
+                        name: "FK_PostLikes_BlogPosts_BlogPostId",
+                        column: x => x.BlogPostId,
+                        principalTable: "BlogPosts",
+                        principalColumn: "BlogPostId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PostLikes_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BookingFoodCombos",
                 columns: table => new
                 {
@@ -659,6 +717,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     BlogPostId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CommentId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     BookingSeatId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsRead = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -741,31 +800,31 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "GenreId", "CreatedAt", "Name", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { "GEN001", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2664), "Action", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2666) },
-                    { "GEN002", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2668), "Adventure", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2668) },
-                    { "GEN003", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2669), "Animation", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2669) },
-                    { "GEN004", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2670), "Biography", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2671) },
-                    { "GEN005", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2672), "Comedy", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2672) },
-                    { "GEN006", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2673), "Crime", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2673) },
-                    { "GEN007", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2674), "Documentary", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2675) },
-                    { "GEN008", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2675), "Drama", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2676) },
-                    { "GEN009", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2677), "Family", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2678) },
-                    { "GEN010", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2678), "Fantasy", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2679) },
-                    { "GEN011", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2680), "History", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2680) },
-                    { "GEN012", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2681), "Horror", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2681) },
-                    { "GEN013", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2682), "Music", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2682) },
-                    { "GEN014", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2683), "Mystery", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2683) },
-                    { "GEN015", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2684), "Romance", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2684) },
-                    { "GEN016", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2685), "Sci-Fi", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2686) },
-                    { "GEN017", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2686), "Sport", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2687) },
-                    { "GEN018", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2688), "Thriller", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2688) },
-                    { "GEN019", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2689), "War", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2689) },
-                    { "GEN020", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2690), "Western", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2690) },
-                    { "GEN021", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2691), "Superhero", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2692) },
-                    { "GEN022", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2693), "Psychological", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2693) },
-                    { "GEN023", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2695), "Anime", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2695) },
-                    { "GEN024", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2696), "Disaster", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2696) },
-                    { "GEN025", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2697), "Martial Arts", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2697) }
+                    { "GEN001", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Action", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN002", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Adventure", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN003", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Animation", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN004", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Biography", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN005", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Comedy", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN006", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Crime", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN007", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Documentary", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN008", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Drama", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN009", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Family", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN010", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Fantasy", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN011", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "History", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN012", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Horror", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN013", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Music", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN014", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mystery", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN015", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Romance", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN016", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sci-Fi", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN017", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sport", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN018", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Thriller", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN019", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "War", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN020", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Western", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN021", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Superhero", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN022", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Psychological", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN023", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Anime", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN024", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Disaster", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "GEN025", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Martial Arts", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -790,9 +849,9 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "PaymentMethodId", "CreatedDate", "ImageUrl", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { "PM001", new DateTime(2026, 3, 25, 20, 13, 58, 13, DateTimeKind.Local).AddTicks(4068), "https://example.com/creditcard.png", "Credit Card", "ACTIVE", new DateTime(2026, 3, 25, 20, 13, 58, 13, DateTimeKind.Local).AddTicks(4077) },
-                    { "PM002", new DateTime(2026, 3, 25, 20, 13, 58, 13, DateTimeKind.Local).AddTicks(4079), "https://example.com/momo.png", "Momo", "ACTIVE", new DateTime(2026, 3, 25, 20, 13, 58, 13, DateTimeKind.Local).AddTicks(4079) },
-                    { "PM003", new DateTime(2026, 3, 25, 20, 13, 58, 13, DateTimeKind.Local).AddTicks(4080), "https://example.com/zalopay.png", "ZaloPay", "ACTIVE", new DateTime(2026, 3, 25, 20, 13, 58, 13, DateTimeKind.Local).AddTicks(4081) }
+                    { "PM001", new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5041), "https://example.com/creditcard.png", "Credit Card", "ACTIVE", new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5051) },
+                    { "PM002", new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5053), "https://example.com/momo.png", "Momo", "ACTIVE", new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5054) },
+                    { "PM003", new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5056), "https://example.com/zalopay.png", "ZaloPay", "ACTIVE", new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5057) }
                 });
 
             migrationBuilder.InsertData(
@@ -816,14 +875,14 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
             migrationBuilder.InsertData(
                 table: "Vouchers",
-                columns: new[] { "VoucherId", "Code", "CreatedDate", "Description", "ExpiredDate", "Status", "Title", "Value" },
+                columns: new[] { "VoucherId", "Code", "CreatedDate", "Description", "ExpiredDate", "Status", "Title", "Type", "Value" },
                 values: new object[,]
                 {
-                    { "VC001", "WELCOME10", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "10% discount for new users", new DateTime(2027, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ACTIVE", "Welcome Discount", 10.0 },
-                    { "VC002", "MOVIE50K", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Get 50,000 VND discount on booking", new DateTime(2027, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ACTIVE", "50K Off", 50000.0 },
-                    { "VC003", "WEEKEND20", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "20% off for weekend bookings", new DateTime(2027, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ACTIVE", "Weekend Discount", 20.0 },
-                    { "VC004", "STUDENT15", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "15% discount for students", new DateTime(2027, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ACTIVE", "Student Offer", 15.0 },
-                    { "VC005", "COMBO30", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "30% off when buying food combo", new DateTime(2027, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ACTIVE", "Combo Discount", 30.0 }
+                    { "VC001", "WELCOME10", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "10% discount for new users", new DateTime(2027, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ACTIVE", "Welcome Discount", "PERCENTAGE", 10.0 },
+                    { "VC002", "MOVIE50K", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Get 50,000 VND discount on booking", new DateTime(2027, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ACTIVE", "50K Off", "FIX_AMOUNT", 50000.0 },
+                    { "VC003", "WEEKEND20", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "20% off for weekend bookings", new DateTime(2027, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ACTIVE", "Weekend Discount", "PERCENTAGE", 20.0 },
+                    { "VC004", "STUDENT15", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "15% discount for students", new DateTime(2027, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ACTIVE", "Student Offer", "PERCENTAGE", 15.0 },
+                    { "VC005", "COMBO30", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "30% off when buying food combo", new DateTime(2027, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ACTIVE", "Combo Discount", "PERCENTAGE", 30.0 }
                 });
 
             migrationBuilder.InsertData(
@@ -912,14 +971,14 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "AvatarUrl", "CreatedAt", "DateOfBirth", "Email", "FullName", "PasswordHash", "Phone", "RoleId", "Status", "UpdatedAt" },
+                columns: new[] { "UserId", "Address", "AvatarUrl", "CCCD", "CreatedAt", "DateOfBirth", "Email", "FullName", "Gender", "Hometown", "PasswordHash", "Phone", "RoleId", "Status", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { "USR001", "https://i.pravatar.cc/150?img=1", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2811), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "john@example.com", "John Smith", "123456", "0900000001", "ROLE002", "ACTIVE", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2812) },
-                    { "USR002", "https://i.pravatar.cc/150?img=2", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2814), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "emma@example.com", "Emma Watson", "123456", "0900000002", "ROLE002", "ACTIVE", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2815) },
-                    { "USR003", "https://i.pravatar.cc/150?img=3", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2816), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "robert@example.com", "Robert Downey Jr", "123456", "0900000003", "ROLE002", "ACTIVE", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2817) },
-                    { "USR004", "https://i.pravatar.cc/150?img=4", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2818), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "scarlett@example.com", "Scarlett Johansson", "123456", "0900000004", "ROLE002", "ACTIVE", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2818) },
-                    { "USR005", "https://i.pravatar.cc/150?img=5", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2821), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "chris@example.com", "Chris Evans", "123456", "0900000005", "ROLE002", "ACTIVE", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2821) }
+                    { "USR001", null, "https://i.pravatar.cc/150?img=1", null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "john@example.com", "John Smith", null, null, "123456", "0900000001", "ROLE002", "ACTIVE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "USR002", null, "https://i.pravatar.cc/150?img=2", null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "emma@example.com", "Emma Watson", null, null, "123456", "0900000002", "ROLE002", "ACTIVE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "USR003", null, "https://i.pravatar.cc/150?img=3", null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "robert@example.com", "Robert Downey Jr", null, null, "123456", "0900000003", "ROLE002", "ACTIVE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "USR004", null, "https://i.pravatar.cc/150?img=4", null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "scarlett@example.com", "Scarlett Johansson", null, null, "123456", "0900000004", "ROLE002", "ACTIVE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "USR005", null, "https://i.pravatar.cc/150?img=5", null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "chris@example.com", "Chris Evans", null, null, "123456", "0900000005", "ROLE002", "ACTIVE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -927,11 +986,11 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "BlogPostId", "Content", "CreatedDate", "ImageUrl", "Likes", "Title", "UserId" },
                 values: new object[,]
                 {
-                    { "BLOG001", "Marvel movies have changed the superhero genre forever...", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2939), "https://images.unsplash.com/photo-1", 120, "Top 10 Marvel Movies You Must Watch", "USR001" },
-                    { "BLOG002", "Horror movies give audiences a thrilling experience...", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2940), "https://images.unsplash.com/photo-2", 85, "Why Horror Movies Are So Popular", "USR002" },
-                    { "BLOG003", "Science fiction movies explore the future and technology...", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2941), "https://images.unsplash.com/photo-3", 95, "Best Sci-Fi Movies of the Decade", "USR003" },
-                    { "BLOG004", "These romantic films will make your evening unforgettable...", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2942), "https://images.unsplash.com/photo-4", 60, "Romantic Movies Perfect for Date Night", "USR004" },
-                    { "BLOG005", "Many exciting movies are coming to theaters next year...", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2943), "https://images.unsplash.com/photo-5", 150, "Upcoming Blockbusters in 2026", "USR005" }
+                    { "BLOG001", "Marvel movies have changed the superhero genre forever...", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "https://images.unsplash.com/photo-1", 120, "Top 10 Marvel Movies You Must Watch", "USR001" },
+                    { "BLOG002", "Horror movies give audiences a thrilling experience...", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "https://images.unsplash.com/photo-2", 85, "Why Horror Movies Are So Popular", "USR002" },
+                    { "BLOG003", "Science fiction movies explore the future and technology...", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "https://images.unsplash.com/photo-3", 95, "Best Sci-Fi Movies of the Decade", "USR003" },
+                    { "BLOG004", "These romantic films will make your evening unforgettable...", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "https://images.unsplash.com/photo-4", 60, "Romantic Movies Perfect for Date Night", "USR004" },
+                    { "BLOG005", "Many exciting movies are coming to theaters next year...", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "https://images.unsplash.com/photo-5", 150, "Upcoming Blockbusters in 2026", "USR005" }
                 });
 
             migrationBuilder.InsertData(
@@ -1378,16 +1437,28 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "WatchListId", "CreatedAt", "MovieId", "UserId", "type" },
                 values: new object[,]
                 {
-                    { "WL001", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2899), "MOV001", "USR001", "FAVORITE" },
-                    { "WL002", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2901), "MOV003", "USR001", "FAVORITE" },
-                    { "WL003", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2903), "MOV002", "USR002", "WATCH_LATER" },
-                    { "WL004", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2904), "MOV005", "USR002", "WATCH_LATER" },
-                    { "WL005", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2905), "MOV004", "USR003", "FAVORITE" },
-                    { "WL006", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2907), "MOV007", "USR003", "WATCH_LATER" },
-                    { "WL007", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2909), "MOV006", "USR004", "FAVORITE" },
-                    { "WL008", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2910), "MOV008", "USR004", "WATCH_LATER" },
-                    { "WL009", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2911), "MOV009", "USR005", "FAVORITE" },
-                    { "WL010", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2912), "MOV010", "USR005", "WATCH_LATER" }
+                    { "WL001", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "MOV001", "USR001", "FAVORITE" },
+                    { "WL002", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "MOV003", "USR001", "FAVORITE" },
+                    { "WL003", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "MOV002", "USR002", "WATCH_LATER" },
+                    { "WL004", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "MOV005", "USR002", "WATCH_LATER" },
+                    { "WL005", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "MOV004", "USR003", "FAVORITE" },
+                    { "WL006", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "MOV007", "USR003", "WATCH_LATER" },
+                    { "WL007", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "MOV006", "USR004", "FAVORITE" },
+                    { "WL008", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "MOV008", "USR004", "WATCH_LATER" },
+                    { "WL009", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "MOV009", "USR005", "FAVORITE" },
+                    { "WL010", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "MOV010", "USR005", "WATCH_LATER" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Bookings",
+                columns: new[] { "BookingId", "CreatedAt", "ShowtimeId", "Status", "TotalAmount", "UserId" },
+                values: new object[,]
+                {
+                    { "BK400", new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified), "ST001", "CONFIRMED", 200000.0, "USR002" },
+                    { "BK401", new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified), "ST002", "CONFIRMED", 300000.0, "USR002" },
+                    { "BK402", new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified), "ST003", "CONFIRMED", 150000.0, "USR002" },
+                    { "BK403", new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified), "ST004", "CONFIRMED", 400000.0, "USR002" },
+                    { "BK404", new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified), "ST005", "CONFIRMED", 250000.0, "USR002" }
                 });
 
             migrationBuilder.InsertData(
@@ -1395,21 +1466,38 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "CommentId", "BlogPostId", "Content", "CreatedDate", "UserId" },
                 values: new object[,]
                 {
-                    { "CMT001", "BLOG001", "Great list! I love Marvel movies.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2977), "USR002" },
-                    { "CMT002", "BLOG001", "Avengers Endgame is my favorite.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2978), "USR003" },
-                    { "CMT003", "BLOG001", "Nice recommendations!", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2979), "USR004" },
-                    { "CMT004", "BLOG002", "Horror movies are so thrilling!", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2980), "USR001" },
-                    { "CMT005", "BLOG002", "The Conjuring series is amazing.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2981), "USR005" },
-                    { "CMT006", "BLOG002", "I love watching horror at night.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2982), "USR003" },
-                    { "CMT007", "BLOG003", "Interstellar is a masterpiece.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2983), "USR001" },
-                    { "CMT008", "BLOG003", "Sci-Fi movies inspire imagination.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2985), "USR002" },
-                    { "CMT009", "BLOG003", "I love futuristic technology.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2986), "USR005" },
-                    { "CMT010", "BLOG004", "Perfect movies for couples.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2987), "USR003" },
-                    { "CMT011", "BLOG004", "Titanic will always be iconic.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2988), "USR002" },
-                    { "CMT012", "BLOG004", "Romantic movies are emotional.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2989), "USR001" },
-                    { "CMT013", "BLOG005", "Can't wait for next year's movies!", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2990), "USR004" },
-                    { "CMT014", "BLOG005", "So many exciting releases.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2991), "USR003" },
-                    { "CMT015", "BLOG005", "Hope Marvel releases new films!", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2992), "USR002" }
+                    { "CMT001", "BLOG001", "Great list! I love Marvel movies.", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR002" },
+                    { "CMT002", "BLOG001", "Avengers Endgame is my favorite.", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR003" },
+                    { "CMT003", "BLOG001", "Nice recommendations!", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR004" },
+                    { "CMT004", "BLOG002", "Horror movies are so thrilling!", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR001" },
+                    { "CMT005", "BLOG002", "The Conjuring series is amazing.", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR005" },
+                    { "CMT006", "BLOG002", "I love watching horror at night.", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR003" },
+                    { "CMT007", "BLOG003", "Interstellar is a masterpiece.", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR001" },
+                    { "CMT008", "BLOG003", "Sci-Fi movies inspire imagination.", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR002" },
+                    { "CMT009", "BLOG003", "I love futuristic technology.", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR005" },
+                    { "CMT010", "BLOG004", "Perfect movies for couples.", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR003" },
+                    { "CMT011", "BLOG004", "Titanic will always be iconic.", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR002" },
+                    { "CMT012", "BLOG004", "Romantic movies are emotional.", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR001" },
+                    { "CMT013", "BLOG005", "Can't wait for next year's movies!", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR004" },
+                    { "CMT014", "BLOG005", "So many exciting releases.", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR003" },
+                    { "CMT015", "BLOG005", "Hope Marvel releases new films!", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR002" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PostLikes",
+                columns: new[] { "PostLikeId", "BlogPostId", "CreatedAt", "UserId" },
+                values: new object[,]
+                {
+                    { "LIKE001", "BLOG001", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR001" },
+                    { "LIKE002", "BLOG001", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR002" },
+                    { "LIKE003", "BLOG002", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR003" },
+                    { "LIKE004", "BLOG003", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR001" },
+                    { "LIKE005", "BLOG004", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR005" },
+                    { "LIKE006", "BLOG002", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR001" },
+                    { "LIKE007", "BLOG003", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR002" },
+                    { "LIKE008", "BLOG004", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR003" },
+                    { "LIKE009", "BLOG005", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR004" },
+                    { "LIKE010", "BLOG001", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "USR005" }
                 });
 
             migrationBuilder.InsertData(
@@ -1431,6 +1519,23 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     { "STT012", 120000.0, "ST012", "TT001" },
                     { "STT013", 170000.0, "ST013", "TT002" },
                     { "STT014", 220000.0, "ST014", "TT003" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "BookingSeats",
+                columns: new[] { "BookingSeatId", "BookingId", "CheckinTime", "Price", "QrCode", "SeatId", "ShowtimeTicketTypeId", "Status" },
+                values: new object[,]
+                {
+                    { "BS400", "BK400", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 100000.0, "QR400", "SE0001", "STT001", "BOOKED" },
+                    { "BS401", "BK400", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 100000.0, "QR401", "SE0002", "STT001", "BOOKED" },
+                    { "BS402", "BK401", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 150000.0, "QR402", "SE0003", "STT001", "BOOKED" },
+                    { "BS403", "BK401", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 150000.0, "QR403", "SE0004", "STT001", "BOOKED" },
+                    { "BS404", "BK402", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 75000.0, "QR404", "SE0005", "STT001", "BOOKED" },
+                    { "BS405", "BK402", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 75000.0, "QR405", "SE0006", "STT001", "BOOKED" },
+                    { "BS406", "BK403", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 200000.0, "QR406", "SE0007", "STT001", "BOOKED" },
+                    { "BS407", "BK403", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 200000.0, "QR407", "SE0008", "STT001", "BOOKED" },
+                    { "BS408", "BK404", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 125000.0, "QR408", "SE0009", "STT001", "BOOKED" },
+                    { "BS409", "BK404", new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 125000.0, "QR409", "SE0010", "STT001", "BOOKED" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -1551,6 +1656,16 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 column: "MovieId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PostLikes_BlogPostId",
+                table: "PostLikes",
+                column: "BlogPostId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PostLikes_UserId",
+                table: "PostLikes",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Rooms_CinemaId",
                 table: "Rooms",
                 column: "CinemaId");
@@ -1606,6 +1721,11 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserVouchers_VoucherId",
+                table: "UserVouchers",
+                column: "VoucherId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_WatchLists_MovieId",
                 table: "WatchLists",
                 column: "MovieId");
@@ -1644,16 +1764,19 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 name: "Posters");
 
             migrationBuilder.DropTable(
+                name: "PostLikes");
+
+            migrationBuilder.DropTable(
                 name: "SeatLocks");
 
             migrationBuilder.DropTable(
                 name: "UserGenres");
 
             migrationBuilder.DropTable(
-                name: "FoodCombos");
+                name: "UserVouchers");
 
             migrationBuilder.DropTable(
-                name: "Vouchers");
+                name: "FoodCombos");
 
             migrationBuilder.DropTable(
                 name: "Casts");
@@ -1672,6 +1795,9 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
             migrationBuilder.DropTable(
                 name: "Genres");
+
+            migrationBuilder.DropTable(
+                name: "Vouchers");
 
             migrationBuilder.DropTable(
                 name: "Bookings");
