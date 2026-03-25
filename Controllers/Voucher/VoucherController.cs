@@ -19,7 +19,7 @@ namespace Movie_Ticket_Booking_Backend.Controllers.Voucher
             [HttpGet("my")]
             public async Task<IActionResult> GetMyVouchers()
             {
-                var userId = Guid.Parse(User.FindFirst("id")!.Value);
+                var userId = User.FindFirst("id")!.Value;
 
                 var vouchers = await _voucherService.GetUserVouchers(userId);
 
@@ -27,9 +27,9 @@ namespace Movie_Ticket_Booking_Backend.Controllers.Voucher
             }
 
             [HttpPost("apply/{voucherId}")]
-            public async Task<IActionResult> ApplyVoucher(Guid voucherId)
+            public async Task<IActionResult> ApplyVoucher(string voucherId)
             {
-                var userId = Guid.Parse(User.FindFirst("id")!.Value);
+                var userId = User.FindFirst("id")!.Value;
 
                 await _voucherService.ApplyVoucher(userId, voucherId);
 
