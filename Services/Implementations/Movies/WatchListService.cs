@@ -14,9 +14,9 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.Movie
             _repository = repository;
         }
 
-        public async Task AddAsync(AddWatchListDto dto)
+        public async Task AddAsync(string userId, AddWatchListDto dto)
         {
-            var existing = await _repository.GetAsync(dto.UserId, dto.MovieId);
+            var existing = await _repository.GetAsync(userId, dto.MovieId);
 
             if (existing != null)
                 throw new Exception("Movie already in watchlist");
@@ -24,7 +24,7 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.Movie
             var watchList = new WatchList
             {
                 WatchListId = Guid.NewGuid().ToString(),
-                UserId = dto.UserId,
+                UserId = userId,
                 MovieId = dto.MovieId,
                 type = dto.type
             };
@@ -40,10 +40,16 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.Movie
             {
                 WatchListId = w.WatchListId,
                 MovieId = w.MovieId,
-                Title = w.Movie!.Title,
-                PosterUrl = w.Movie.Posters.FirstOrDefault()?.ImageUrl ?? "",
+                Title = w.Movie?.Title ?? "",
+                PosterUrl = w.Movie?.Posters?.FirstOrDefault()?.ImageUrl ?? "",
                 type = w.type,
-                CreatedAt = w.CreatedAt
+                CreatedAt = w.CreatedAt,
+                Duration = w.Movie?.Duration ?? 0,
+                Director = w.Movie?.Director ?? "",
+                Rating = w.Movie?.Rating ?? 0,
+                Genres = w.Movie?.MovieGenres?
+                    .Select(g => g.Genre.Name)
+                    .ToList() ?? new List<string>()
             }).ToList();
         }
 

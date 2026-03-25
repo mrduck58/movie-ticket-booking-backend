@@ -8,9 +8,13 @@ namespace Movie_Ticket_Booking_Backend.Repositories.Interfaces.Notifications
 
         Task<Notification?> GetById(string notificationId);
 
+        Task<Notification?> GetByIdAndUserId(string notificationId, string userId);
+
         Task AddAsync(Notification notification);
 
         Task DeleteAsync(Notification notification);
+
+        Task DeleteRangeAsync(List<Notification> notifications);
 
         Task SaveChangesAsync();
     }

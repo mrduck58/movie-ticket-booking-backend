@@ -23,10 +23,14 @@ namespace Movie_Ticket_Booking_Backend.Repositories.Implementations.Movies
         public async Task<List<WatchList>> GetByUserIdAsync(string userId)
         {
             return await _context.WatchLists
-                .Where(w => w.UserId == userId)
-                .Include(w => w.Movie)
-                .OrderByDescending(w => w.CreatedAt)
-                .ToListAsync();
+     .Where(w => w.UserId == userId)
+     .Include(w => w.Movie)
+         .ThenInclude(m => m.Posters)
+     .Include(w => w.Movie)
+         .ThenInclude(m => m.MovieGenres)
+             .ThenInclude(mg => mg.Genre)
+     .OrderByDescending(w => w.CreatedAt)
+     .ToListAsync();
         }
 
         public async Task AddAsync(WatchList watchList)
