@@ -175,7 +175,19 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.User
             return false;
         }
 
+        public async Task<UserHeaderDto?> GetCurrentUser(string userId)
+        {
+            var user = await _context.Users
+                .FirstOrDefaultAsync(x => x.UserId == userId);
 
+            if (user == null) return null;
+
+            return new UserHeaderDto
+            {
+                FullName = user.FullName,
+                AvatarUrl = user.AvatarUrl
+            };
+        }
 
     }
 }

@@ -1347,55 +1347,54 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
             );
             modelBuilder.Entity<FoodCombo>().HasData(
 
-                new FoodCombo
-                {
-                    FoodComboId = "FC001",
-                    Name = "Popcorn + Coke",
-                    Description = "1 Large Popcorn + 1 Coke",
-                    Status = "ACTIVE",
-                    Price = 75000,
-                    ImageUrl = "https://example.com/images/combo_popcorn_coke.jpg",
-                    CreatedDate = new DateTime(2024, 1, 1),
-                    UpdatedDate = new DateTime(2024, 1, 1)
-                },
+     new FoodCombo
+     {
+         FoodComboId = "FC001",
+         Name = "Popcorn + Coke",
+         Description = "1 Large Popcorn + 1 Coke",
+         Status = "ACTIVE",
+         Price = 75000,
+         ImageUrl = "https://www.bhdstar.vn/wp-content/uploads/2025/06/SINGLE-COMBO-1-1.jpg",
+         CreatedDate = new DateTime(2024, 1, 1),
+         UpdatedDate = new DateTime(2024, 1, 1)
+     },
 
-                new FoodCombo
-                {
-                    FoodComboId = "FC002",
-                    Name = "Couple Combo",
-                    Description = "1 Large Popcorn + 2 Drinks",
-                    Status = "ACTIVE",
-                    Price = 120000,
-                    ImageUrl = "https://example.com/images/combo_couple.jpg",
-                    CreatedDate = new DateTime(2024, 1, 1),
-                    UpdatedDate = new DateTime(2024, 1, 1)
-                },
+     new FoodCombo
+     {
+         FoodComboId = "FC002",
+         Name = "Couple Combo",
+         Description = "1 Large Popcorn + 2 Drinks",
+         Status = "ACTIVE",
+         Price = 120000,
+         ImageUrl = "https://www.bhdstar.vn/wp-content/uploads/2025/06/COUPLE-COMBO-1-1.jpg",
+         CreatedDate = new DateTime(2024, 1, 1),
+         UpdatedDate = new DateTime(2024, 1, 1)
+     },
 
-                new FoodCombo
-                {
-                    FoodComboId = "FC003",
-                    Name = "Family Combo",
-                    Description = "2 Large Popcorn + 4 Drinks",
-                    Status = "ACTIVE",
-                    Price = 200000,
-                    ImageUrl = "https://example.com/images/combo_family.jpg",
-                    CreatedDate = new DateTime(2024, 1, 1),
-                    UpdatedDate = new DateTime(2024, 1, 1)
-                },
+     new FoodCombo
+     {
+         FoodComboId = "FC003",
+         Name = "Family Combo",
+         Description = "2 Large Popcorn + 4 Drinks",
+         Status = "ACTIVE",
+         Price = 200000,
+         ImageUrl = "https://www.bhdstar.vn/wp-content/uploads/2025/05/TRA-3-VI-2-1.jpg",
+         CreatedDate = new DateTime(2024, 1, 1),
+         UpdatedDate = new DateTime(2024, 1, 1)
+     },
 
-                new FoodCombo
-                {
-                    FoodComboId = "FC004",
-                    Name = "Nachos Combo",
-                    Description = "Nachos + 1 Coke",
-                    Status = "ACTIVE",
-                    Price = 85000,
-                    ImageUrl = "https://example.com/images/combo_nachos.jpg",
-                    CreatedDate = new DateTime(2024, 1, 1),
-                    UpdatedDate = new DateTime(2024, 1, 1)
-                }
-
-            );
+     new FoodCombo
+     {
+         FoodComboId = "FC004",
+         Name = "Nachos Combo",
+         Description = "Nachos + 1 Coke",
+         Status = "ACTIVE",
+         Price = 85000,
+         ImageUrl = "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56",
+         CreatedDate = new DateTime(2024, 1, 1),
+         UpdatedDate = new DateTime(2024, 1, 1)
+     }
+ );
             var seats = new List<Seat>();
 
             var rows = new[] { "A", "B", "C", "D", "E", "F", "G", "H" };
@@ -1492,7 +1491,7 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
                 }
 
             );
-            
+
             modelBuilder.Entity<PostLike>().HasData(
 
         new PostLike { PostLikeId = "LIKE001", BlogPostId = "BLOG001", UserId = "USR001", CreatedAt = new DateTime(2026, 3, 25) },
@@ -1507,7 +1506,7 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
         new PostLike { PostLikeId = "LIKE010", BlogPostId = "BLOG001", UserId = "USR005", CreatedAt = new DateTime(2026, 3, 25) }
 
         );
-        
+
             modelBuilder.Entity<Booking>().HasData(
 
 new Booking
