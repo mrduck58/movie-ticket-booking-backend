@@ -63,8 +63,10 @@ namespace Movie_Ticket_Booking_Backend.Data
         //Blog related tables
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<PostLike> PostLikes { get; set; }
         public DbSet<UserGenre> UserGenres { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -1474,105 +1476,105 @@ new Comment { CommentId = "CMT015", UserId = "USR002", BlogPostId = "BLOG005", C
         }
 
     );
-    //        modelBuilder.Entity<Booking>().HasData(
+            //        modelBuilder.Entity<Booking>().HasData(
 
-    //new Booking
-    //{
-    //    BookingId = "BK001",
-    //    UserId = "USR001",
-    //    ShowtimeId = "ST001",
-    //    TotalAmount = 15.5,
-    //    Status = "PAID",
-    //    CreatedAt = new DateTime(2026, 6, 10, 9, 30, 0)
-    //},
+            //new Booking
+            //{
+            //    BookingId = "BK001",
+            //    UserId = "USR001",
+            //    ShowtimeId = "ST001",
+            //    TotalAmount = 15.5,
+            //    Status = "PAID",
+            //    CreatedAt = new DateTime(2026, 6, 10, 9, 30, 0)
+            //},
 
-    //new Booking
-    //{
-    //    BookingId = "BK002",
-    //    UserId = "USR002",
-    //    ShowtimeId = "ST002",
-    //    TotalAmount = 20,
-    //    Status = "PAID",
-    //    CreatedAt = new DateTime(2026, 6, 10, 12, 0, 0)
-    //}
+            //new Booking
+            //{
+            //    BookingId = "BK002",
+            //    UserId = "USR002",
+            //    ShowtimeId = "ST002",
+            //    TotalAmount = 20,
+            //    Status = "PAID",
+            //    CreatedAt = new DateTime(2026, 6, 10, 12, 0, 0)
+            //}
 
-    //);
+            //);
 
-    //        modelBuilder.Entity<BookingSeat>().HasData(
+            //        modelBuilder.Entity<BookingSeat>().HasData(
 
-    //        new BookingSeat
-    //        {
-    //            BookingSeatId = "BKS001",
-    //            BookingId = "BK001",
-    //            SeatId = "SE001",
-    //            ShowtimeTicketTypeId = "STT001",
-    //            Price = 7.5,
-    //            QrCode = "QR001",
-    //            Status = "BOOKED",
-    //            CheckinTime = new DateTime(2026, 6, 10, 10, 0, 0)
-    //        },
+            //        new BookingSeat
+            //        {
+            //            BookingSeatId = "BKS001",
+            //            BookingId = "BK001",
+            //            SeatId = "SE001",
+            //            ShowtimeTicketTypeId = "STT001",
+            //            Price = 7.5,
+            //            QrCode = "QR001",
+            //            Status = "BOOKED",
+            //            CheckinTime = new DateTime(2026, 6, 10, 10, 0, 0)
+            //        },
 
-    //        new BookingSeat
-    //        {
-    //            BookingSeatId = "BKS002",
-    //            BookingId = "BK001",
-    //            SeatId = "SE002",
-    //            ShowtimeTicketTypeId = "STT001",
-    //            Price = 8,
-    //            QrCode = "QR002",
-    //            Status = "BOOKED",
-    //            CheckinTime = new DateTime(2026, 6, 10, 10, 0, 0)
-    //        },
+            //        new BookingSeat
+            //        {
+            //            BookingSeatId = "BKS002",
+            //            BookingId = "BK001",
+            //            SeatId = "SE002",
+            //            ShowtimeTicketTypeId = "STT001",
+            //            Price = 8,
+            //            QrCode = "QR002",
+            //            Status = "BOOKED",
+            //            CheckinTime = new DateTime(2026, 6, 10, 10, 0, 0)
+            //        },
 
-    //        new BookingSeat
-    //        {
-    //            BookingSeatId = "BKS003",
-    //            BookingId = "BK002",
-    //            SeatId = "SE003",
-    //            ShowtimeTicketTypeId = "STT002",
-    //            Price = 10,
-    //            QrCode = "QR003",
-    //            Status = "BOOKED",
-    //            CheckinTime = new DateTime(2026, 6, 10, 13, 0, 0)
-    //        }
+            //        new BookingSeat
+            //        {
+            //            BookingSeatId = "BKS003",
+            //            BookingId = "BK002",
+            //            SeatId = "SE003",
+            //            ShowtimeTicketTypeId = "STT002",
+            //            Price = 10,
+            //            QrCode = "QR003",
+            //            Status = "BOOKED",
+            //            CheckinTime = new DateTime(2026, 6, 10, 13, 0, 0)
+            //        }
 
-    //        );
+            //        );
 
-    //        modelBuilder.Entity<BookingFoodCombo>().HasData(
+            //        modelBuilder.Entity<BookingFoodCombo>().HasData(
 
-    //        new BookingFoodCombo
-    //        {
-    //            BookingFoodComboId = "BFC001",
-    //            BookingId = "BK001",
-    //            FoodComboId = "FC001",
-    //            Quantity = 1
-    //        },
+            //        new BookingFoodCombo
+            //        {
+            //            BookingFoodComboId = "BFC001",
+            //            BookingId = "BK001",
+            //            FoodComboId = "FC001",
+            //            Quantity = 1
+            //        },
 
-    //        new BookingFoodCombo
-    //        {
-    //            BookingFoodComboId = "BFC002",
-    //            BookingId = "BK002",
-    //            FoodComboId = "FC002",
-    //            Quantity = 2
-    //        }
+            //        new BookingFoodCombo
+            //        {
+            //            BookingFoodComboId = "BFC002",
+            //            BookingId = "BK002",
+            //            FoodComboId = "FC002",
+            //            Quantity = 2
+            //        }
 
-    //        );
+            //        );
 
-    //        modelBuilder.Entity<BookingVoucher>().HasData(
+            //        modelBuilder.Entity<BookingVoucher>().HasData(
 
-    //        new BookingVoucher
-    //        {
-    //            BookingId = "BK001",
-    //            VoucherId = "VC001"
-    //        },
+            //        new BookingVoucher
+            //        {
+            //            BookingId = "BK001",
+            //            VoucherId = "VC001"
+            //        },
 
-    //        new BookingVoucher
-    //        {
-    //            BookingId = "BK002",
-    //            VoucherId = "VC002"
-    //        }
+            //        new BookingVoucher
+            //        {
+            //            BookingId = "BK002",
+            //            VoucherId = "VC002"
+            //        }
 
-    //        );
+            //        );
             modelBuilder.Entity<PaymentMethod>().HasData(
     new PaymentMethod
     {
@@ -1602,26 +1604,111 @@ new Comment { CommentId = "CMT015", UserId = "USR002", BlogPostId = "BLOG005", C
         UpdatedDate = DateTime.Now
     }
 );
-//            modelBuilder.Entity<Payment>().HasData(
-//    new Payment
-//    {
-//        PaymentId = "PAY001",
-//        BookingId = "BK001",
-//        PaymentMethodId = "PM001",
-//        Amount = 120000,
-//        Status = "PAID",
-//        CreatedDate = DateTime.Now
-//    },
-//    new Payment
-//    {
-//        PaymentId = "PAY002",
-//        BookingId = "BK002",
-//        PaymentMethodId = "PM002",
-//        Amount = 150000,
-//        Status = "PAID",
-//        CreatedDate = DateTime.Now
-//    }
-//);
+            //            modelBuilder.Entity<Payment>().HasData(
+            //    new Payment
+            //    {
+            //        PaymentId = "PAY001",
+            //        BookingId = "BK001",
+            //        PaymentMethodId = "PM001",
+            //        Amount = 120000,
+            //        Status = "PAID",
+            //        CreatedDate = DateTime.Now
+            //    },
+            //    new Payment
+            //    {
+            //        PaymentId = "PAY002",
+            //        BookingId = "BK002",
+            //        PaymentMethodId = "PM002",
+            //        Amount = 150000,
+            //        Status = "PAID",
+            //        CreatedDate = DateTime.Now
+            //    }
+            //);
+            modelBuilder.Entity<PostLike>().HasData(
+
+        new PostLike { PostLikeId = "LIKE001", BlogPostId = "BLOG001", UserId = "USR001", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE002", BlogPostId = "BLOG001", UserId = "USR002", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE003", BlogPostId = "BLOG002", UserId = "USR003", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE004", BlogPostId = "BLOG003", UserId = "USR001", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE005", BlogPostId = "BLOG004", UserId = "USR005", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE006", BlogPostId = "BLOG002", UserId = "USR001", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE007", BlogPostId = "BLOG003", UserId = "USR002", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE008", BlogPostId = "BLOG004", UserId = "USR003", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE009", BlogPostId = "BLOG005", UserId = "USR004", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE010", BlogPostId = "BLOG001", UserId = "USR005", CreatedAt = new DateTime(2026, 3, 25) }
+
+        );
+            modelBuilder.Entity<Booking>().HasData(
+
+new Booking
+{
+    BookingId = "BK400",
+    UserId = "USR002",
+    ShowtimeId = "ST001",
+    TotalAmount = 200000,
+    Status = "CONFIRMED",
+    CreatedAt = new DateTime(2026, 3, 25, 18, 59, 03)
+},
+
+new Booking
+{
+    BookingId = "BK401",
+    UserId = "USR002",
+    ShowtimeId = "ST002",
+    TotalAmount = 300000,
+    Status = "CONFIRMED",
+    CreatedAt = new DateTime(2026, 3, 25, 18, 59, 03)
+},
+
+new Booking
+{
+    BookingId = "BK402",
+    UserId = "USR002",
+    ShowtimeId = "ST003",
+    TotalAmount = 150000,
+    Status = "CONFIRMED",
+    CreatedAt = new DateTime(2026, 3, 25, 18, 59, 03)
+},
+
+new Booking
+{
+    BookingId = "BK403",
+    UserId = "USR002",
+    ShowtimeId = "ST004",
+    TotalAmount = 400000,
+    Status = "CONFIRMED",
+    CreatedAt = new DateTime(2026, 3, 25, 18, 59, 03)
+},
+
+new Booking
+{
+    BookingId = "BK404",
+    UserId = "USR002",
+    ShowtimeId = "ST005",
+    TotalAmount = 250000,
+    Status = "CONFIRMED",
+    CreatedAt = new DateTime(2026, 3, 25, 18, 59, 03)
+}
+
+);
+            modelBuilder.Entity<BookingSeat>().HasData(
+
+new BookingSeat { BookingSeatId = "BS400", BookingId = "BK400", SeatId = "SE0001", ShowtimeTicketTypeId = "STT001", Price = 100000, QrCode = "QR400", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+new BookingSeat { BookingSeatId = "BS401", BookingId = "BK400", SeatId = "SE0002", ShowtimeTicketTypeId = "STT001", Price = 100000, QrCode = "QR401", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+
+new BookingSeat { BookingSeatId = "BS402", BookingId = "BK401", SeatId = "SE0003", ShowtimeTicketTypeId = "STT001", Price = 150000, QrCode = "QR402", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+new BookingSeat { BookingSeatId = "BS403", BookingId = "BK401", SeatId = "SE0004", ShowtimeTicketTypeId = "STT001", Price = 150000, QrCode = "QR403", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+
+new BookingSeat { BookingSeatId = "BS404", BookingId = "BK402", SeatId = "SE0005", ShowtimeTicketTypeId = "STT001", Price = 75000, QrCode = "QR404", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+new BookingSeat { BookingSeatId = "BS405", BookingId = "BK402", SeatId = "SE0006", ShowtimeTicketTypeId = "STT001", Price = 75000, QrCode = "QR405", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+
+new BookingSeat { BookingSeatId = "BS406", BookingId = "BK403", SeatId = "SE0007", ShowtimeTicketTypeId = "STT001", Price = 200000, QrCode = "QR406", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+new BookingSeat { BookingSeatId = "BS407", BookingId = "BK403", SeatId = "SE0008", ShowtimeTicketTypeId = "STT001", Price = 200000, QrCode = "QR407", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+
+new BookingSeat { BookingSeatId = "BS408", BookingId = "BK404", SeatId = "SE0009", ShowtimeTicketTypeId = "STT001", Price = 125000, QrCode = "QR408", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+new BookingSeat { BookingSeatId = "BS409", BookingId = "BK404", SeatId = "SE0010", ShowtimeTicketTypeId = "STT001", Price = 125000, QrCode = "QR409", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) }
+
+);
         }
 
     }
