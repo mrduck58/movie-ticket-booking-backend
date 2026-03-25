@@ -32,6 +32,12 @@ namespace Movie_Ticket_Booking_Backend.Domain.Users
         public string RoleId { get; set; }
 
         public Role Role { get; set; }
+        // BỔ SUNG
+        public string? Gender { get; set; }
+        //public DateTime? Birthday { get; set; }
+        public string? CCCD { get; set; }
+        public string? Address { get; set; }
+        public string? Hometown { get; set; }
 
         public ICollection<MovieRating> MovieRatings { get; set; }
         public ICollection<Booking> Bookings { get; set; }
@@ -41,6 +47,7 @@ namespace Movie_Ticket_Booking_Backend.Domain.Users
         public ICollection<WatchList> WatchLists { get; set; }
         public ICollection<UserGenre> UserGenres { get; set; }
         public ICollection<Notification> Notifications { get; set; }
+        public ICollection<PostLike> PostLikes { get; set; }
         public ICollection<UserVoucher> UserVouchers { get; set; }
     }
 }

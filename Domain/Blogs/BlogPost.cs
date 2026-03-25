@@ -17,5 +17,7 @@ namespace Movie_Ticket_Booking_Backend.Domain.Blogs
         public ICollection<Comment> Comments { get; set; }
 
         public ICollection<Notification> Notifications { get; set; }
+        public ICollection<PostLike> PostLikes { get; set; }
+
     }
 }

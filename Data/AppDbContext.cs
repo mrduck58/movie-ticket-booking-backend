@@ -64,6 +64,7 @@ namespace Movie_Ticket_Booking_Backend.Data
         //Blog related tables
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<PostLike> PostLikes { get; set; }
         public DbSet<UserGenre> UserGenres { get; set; }
         public DbSet<Notification> Notifications { get; set; }
 
@@ -543,20 +544,7 @@ namespace Movie_Ticket_Booking_Backend.Data
 
             modelBuilder.Entity<Cast>().HasData(
 
-<<<<<<< api_backend_rating
  new Cast { CastId = "CAST001", Name = "Robert Downey Jr.", AvatarUrl = "https://image.tmdb.org/t/p/w500/1YjdSym1jTG7xjHSI0yGGWEsw5i.jpg" },
-=======
-                new Cast { CastId = "CAST001", Name = "Robert Downey Jr.", AvatarUrl = "https://image.tmdb.org/t/p/w500/rdj.jpg" },
-                new Cast { CastId = "CAST002", Name = "Chris Evans", AvatarUrl = "https://image.tmdb.org/t/p/w500/cevans.jpg" },
-                new Cast { CastId = "CAST003", Name = "Scarlett Johansson", AvatarUrl = "https://image.tmdb.org/t/p/w500/scarlett.jpg" },
-                new Cast { CastId = "CAST004", Name = "Tom Holland", AvatarUrl = "https://image.tmdb.org/t/p/w500/tomholland.jpg" },
-                new Cast { CastId = "CAST005", Name = "Zendaya", AvatarUrl = "https://image.tmdb.org/t/p/w500/zendaya.jpg" },
-                new Cast { CastId = "CAST006", Name = "Robert Pattinson", AvatarUrl = "https://image.tmdb.org/t/p/w500/pattinson.jpg" },
-                new Cast { CastId = "CAST007", Name = "Zoë Kravitz", AvatarUrl = "https://image.tmdb.org/t/p/w500/zoe.jpg" },
-                new Cast { CastId = "CAST008", Name = "Benedict Cumberbatch", AvatarUrl = "https://image.tmdb.org/t/p/w500/cumberbatch.jpg" },
-                new Cast { CastId = "CAST009", Name = "Elizabeth Olsen", AvatarUrl = "https://image.tmdb.org/t/p/w500/olsen.jpg" },
-                new Cast { CastId = "CAST010", Name = "Ryan Reynolds", AvatarUrl = "https://image.tmdb.org/t/p/w500/reynolds.jpg" }
->>>>>>> develop
 
  new Cast { CastId = "CAST002", Name = "Chris Evans", AvatarUrl = "https://image.tmdb.org/t/p/w500/3bOGNsHlrswhyW79uvIHH1V43JI.jpg" },
 
@@ -760,7 +748,6 @@ namespace Movie_Ticket_Booking_Backend.Data
 
             modelBuilder.Entity<MovieRating>().HasData(
 
-<<<<<<< api_backend_rating
                 new MovieRating { MovieRatingId = "RAT001", MovieId = "MOV001", UserId = "USR001", Stars = 5 },
                 new MovieRating { MovieRatingId = "RAT002", MovieId = "MOV001", UserId = "USR002", Stars = 4 },
 
@@ -788,52 +775,6 @@ new Poster { PosterId = "POS008", Title = "Mission Impossible Poster", ImageUrl 
 new Poster { PosterId = "POS009", Title = "Avatar Poster", ImageUrl = "https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg", MovieId = "MOV009" },
 
 new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg", MovieId = "MOV010" }
-=======
-                new MovieRating { MovieRatingId = "RAT001", MovieId = "MOV001", UserId = "USR001", Value = 8.5 },
-                new MovieRating { MovieRatingId = "RAT002", MovieId = "MOV001", UserId = "USR002", Value = 9.0 },
-
-                new MovieRating { MovieRatingId = "RAT003", MovieId = "MOV002", UserId = "USR003", Value = 7.8 },
-                new MovieRating { MovieRatingId = "RAT004", MovieId = "MOV002", UserId = "USR004", Value = 8.2 },
-
-                new MovieRating { MovieRatingId = "RAT005", MovieId = "MOV003", UserId = "USR002", Value = 8.6 },
-                new MovieRating { MovieRatingId = "RAT006", MovieId = "MOV003", UserId = "USR005", Value = 8.9 },
-
-                new MovieRating { MovieRatingId = "RAT007", MovieId = "MOV004", UserId = "USR001", Value = 6.9 },
-                new MovieRating { MovieRatingId = "RAT008", MovieId = "MOV004", UserId = "USR003", Value = 7.4 },
-
-                new MovieRating { MovieRatingId = "RAT009", MovieId = "MOV005", UserId = "USR002", Value = 7.7 },
-                new MovieRating { MovieRatingId = "RAT010", MovieId = "MOV005", UserId = "USR004", Value = 8.1 },
-
-                new MovieRating { MovieRatingId = "RAT011", MovieId = "MOV006", UserId = "USR003", Value = 8.7 },
-                new MovieRating { MovieRatingId = "RAT012", MovieId = "MOV006", UserId = "USR005", Value = 9.2 },
-
-                new MovieRating { MovieRatingId = "RAT013", MovieId = "MOV007", UserId = "USR001", Value = 7.5 },
-                new MovieRating { MovieRatingId = "RAT014", MovieId = "MOV007", UserId = "USR004", Value = 7.9 },
-
-                new MovieRating { MovieRatingId = "RAT015", MovieId = "MOV008", UserId = "USR002", Value = 9.1 },
-                new MovieRating { MovieRatingId = "RAT016", MovieId = "MOV008", UserId = "USR003", Value = 8.8 },
-
-                new MovieRating { MovieRatingId = "RAT017", MovieId = "MOV009", UserId = "USR004", Value = 7.6 },
-                new MovieRating { MovieRatingId = "RAT018", MovieId = "MOV009", UserId = "USR005", Value = 8.0 },
-
-                new MovieRating { MovieRatingId = "RAT019", MovieId = "MOV010", UserId = "USR001", Value = 8.4 },
-                new MovieRating { MovieRatingId = "RAT020", MovieId = "MOV010", UserId = "USR002", Value = 8.9 }
-
-            );
-            modelBuilder.Entity<Poster>().HasData(
-
-                new Poster { PosterId = "POS001", Title = "Avengers Poster", ImageUrl = "https://image.tmdb.org/t/p/w500/1.jpg", MovieId = "MOV001" },
-                new Poster { PosterId = "POS002", Title = "Batman Poster", ImageUrl = "https://image.tmdb.org/t/p/w500/2.jpg", MovieId = "MOV002" },
-                new Poster { PosterId = "POS003", Title = "Titanic Poster", ImageUrl = "https://image.tmdb.org/t/p/w500/3.jpg", MovieId = "MOV003" },
-                new Poster { PosterId = "POS004", Title = "Conjuring Poster", ImageUrl = "https://image.tmdb.org/t/p/w500/4.jpg", MovieId = "MOV004" },
-                new Poster { PosterId = "POS005", Title = "Minions Poster", ImageUrl = "https://image.tmdb.org/t/p/w500/5.jpg", MovieId = "MOV005" },
-
-                new Poster { PosterId = "POS006", Title = "Interstellar Poster", ImageUrl = "https://image.tmdb.org/t/p/w500/6.jpg", MovieId = "MOV006" },
-                new Poster { PosterId = "POS007", Title = "Fast X Poster", ImageUrl = "https://image.tmdb.org/t/p/w500/7.jpg", MovieId = "MOV007" },
-                new Poster { PosterId = "POS008", Title = "Demon Slayer Poster", ImageUrl = "https://image.tmdb.org/t/p/w500/8.jpg", MovieId = "MOV008" },
-                new Poster { PosterId = "POS009", Title = "Oppenheimer Poster", ImageUrl = "https://image.tmdb.org/t/p/w500/9.jpg", MovieId = "MOV009" },
-                new Poster { PosterId = "POS010", Title = "2012 Poster", ImageUrl = "https://image.tmdb.org/t/p/w500/10.jpg", MovieId = "MOV010" }
->>>>>>> develop
 
             );
             modelBuilder.Entity<WatchList>().HasData(
@@ -1551,207 +1492,93 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
                 }
 
             );
+            
+            modelBuilder.Entity<PostLike>().HasData(
 
-            modelBuilder.Entity<UserVoucher>().HasData(
+        new PostLike { PostLikeId = "LIKE001", BlogPostId = "BLOG001", UserId = "USR001", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE002", BlogPostId = "BLOG001", UserId = "USR002", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE003", BlogPostId = "BLOG002", UserId = "USR003", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE004", BlogPostId = "BLOG003", UserId = "USR001", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE005", BlogPostId = "BLOG004", UserId = "USR005", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE006", BlogPostId = "BLOG002", UserId = "USR001", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE007", BlogPostId = "BLOG003", UserId = "USR002", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE008", BlogPostId = "BLOG004", UserId = "USR003", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE009", BlogPostId = "BLOG005", UserId = "USR004", CreatedAt = new DateTime(2026, 3, 25) },
+        new PostLike { PostLikeId = "LIKE010", BlogPostId = "BLOG001", UserId = "USR005", CreatedAt = new DateTime(2026, 3, 25) }
 
-                new UserVoucher
-                {
-                    UserVoucherId = "UV001",
-                    UserId = "a08ab0bf-e5d3-41aa-81bf-e6df209b2bab",
-                    VoucherId = "VC001",
-                    Status = "AVAILABLE",
-                    UsedAt = null
-                },
+        );
+        
+            modelBuilder.Entity<Booking>().HasData(
 
-                new UserVoucher
-                {
-                    UserVoucherId = "UV002",
-                    UserId = "a08ab0bf-e5d3-41aa-81bf-e6df209b2bab",
-                    VoucherId = "VC002",
-                    Status = "AVAILABLE",
-                    UsedAt = null
-                },
+new Booking
+{
+    BookingId = "BK400",
+    UserId = "USR002",
+    ShowtimeId = "ST001",
+    TotalAmount = 200000,
+    Status = "CONFIRMED",
+    CreatedAt = new DateTime(2026, 3, 25, 18, 59, 03)
+},
 
-                new UserVoucher
-                {
-                    UserVoucherId = "UV003",
-                    UserId = "a08ab0bf-e5d3-41aa-81bf-e6df209b2bab",
-                    VoucherId = "VC003",
-                    Status = "AVAILABLE",
-                    UsedAt = null
-                },
+new Booking
+{
+    BookingId = "BK401",
+    UserId = "USR002",
+    ShowtimeId = "ST002",
+    TotalAmount = 300000,
+    Status = "CONFIRMED",
+    CreatedAt = new DateTime(2026, 3, 25, 18, 59, 03)
+},
 
-                new UserVoucher
-                {
-                    UserVoucherId = "UV004",
-                    UserId = "a08ab0bf-e5d3-41aa-81bf-e6df209b2bab",
-                    VoucherId = "VC004",
-                    Status = "AVAILABLE",
-                    UsedAt = null
-                },
+new Booking
+{
+    BookingId = "BK402",
+    UserId = "USR002",
+    ShowtimeId = "ST003",
+    TotalAmount = 150000,
+    Status = "CONFIRMED",
+    CreatedAt = new DateTime(2026, 3, 25, 18, 59, 03)
+},
 
-                new UserVoucher
-                {
-                    UserVoucherId = "UV005",
-                    UserId = "a08ab0bf-e5d3-41aa-81bf-e6df209b2bab",
-                    VoucherId = "VC005",
-                    Status = "AVAILABLE",
-                    UsedAt = null
-                }
+new Booking
+{
+    BookingId = "BK403",
+    UserId = "USR002",
+    ShowtimeId = "ST004",
+    TotalAmount = 400000,
+    Status = "CONFIRMED",
+    CreatedAt = new DateTime(2026, 3, 25, 18, 59, 03)
+},
 
-<<<<<<< api_backend_rating
-    );
-            //        modelBuilder.Entity<Booking>().HasData(
+new Booking
+{
+    BookingId = "BK404",
+    UserId = "USR002",
+    ShowtimeId = "ST005",
+    TotalAmount = 250000,
+    Status = "CONFIRMED",
+    CreatedAt = new DateTime(2026, 3, 25, 18, 59, 03)
+}
 
-            //new Booking
-            //{
-            //    BookingId = "BK001",
-            //    UserId = "USR001",
-            //    ShowtimeId = "ST001",
-            //    TotalAmount = 15.5,
-            //    Status = "PAID",
-            //    CreatedAt = new DateTime(2026, 6, 10, 9, 30, 0)
-            //},
-
-            //new Booking
-            //{
-            //    BookingId = "BK002",
-            //    UserId = "USR002",
-            //    ShowtimeId = "ST002",
-            //    TotalAmount = 20,
-            //    Status = "PAID",
-            //    CreatedAt = new DateTime(2026, 6, 10, 12, 0, 0)
-            //}
-
-            //);
-
-            //        modelBuilder.Entity<BookingSeat>().HasData(
-
-            //        new BookingSeat
-            //        {
-            //            BookingSeatId = "BKS001",
-            //            BookingId = "BK001",
-            //            SeatId = "SE001",
-            //            ShowtimeTicketTypeId = "STT001",
-            //            Price = 7.5,
-            //            QrCode = "QR001",
-            //            Status = "BOOKED",
-            //            CheckinTime = new DateTime(2026, 6, 10, 10, 0, 0)
-            //        },
-
-            //        new BookingSeat
-            //        {
-            //            BookingSeatId = "BKS002",
-            //            BookingId = "BK001",
-            //            SeatId = "SE002",
-            //            ShowtimeTicketTypeId = "STT001",
-            //            Price = 8,
-            //            QrCode = "QR002",
-            //            Status = "BOOKED",
-            //            CheckinTime = new DateTime(2026, 6, 10, 10, 0, 0)
-            //        },
-
-            //        new BookingSeat
-            //        {
-            //            BookingSeatId = "BKS003",
-            //            BookingId = "BK002",
-            //            SeatId = "SE003",
-            //            ShowtimeTicketTypeId = "STT002",
-            //            Price = 10,
-            //            QrCode = "QR003",
-            //            Status = "BOOKED",
-            //            CheckinTime = new DateTime(2026, 6, 10, 13, 0, 0)
-            //        }
-
-            //        );
-
-            //        modelBuilder.Entity<BookingFoodCombo>().HasData(
-
-            //        new BookingFoodCombo
-            //        {
-            //            BookingFoodComboId = "BFC001",
-            //            BookingId = "BK001",
-            //            FoodComboId = "FC001",
-            //            Quantity = 1
-            //        },
-
-            //        new BookingFoodCombo
-            //        {
-            //            BookingFoodComboId = "BFC002",
-            //            BookingId = "BK002",
-            //            FoodComboId = "FC002",
-            //            Quantity = 2
-            //        }
-
-            //        );
-
-            //        modelBuilder.Entity<BookingVoucher>().HasData(
-
-            //        new BookingVoucher
-            //        {
-            //            BookingId = "BK001",
-            //            VoucherId = "VC001"
-            //        },
-
-            //        new BookingVoucher
-            //        {
-            //            BookingId = "BK002",
-            //            VoucherId = "VC002"
-            //        }
-
-            //        );
-            modelBuilder.Entity<PaymentMethod>().HasData(
-    new PaymentMethod
-    {
-        PaymentMethodId = "PM001",
-        Name = "Credit Card",
-        ImageUrl = "https://example.com/creditcard.png",
-        Status = "ACTIVE",
-        CreatedDate = DateTime.Now,
-        UpdatedDate = DateTime.Now
-    },
-    new PaymentMethod
-    {
-        PaymentMethodId = "PM002",
-        Name = "Momo",
-        ImageUrl = "https://example.com/momo.png",
-        Status = "ACTIVE",
-        CreatedDate = DateTime.Now,
-        UpdatedDate = DateTime.Now
-    },
-    new PaymentMethod
-    {
-        PaymentMethodId = "PM003",
-        Name = "ZaloPay",
-        ImageUrl = "https://example.com/zalopay.png",
-        Status = "ACTIVE",
-        CreatedDate = DateTime.Now,
-        UpdatedDate = DateTime.Now
-    }
 );
+            modelBuilder.Entity<BookingSeat>().HasData(
 
-            //            modelBuilder.Entity<Payment>().HasData(
-            //    new Payment
-            //    {
-            //        PaymentId = "PAY001",
-            //        BookingId = "BK001",
-            //        PaymentMethodId = "PM001",
-            //        Amount = 120000,
-            //        Status = "PAID",
-            //        CreatedDate = DateTime.Now
-            //    },
-            //    new Payment
-            //    {
-            //        PaymentId = "PAY002",
-            //        BookingId = "BK002",
-            //        PaymentMethodId = "PM002",
-            //        Amount = 150000,
-            //        Status = "PAID",
-            //        CreatedDate = DateTime.Now
-            //    }
-            //);
-=======
-            );
+new BookingSeat { BookingSeatId = "BS400", BookingId = "BK400", SeatId = "SE0001", ShowtimeTicketTypeId = "STT001", Price = 100000, QrCode = "QR400", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+new BookingSeat { BookingSeatId = "BS401", BookingId = "BK400", SeatId = "SE0002", ShowtimeTicketTypeId = "STT001", Price = 100000, QrCode = "QR401", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+
+new BookingSeat { BookingSeatId = "BS402", BookingId = "BK401", SeatId = "SE0003", ShowtimeTicketTypeId = "STT001", Price = 150000, QrCode = "QR402", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+new BookingSeat { BookingSeatId = "BS403", BookingId = "BK401", SeatId = "SE0004", ShowtimeTicketTypeId = "STT001", Price = 150000, QrCode = "QR403", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+
+new BookingSeat { BookingSeatId = "BS404", BookingId = "BK402", SeatId = "SE0005", ShowtimeTicketTypeId = "STT001", Price = 75000, QrCode = "QR404", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+new BookingSeat { BookingSeatId = "BS405", BookingId = "BK402", SeatId = "SE0006", ShowtimeTicketTypeId = "STT001", Price = 75000, QrCode = "QR405", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+
+new BookingSeat { BookingSeatId = "BS406", BookingId = "BK403", SeatId = "SE0007", ShowtimeTicketTypeId = "STT001", Price = 200000, QrCode = "QR406", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+new BookingSeat { BookingSeatId = "BS407", BookingId = "BK403", SeatId = "SE0008", ShowtimeTicketTypeId = "STT001", Price = 200000, QrCode = "QR407", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+
+new BookingSeat { BookingSeatId = "BS408", BookingId = "BK404", SeatId = "SE0009", ShowtimeTicketTypeId = "STT001", Price = 125000, QrCode = "QR408", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) },
+new BookingSeat { BookingSeatId = "BS409", BookingId = "BK404", SeatId = "SE0010", ShowtimeTicketTypeId = "STT001", Price = 125000, QrCode = "QR409", Status = "BOOKED", CheckinTime = new DateTime(2026, 3, 25) }
+
+);
             modelBuilder.Entity<PaymentMethod>().HasData(
                 new PaymentMethod
                 {
@@ -1781,7 +1608,6 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
                     UpdatedDate = DateTime.Now
                 }
             );
->>>>>>> develop
         }
 
     }
