@@ -12,8 +12,8 @@ using Movie_Ticket_Booking_Backend.Data;
 namespace Movie_Ticket_Booking_Backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260321133809_UpdateShowtimeSeedData")]
-    partial class UpdateShowtimeSeedData
+    [Migration("20260325121434_UpdateUserVoucherTable")]
+    partial class UpdateUserVoucherTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,7 +63,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             BlogPostId = "BLOG001",
                             Content = "Marvel movies have changed the superhero genre forever...",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8065),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "https://images.unsplash.com/photo-1",
                             Likes = 120,
                             Title = "Top 10 Marvel Movies You Must Watch",
@@ -73,7 +73,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             BlogPostId = "BLOG002",
                             Content = "Horror movies give audiences a thrilling experience...",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8068),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "https://images.unsplash.com/photo-2",
                             Likes = 85,
                             Title = "Why Horror Movies Are So Popular",
@@ -83,7 +83,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             BlogPostId = "BLOG003",
                             Content = "Science fiction movies explore the future and technology...",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8069),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "https://images.unsplash.com/photo-3",
                             Likes = 95,
                             Title = "Best Sci-Fi Movies of the Decade",
@@ -93,7 +93,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             BlogPostId = "BLOG004",
                             Content = "These romantic films will make your evening unforgettable...",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8071),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "https://images.unsplash.com/photo-4",
                             Likes = 60,
                             Title = "Romantic Movies Perfect for Date Night",
@@ -103,7 +103,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             BlogPostId = "BLOG005",
                             Content = "Many exciting movies are coming to theaters next year...",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8072),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "https://images.unsplash.com/photo-5",
                             Likes = 150,
                             Title = "Upcoming Blockbusters in 2026",
@@ -145,7 +145,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT001",
                             BlogPostId = "BLOG001",
                             Content = "Great list! I love Marvel movies.",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8111),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "USR002"
                         },
                         new
@@ -153,7 +153,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT002",
                             BlogPostId = "BLOG001",
                             Content = "Avengers Endgame is my favorite.",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8113),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "USR003"
                         },
                         new
@@ -161,7 +161,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT003",
                             BlogPostId = "BLOG001",
                             Content = "Nice recommendations!",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8115),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "USR004"
                         },
                         new
@@ -169,7 +169,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT004",
                             BlogPostId = "BLOG002",
                             Content = "Horror movies are so thrilling!",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8116),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "USR001"
                         },
                         new
@@ -177,7 +177,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT005",
                             BlogPostId = "BLOG002",
                             Content = "The Conjuring series is amazing.",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8118),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "USR005"
                         },
                         new
@@ -185,7 +185,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT006",
                             BlogPostId = "BLOG002",
                             Content = "I love watching horror at night.",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8119),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "USR003"
                         },
                         new
@@ -193,7 +193,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT007",
                             BlogPostId = "BLOG003",
                             Content = "Interstellar is a masterpiece.",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8121),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "USR001"
                         },
                         new
@@ -201,7 +201,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT008",
                             BlogPostId = "BLOG003",
                             Content = "Sci-Fi movies inspire imagination.",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8123),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "USR002"
                         },
                         new
@@ -209,7 +209,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT009",
                             BlogPostId = "BLOG003",
                             Content = "I love futuristic technology.",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8124),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "USR005"
                         },
                         new
@@ -217,7 +217,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT010",
                             BlogPostId = "BLOG004",
                             Content = "Perfect movies for couples.",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8126),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "USR003"
                         },
                         new
@@ -225,7 +225,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT011",
                             BlogPostId = "BLOG004",
                             Content = "Titanic will always be iconic.",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8127),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "USR002"
                         },
                         new
@@ -233,7 +233,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT012",
                             BlogPostId = "BLOG004",
                             Content = "Romantic movies are emotional.",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8129),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "USR001"
                         },
                         new
@@ -241,7 +241,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT013",
                             BlogPostId = "BLOG005",
                             Content = "Can't wait for next year's movies!",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8130),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "USR004"
                         },
                         new
@@ -249,7 +249,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT014",
                             BlogPostId = "BLOG005",
                             Content = "So many exciting releases.",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8131),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "USR003"
                         },
                         new
@@ -257,7 +257,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             CommentId = "CMT015",
                             BlogPostId = "BLOG005",
                             Content = "Hope Marvel releases new films!",
-                            CreatedDate = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8133),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = "USR002"
                         });
                 });
@@ -292,26 +292,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Bookings");
-
-                    b.HasData(
-                        new
-                        {
-                            BookingId = "BK001",
-                            CreatedAt = new DateTime(2026, 6, 10, 9, 30, 0, 0, DateTimeKind.Unspecified),
-                            ShowtimeId = "ST001",
-                            Status = "PAID",
-                            TotalAmount = 15.5,
-                            UserId = "USR001"
-                        },
-                        new
-                        {
-                            BookingId = "BK002",
-                            CreatedAt = new DateTime(2026, 6, 10, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            ShowtimeId = "ST002",
-                            Status = "PAID",
-                            TotalAmount = 20.0,
-                            UserId = "USR002"
-                        });
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Bookings.BookingFoodCombo", b =>
@@ -337,22 +317,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.HasIndex("FoodComboId");
 
                     b.ToTable("BookingFoodCombos");
-
-                    b.HasData(
-                        new
-                        {
-                            BookingFoodComboId = "BFC001",
-                            BookingId = "BK001",
-                            FoodComboId = "FC001",
-                            Quantity = 1
-                        },
-                        new
-                        {
-                            BookingFoodComboId = "BFC002",
-                            BookingId = "BK002",
-                            FoodComboId = "FC002",
-                            Quantity = 2
-                        });
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Bookings.BookingSeat", b =>
@@ -396,41 +360,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         .IsUnique();
 
                     b.ToTable("BookingSeats");
-
-                    b.HasData(
-                        new
-                        {
-                            BookingSeatId = "BKS001",
-                            BookingId = "BK001",
-                            CheckinTime = new DateTime(2026, 6, 10, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            Price = 7.5,
-                            QrCode = "QR001",
-                            SeatId = "SE001",
-                            ShowtimeTicketTypeId = "STT001",
-                            Status = "BOOKED"
-                        },
-                        new
-                        {
-                            BookingSeatId = "BKS002",
-                            BookingId = "BK001",
-                            CheckinTime = new DateTime(2026, 6, 10, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            Price = 8.0,
-                            QrCode = "QR002",
-                            SeatId = "SE002",
-                            ShowtimeTicketTypeId = "STT001",
-                            Status = "BOOKED"
-                        },
-                        new
-                        {
-                            BookingSeatId = "BKS003",
-                            BookingId = "BK002",
-                            CheckinTime = new DateTime(2026, 6, 10, 13, 0, 0, 0, DateTimeKind.Unspecified),
-                            Price = 10.0,
-                            QrCode = "QR003",
-                            SeatId = "SE003",
-                            ShowtimeTicketTypeId = "STT002",
-                            Status = "BOOKED"
-                        });
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Bookings.BookingVoucher", b =>
@@ -446,18 +375,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.HasIndex("VoucherId");
 
                     b.ToTable("BookingVouchers");
-
-                    b.HasData(
-                        new
-                        {
-                            BookingId = "BK001",
-                            VoucherId = "VC001"
-                        },
-                        new
-                        {
-                            BookingId = "BK002",
-                            VoucherId = "VC002"
-                        });
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Cinemas.Cinema", b =>
@@ -649,134 +566,2412 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SeatType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShowtimeId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("SeatId");
 
                     b.HasIndex("RoomId");
-
-                    b.HasIndex("ShowtimeId");
 
                     b.ToTable("Seats");
 
                     b.HasData(
                         new
                         {
-                            SeatId = "SE001",
+                            SeatId = "SE0001",
                             RoomId = "R001",
-                            SeatName = "A1",
-                            SeatType = "NORMAL",
-                            ShowtimeId = "ST001",
-                            Status = "AVAILABLE"
+                            SeatName = "A1"
                         },
                         new
                         {
-                            SeatId = "SE002",
+                            SeatId = "SE0002",
                             RoomId = "R001",
-                            SeatName = "A2",
-                            SeatType = "NORMAL",
-                            ShowtimeId = "ST001",
-                            Status = "AVAILABLE"
+                            SeatName = "A2"
                         },
                         new
                         {
-                            SeatId = "SE003",
+                            SeatId = "SE0003",
                             RoomId = "R001",
-                            SeatName = "A3",
-                            SeatType = "VIP",
-                            ShowtimeId = "ST001",
-                            Status = "AVAILABLE"
+                            SeatName = "A3"
                         },
                         new
                         {
-                            SeatId = "SE004",
+                            SeatId = "SE0004",
                             RoomId = "R001",
-                            SeatName = "A4",
-                            SeatType = "VIP",
-                            ShowtimeId = "ST001",
-                            Status = "AVAILABLE"
+                            SeatName = "A4"
                         },
                         new
                         {
-                            SeatId = "SE005",
+                            SeatId = "SE0005",
+                            RoomId = "R001",
+                            SeatName = "A5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0006",
+                            RoomId = "R001",
+                            SeatName = "A6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0007",
+                            RoomId = "R001",
+                            SeatName = "A7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0008",
+                            RoomId = "R001",
+                            SeatName = "A8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0009",
+                            RoomId = "R001",
+                            SeatName = "A9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0010",
+                            RoomId = "R001",
+                            SeatName = "A10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0011",
+                            RoomId = "R001",
+                            SeatName = "B1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0012",
+                            RoomId = "R001",
+                            SeatName = "B2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0013",
+                            RoomId = "R001",
+                            SeatName = "B3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0014",
+                            RoomId = "R001",
+                            SeatName = "B4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0015",
+                            RoomId = "R001",
+                            SeatName = "B5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0016",
+                            RoomId = "R001",
+                            SeatName = "B6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0017",
+                            RoomId = "R001",
+                            SeatName = "B7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0018",
+                            RoomId = "R001",
+                            SeatName = "B8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0019",
+                            RoomId = "R001",
+                            SeatName = "B9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0020",
+                            RoomId = "R001",
+                            SeatName = "B10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0021",
+                            RoomId = "R001",
+                            SeatName = "C1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0022",
+                            RoomId = "R001",
+                            SeatName = "C2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0023",
+                            RoomId = "R001",
+                            SeatName = "C3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0024",
+                            RoomId = "R001",
+                            SeatName = "C4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0025",
+                            RoomId = "R001",
+                            SeatName = "C5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0026",
+                            RoomId = "R001",
+                            SeatName = "C6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0027",
+                            RoomId = "R001",
+                            SeatName = "C7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0028",
+                            RoomId = "R001",
+                            SeatName = "C8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0029",
+                            RoomId = "R001",
+                            SeatName = "C9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0030",
+                            RoomId = "R001",
+                            SeatName = "C10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0031",
+                            RoomId = "R001",
+                            SeatName = "D1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0032",
+                            RoomId = "R001",
+                            SeatName = "D2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0033",
+                            RoomId = "R001",
+                            SeatName = "D3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0034",
+                            RoomId = "R001",
+                            SeatName = "D4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0035",
+                            RoomId = "R001",
+                            SeatName = "D5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0036",
+                            RoomId = "R001",
+                            SeatName = "D6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0037",
+                            RoomId = "R001",
+                            SeatName = "D7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0038",
+                            RoomId = "R001",
+                            SeatName = "D8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0039",
+                            RoomId = "R001",
+                            SeatName = "D9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0040",
+                            RoomId = "R001",
+                            SeatName = "D10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0041",
+                            RoomId = "R001",
+                            SeatName = "E1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0042",
+                            RoomId = "R001",
+                            SeatName = "E2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0043",
+                            RoomId = "R001",
+                            SeatName = "E3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0044",
+                            RoomId = "R001",
+                            SeatName = "E4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0045",
+                            RoomId = "R001",
+                            SeatName = "E5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0046",
+                            RoomId = "R001",
+                            SeatName = "E6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0047",
+                            RoomId = "R001",
+                            SeatName = "E7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0048",
+                            RoomId = "R001",
+                            SeatName = "E8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0049",
+                            RoomId = "R001",
+                            SeatName = "E9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0050",
+                            RoomId = "R001",
+                            SeatName = "E10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0051",
+                            RoomId = "R001",
+                            SeatName = "F1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0052",
+                            RoomId = "R001",
+                            SeatName = "F2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0053",
+                            RoomId = "R001",
+                            SeatName = "F3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0054",
+                            RoomId = "R001",
+                            SeatName = "F4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0055",
+                            RoomId = "R001",
+                            SeatName = "F5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0056",
+                            RoomId = "R001",
+                            SeatName = "F6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0057",
+                            RoomId = "R001",
+                            SeatName = "F7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0058",
+                            RoomId = "R001",
+                            SeatName = "F8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0059",
+                            RoomId = "R001",
+                            SeatName = "F9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0060",
+                            RoomId = "R001",
+                            SeatName = "F10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0061",
+                            RoomId = "R001",
+                            SeatName = "G1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0062",
+                            RoomId = "R001",
+                            SeatName = "G2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0063",
+                            RoomId = "R001",
+                            SeatName = "G3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0064",
+                            RoomId = "R001",
+                            SeatName = "G4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0065",
+                            RoomId = "R001",
+                            SeatName = "G5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0066",
+                            RoomId = "R001",
+                            SeatName = "G6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0067",
+                            RoomId = "R001",
+                            SeatName = "G7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0068",
+                            RoomId = "R001",
+                            SeatName = "G8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0069",
+                            RoomId = "R001",
+                            SeatName = "G9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0070",
+                            RoomId = "R001",
+                            SeatName = "G10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0071",
+                            RoomId = "R001",
+                            SeatName = "H1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0072",
+                            RoomId = "R001",
+                            SeatName = "H2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0073",
+                            RoomId = "R001",
+                            SeatName = "H3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0074",
+                            RoomId = "R001",
+                            SeatName = "H4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0075",
+                            RoomId = "R001",
+                            SeatName = "H5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0076",
+                            RoomId = "R001",
+                            SeatName = "H6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0077",
+                            RoomId = "R001",
+                            SeatName = "H7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0078",
+                            RoomId = "R001",
+                            SeatName = "H8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0079",
+                            RoomId = "R001",
+                            SeatName = "H9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0080",
+                            RoomId = "R001",
+                            SeatName = "H10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0081",
                             RoomId = "R002",
-                            SeatName = "B1",
-                            SeatType = "NORMAL",
-                            ShowtimeId = "ST002",
-                            Status = "AVAILABLE"
+                            SeatName = "A1"
                         },
                         new
                         {
-                            SeatId = "SE006",
+                            SeatId = "SE0082",
                             RoomId = "R002",
-                            SeatName = "B2",
-                            SeatType = "NORMAL",
-                            ShowtimeId = "ST002",
-                            Status = "AVAILABLE"
+                            SeatName = "A2"
                         },
                         new
                         {
-                            SeatId = "SE007",
+                            SeatId = "SE0083",
                             RoomId = "R002",
-                            SeatName = "B3",
-                            SeatType = "VIP",
-                            ShowtimeId = "ST002",
-                            Status = "AVAILABLE"
+                            SeatName = "A3"
                         },
                         new
                         {
-                            SeatId = "SE008",
+                            SeatId = "SE0084",
                             RoomId = "R002",
-                            SeatName = "B4",
-                            SeatType = "VIP",
-                            ShowtimeId = "ST002",
-                            Status = "AVAILABLE"
+                            SeatName = "A4"
                         },
                         new
                         {
-                            SeatId = "SE009",
-                            RoomId = "R003",
-                            SeatName = "C1",
-                            SeatType = "NORMAL",
-                            ShowtimeId = "ST003",
-                            Status = "AVAILABLE"
+                            SeatId = "SE0085",
+                            RoomId = "R002",
+                            SeatName = "A5"
                         },
                         new
                         {
-                            SeatId = "SE010",
-                            RoomId = "R003",
-                            SeatName = "C2",
-                            SeatType = "NORMAL",
-                            ShowtimeId = "ST003",
-                            Status = "AVAILABLE"
+                            SeatId = "SE0086",
+                            RoomId = "R002",
+                            SeatName = "A6"
                         },
                         new
                         {
-                            SeatId = "SE011",
-                            RoomId = "R003",
-                            SeatName = "C3",
-                            SeatType = "VIP",
-                            ShowtimeId = "ST003",
-                            Status = "AVAILABLE"
+                            SeatId = "SE0087",
+                            RoomId = "R002",
+                            SeatName = "A7"
                         },
                         new
                         {
-                            SeatId = "SE012",
+                            SeatId = "SE0088",
+                            RoomId = "R002",
+                            SeatName = "A8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0089",
+                            RoomId = "R002",
+                            SeatName = "A9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0090",
+                            RoomId = "R002",
+                            SeatName = "A10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0091",
+                            RoomId = "R002",
+                            SeatName = "B1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0092",
+                            RoomId = "R002",
+                            SeatName = "B2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0093",
+                            RoomId = "R002",
+                            SeatName = "B3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0094",
+                            RoomId = "R002",
+                            SeatName = "B4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0095",
+                            RoomId = "R002",
+                            SeatName = "B5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0096",
+                            RoomId = "R002",
+                            SeatName = "B6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0097",
+                            RoomId = "R002",
+                            SeatName = "B7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0098",
+                            RoomId = "R002",
+                            SeatName = "B8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0099",
+                            RoomId = "R002",
+                            SeatName = "B9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0100",
+                            RoomId = "R002",
+                            SeatName = "B10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0101",
+                            RoomId = "R002",
+                            SeatName = "C1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0102",
+                            RoomId = "R002",
+                            SeatName = "C2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0103",
+                            RoomId = "R002",
+                            SeatName = "C3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0104",
+                            RoomId = "R002",
+                            SeatName = "C4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0105",
+                            RoomId = "R002",
+                            SeatName = "C5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0106",
+                            RoomId = "R002",
+                            SeatName = "C6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0107",
+                            RoomId = "R002",
+                            SeatName = "C7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0108",
+                            RoomId = "R002",
+                            SeatName = "C8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0109",
+                            RoomId = "R002",
+                            SeatName = "C9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0110",
+                            RoomId = "R002",
+                            SeatName = "C10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0111",
+                            RoomId = "R002",
+                            SeatName = "D1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0112",
+                            RoomId = "R002",
+                            SeatName = "D2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0113",
+                            RoomId = "R002",
+                            SeatName = "D3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0114",
+                            RoomId = "R002",
+                            SeatName = "D4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0115",
+                            RoomId = "R002",
+                            SeatName = "D5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0116",
+                            RoomId = "R002",
+                            SeatName = "D6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0117",
+                            RoomId = "R002",
+                            SeatName = "D7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0118",
+                            RoomId = "R002",
+                            SeatName = "D8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0119",
+                            RoomId = "R002",
+                            SeatName = "D9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0120",
+                            RoomId = "R002",
+                            SeatName = "D10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0121",
+                            RoomId = "R002",
+                            SeatName = "E1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0122",
+                            RoomId = "R002",
+                            SeatName = "E2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0123",
+                            RoomId = "R002",
+                            SeatName = "E3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0124",
+                            RoomId = "R002",
+                            SeatName = "E4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0125",
+                            RoomId = "R002",
+                            SeatName = "E5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0126",
+                            RoomId = "R002",
+                            SeatName = "E6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0127",
+                            RoomId = "R002",
+                            SeatName = "E7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0128",
+                            RoomId = "R002",
+                            SeatName = "E8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0129",
+                            RoomId = "R002",
+                            SeatName = "E9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0130",
+                            RoomId = "R002",
+                            SeatName = "E10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0131",
+                            RoomId = "R002",
+                            SeatName = "F1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0132",
+                            RoomId = "R002",
+                            SeatName = "F2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0133",
+                            RoomId = "R002",
+                            SeatName = "F3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0134",
+                            RoomId = "R002",
+                            SeatName = "F4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0135",
+                            RoomId = "R002",
+                            SeatName = "F5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0136",
+                            RoomId = "R002",
+                            SeatName = "F6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0137",
+                            RoomId = "R002",
+                            SeatName = "F7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0138",
+                            RoomId = "R002",
+                            SeatName = "F8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0139",
+                            RoomId = "R002",
+                            SeatName = "F9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0140",
+                            RoomId = "R002",
+                            SeatName = "F10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0141",
+                            RoomId = "R002",
+                            SeatName = "G1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0142",
+                            RoomId = "R002",
+                            SeatName = "G2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0143",
+                            RoomId = "R002",
+                            SeatName = "G3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0144",
+                            RoomId = "R002",
+                            SeatName = "G4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0145",
+                            RoomId = "R002",
+                            SeatName = "G5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0146",
+                            RoomId = "R002",
+                            SeatName = "G6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0147",
+                            RoomId = "R002",
+                            SeatName = "G7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0148",
+                            RoomId = "R002",
+                            SeatName = "G8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0149",
+                            RoomId = "R002",
+                            SeatName = "G9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0150",
+                            RoomId = "R002",
+                            SeatName = "G10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0151",
+                            RoomId = "R002",
+                            SeatName = "H1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0152",
+                            RoomId = "R002",
+                            SeatName = "H2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0153",
+                            RoomId = "R002",
+                            SeatName = "H3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0154",
+                            RoomId = "R002",
+                            SeatName = "H4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0155",
+                            RoomId = "R002",
+                            SeatName = "H5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0156",
+                            RoomId = "R002",
+                            SeatName = "H6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0157",
+                            RoomId = "R002",
+                            SeatName = "H7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0158",
+                            RoomId = "R002",
+                            SeatName = "H8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0159",
+                            RoomId = "R002",
+                            SeatName = "H9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0160",
+                            RoomId = "R002",
+                            SeatName = "H10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0161",
                             RoomId = "R003",
-                            SeatName = "C4",
-                            SeatType = "VIP",
-                            ShowtimeId = "ST003",
-                            Status = "AVAILABLE"
+                            SeatName = "A1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0162",
+                            RoomId = "R003",
+                            SeatName = "A2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0163",
+                            RoomId = "R003",
+                            SeatName = "A3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0164",
+                            RoomId = "R003",
+                            SeatName = "A4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0165",
+                            RoomId = "R003",
+                            SeatName = "A5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0166",
+                            RoomId = "R003",
+                            SeatName = "A6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0167",
+                            RoomId = "R003",
+                            SeatName = "A7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0168",
+                            RoomId = "R003",
+                            SeatName = "A8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0169",
+                            RoomId = "R003",
+                            SeatName = "A9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0170",
+                            RoomId = "R003",
+                            SeatName = "A10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0171",
+                            RoomId = "R003",
+                            SeatName = "B1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0172",
+                            RoomId = "R003",
+                            SeatName = "B2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0173",
+                            RoomId = "R003",
+                            SeatName = "B3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0174",
+                            RoomId = "R003",
+                            SeatName = "B4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0175",
+                            RoomId = "R003",
+                            SeatName = "B5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0176",
+                            RoomId = "R003",
+                            SeatName = "B6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0177",
+                            RoomId = "R003",
+                            SeatName = "B7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0178",
+                            RoomId = "R003",
+                            SeatName = "B8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0179",
+                            RoomId = "R003",
+                            SeatName = "B9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0180",
+                            RoomId = "R003",
+                            SeatName = "B10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0181",
+                            RoomId = "R003",
+                            SeatName = "C1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0182",
+                            RoomId = "R003",
+                            SeatName = "C2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0183",
+                            RoomId = "R003",
+                            SeatName = "C3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0184",
+                            RoomId = "R003",
+                            SeatName = "C4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0185",
+                            RoomId = "R003",
+                            SeatName = "C5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0186",
+                            RoomId = "R003",
+                            SeatName = "C6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0187",
+                            RoomId = "R003",
+                            SeatName = "C7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0188",
+                            RoomId = "R003",
+                            SeatName = "C8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0189",
+                            RoomId = "R003",
+                            SeatName = "C9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0190",
+                            RoomId = "R003",
+                            SeatName = "C10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0191",
+                            RoomId = "R003",
+                            SeatName = "D1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0192",
+                            RoomId = "R003",
+                            SeatName = "D2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0193",
+                            RoomId = "R003",
+                            SeatName = "D3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0194",
+                            RoomId = "R003",
+                            SeatName = "D4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0195",
+                            RoomId = "R003",
+                            SeatName = "D5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0196",
+                            RoomId = "R003",
+                            SeatName = "D6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0197",
+                            RoomId = "R003",
+                            SeatName = "D7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0198",
+                            RoomId = "R003",
+                            SeatName = "D8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0199",
+                            RoomId = "R003",
+                            SeatName = "D9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0200",
+                            RoomId = "R003",
+                            SeatName = "D10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0201",
+                            RoomId = "R003",
+                            SeatName = "E1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0202",
+                            RoomId = "R003",
+                            SeatName = "E2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0203",
+                            RoomId = "R003",
+                            SeatName = "E3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0204",
+                            RoomId = "R003",
+                            SeatName = "E4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0205",
+                            RoomId = "R003",
+                            SeatName = "E5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0206",
+                            RoomId = "R003",
+                            SeatName = "E6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0207",
+                            RoomId = "R003",
+                            SeatName = "E7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0208",
+                            RoomId = "R003",
+                            SeatName = "E8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0209",
+                            RoomId = "R003",
+                            SeatName = "E9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0210",
+                            RoomId = "R003",
+                            SeatName = "E10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0211",
+                            RoomId = "R003",
+                            SeatName = "F1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0212",
+                            RoomId = "R003",
+                            SeatName = "F2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0213",
+                            RoomId = "R003",
+                            SeatName = "F3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0214",
+                            RoomId = "R003",
+                            SeatName = "F4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0215",
+                            RoomId = "R003",
+                            SeatName = "F5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0216",
+                            RoomId = "R003",
+                            SeatName = "F6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0217",
+                            RoomId = "R003",
+                            SeatName = "F7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0218",
+                            RoomId = "R003",
+                            SeatName = "F8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0219",
+                            RoomId = "R003",
+                            SeatName = "F9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0220",
+                            RoomId = "R003",
+                            SeatName = "F10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0221",
+                            RoomId = "R003",
+                            SeatName = "G1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0222",
+                            RoomId = "R003",
+                            SeatName = "G2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0223",
+                            RoomId = "R003",
+                            SeatName = "G3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0224",
+                            RoomId = "R003",
+                            SeatName = "G4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0225",
+                            RoomId = "R003",
+                            SeatName = "G5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0226",
+                            RoomId = "R003",
+                            SeatName = "G6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0227",
+                            RoomId = "R003",
+                            SeatName = "G7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0228",
+                            RoomId = "R003",
+                            SeatName = "G8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0229",
+                            RoomId = "R003",
+                            SeatName = "G9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0230",
+                            RoomId = "R003",
+                            SeatName = "G10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0231",
+                            RoomId = "R003",
+                            SeatName = "H1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0232",
+                            RoomId = "R003",
+                            SeatName = "H2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0233",
+                            RoomId = "R003",
+                            SeatName = "H3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0234",
+                            RoomId = "R003",
+                            SeatName = "H4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0235",
+                            RoomId = "R003",
+                            SeatName = "H5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0236",
+                            RoomId = "R003",
+                            SeatName = "H6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0237",
+                            RoomId = "R003",
+                            SeatName = "H7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0238",
+                            RoomId = "R003",
+                            SeatName = "H8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0239",
+                            RoomId = "R003",
+                            SeatName = "H9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0240",
+                            RoomId = "R003",
+                            SeatName = "H10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0241",
+                            RoomId = "R004",
+                            SeatName = "A1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0242",
+                            RoomId = "R004",
+                            SeatName = "A2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0243",
+                            RoomId = "R004",
+                            SeatName = "A3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0244",
+                            RoomId = "R004",
+                            SeatName = "A4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0245",
+                            RoomId = "R004",
+                            SeatName = "A5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0246",
+                            RoomId = "R004",
+                            SeatName = "A6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0247",
+                            RoomId = "R004",
+                            SeatName = "A7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0248",
+                            RoomId = "R004",
+                            SeatName = "A8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0249",
+                            RoomId = "R004",
+                            SeatName = "A9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0250",
+                            RoomId = "R004",
+                            SeatName = "A10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0251",
+                            RoomId = "R004",
+                            SeatName = "B1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0252",
+                            RoomId = "R004",
+                            SeatName = "B2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0253",
+                            RoomId = "R004",
+                            SeatName = "B3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0254",
+                            RoomId = "R004",
+                            SeatName = "B4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0255",
+                            RoomId = "R004",
+                            SeatName = "B5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0256",
+                            RoomId = "R004",
+                            SeatName = "B6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0257",
+                            RoomId = "R004",
+                            SeatName = "B7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0258",
+                            RoomId = "R004",
+                            SeatName = "B8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0259",
+                            RoomId = "R004",
+                            SeatName = "B9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0260",
+                            RoomId = "R004",
+                            SeatName = "B10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0261",
+                            RoomId = "R004",
+                            SeatName = "C1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0262",
+                            RoomId = "R004",
+                            SeatName = "C2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0263",
+                            RoomId = "R004",
+                            SeatName = "C3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0264",
+                            RoomId = "R004",
+                            SeatName = "C4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0265",
+                            RoomId = "R004",
+                            SeatName = "C5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0266",
+                            RoomId = "R004",
+                            SeatName = "C6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0267",
+                            RoomId = "R004",
+                            SeatName = "C7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0268",
+                            RoomId = "R004",
+                            SeatName = "C8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0269",
+                            RoomId = "R004",
+                            SeatName = "C9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0270",
+                            RoomId = "R004",
+                            SeatName = "C10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0271",
+                            RoomId = "R004",
+                            SeatName = "D1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0272",
+                            RoomId = "R004",
+                            SeatName = "D2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0273",
+                            RoomId = "R004",
+                            SeatName = "D3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0274",
+                            RoomId = "R004",
+                            SeatName = "D4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0275",
+                            RoomId = "R004",
+                            SeatName = "D5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0276",
+                            RoomId = "R004",
+                            SeatName = "D6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0277",
+                            RoomId = "R004",
+                            SeatName = "D7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0278",
+                            RoomId = "R004",
+                            SeatName = "D8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0279",
+                            RoomId = "R004",
+                            SeatName = "D9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0280",
+                            RoomId = "R004",
+                            SeatName = "D10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0281",
+                            RoomId = "R004",
+                            SeatName = "E1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0282",
+                            RoomId = "R004",
+                            SeatName = "E2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0283",
+                            RoomId = "R004",
+                            SeatName = "E3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0284",
+                            RoomId = "R004",
+                            SeatName = "E4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0285",
+                            RoomId = "R004",
+                            SeatName = "E5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0286",
+                            RoomId = "R004",
+                            SeatName = "E6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0287",
+                            RoomId = "R004",
+                            SeatName = "E7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0288",
+                            RoomId = "R004",
+                            SeatName = "E8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0289",
+                            RoomId = "R004",
+                            SeatName = "E9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0290",
+                            RoomId = "R004",
+                            SeatName = "E10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0291",
+                            RoomId = "R004",
+                            SeatName = "F1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0292",
+                            RoomId = "R004",
+                            SeatName = "F2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0293",
+                            RoomId = "R004",
+                            SeatName = "F3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0294",
+                            RoomId = "R004",
+                            SeatName = "F4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0295",
+                            RoomId = "R004",
+                            SeatName = "F5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0296",
+                            RoomId = "R004",
+                            SeatName = "F6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0297",
+                            RoomId = "R004",
+                            SeatName = "F7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0298",
+                            RoomId = "R004",
+                            SeatName = "F8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0299",
+                            RoomId = "R004",
+                            SeatName = "F9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0300",
+                            RoomId = "R004",
+                            SeatName = "F10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0301",
+                            RoomId = "R004",
+                            SeatName = "G1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0302",
+                            RoomId = "R004",
+                            SeatName = "G2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0303",
+                            RoomId = "R004",
+                            SeatName = "G3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0304",
+                            RoomId = "R004",
+                            SeatName = "G4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0305",
+                            RoomId = "R004",
+                            SeatName = "G5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0306",
+                            RoomId = "R004",
+                            SeatName = "G6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0307",
+                            RoomId = "R004",
+                            SeatName = "G7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0308",
+                            RoomId = "R004",
+                            SeatName = "G8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0309",
+                            RoomId = "R004",
+                            SeatName = "G9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0310",
+                            RoomId = "R004",
+                            SeatName = "G10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0311",
+                            RoomId = "R004",
+                            SeatName = "H1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0312",
+                            RoomId = "R004",
+                            SeatName = "H2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0313",
+                            RoomId = "R004",
+                            SeatName = "H3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0314",
+                            RoomId = "R004",
+                            SeatName = "H4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0315",
+                            RoomId = "R004",
+                            SeatName = "H5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0316",
+                            RoomId = "R004",
+                            SeatName = "H6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0317",
+                            RoomId = "R004",
+                            SeatName = "H7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0318",
+                            RoomId = "R004",
+                            SeatName = "H8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0319",
+                            RoomId = "R004",
+                            SeatName = "H9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0320",
+                            RoomId = "R004",
+                            SeatName = "H10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0321",
+                            RoomId = "R005",
+                            SeatName = "A1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0322",
+                            RoomId = "R005",
+                            SeatName = "A2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0323",
+                            RoomId = "R005",
+                            SeatName = "A3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0324",
+                            RoomId = "R005",
+                            SeatName = "A4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0325",
+                            RoomId = "R005",
+                            SeatName = "A5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0326",
+                            RoomId = "R005",
+                            SeatName = "A6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0327",
+                            RoomId = "R005",
+                            SeatName = "A7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0328",
+                            RoomId = "R005",
+                            SeatName = "A8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0329",
+                            RoomId = "R005",
+                            SeatName = "A9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0330",
+                            RoomId = "R005",
+                            SeatName = "A10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0331",
+                            RoomId = "R005",
+                            SeatName = "B1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0332",
+                            RoomId = "R005",
+                            SeatName = "B2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0333",
+                            RoomId = "R005",
+                            SeatName = "B3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0334",
+                            RoomId = "R005",
+                            SeatName = "B4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0335",
+                            RoomId = "R005",
+                            SeatName = "B5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0336",
+                            RoomId = "R005",
+                            SeatName = "B6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0337",
+                            RoomId = "R005",
+                            SeatName = "B7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0338",
+                            RoomId = "R005",
+                            SeatName = "B8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0339",
+                            RoomId = "R005",
+                            SeatName = "B9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0340",
+                            RoomId = "R005",
+                            SeatName = "B10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0341",
+                            RoomId = "R005",
+                            SeatName = "C1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0342",
+                            RoomId = "R005",
+                            SeatName = "C2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0343",
+                            RoomId = "R005",
+                            SeatName = "C3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0344",
+                            RoomId = "R005",
+                            SeatName = "C4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0345",
+                            RoomId = "R005",
+                            SeatName = "C5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0346",
+                            RoomId = "R005",
+                            SeatName = "C6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0347",
+                            RoomId = "R005",
+                            SeatName = "C7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0348",
+                            RoomId = "R005",
+                            SeatName = "C8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0349",
+                            RoomId = "R005",
+                            SeatName = "C9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0350",
+                            RoomId = "R005",
+                            SeatName = "C10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0351",
+                            RoomId = "R005",
+                            SeatName = "D1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0352",
+                            RoomId = "R005",
+                            SeatName = "D2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0353",
+                            RoomId = "R005",
+                            SeatName = "D3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0354",
+                            RoomId = "R005",
+                            SeatName = "D4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0355",
+                            RoomId = "R005",
+                            SeatName = "D5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0356",
+                            RoomId = "R005",
+                            SeatName = "D6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0357",
+                            RoomId = "R005",
+                            SeatName = "D7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0358",
+                            RoomId = "R005",
+                            SeatName = "D8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0359",
+                            RoomId = "R005",
+                            SeatName = "D9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0360",
+                            RoomId = "R005",
+                            SeatName = "D10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0361",
+                            RoomId = "R005",
+                            SeatName = "E1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0362",
+                            RoomId = "R005",
+                            SeatName = "E2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0363",
+                            RoomId = "R005",
+                            SeatName = "E3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0364",
+                            RoomId = "R005",
+                            SeatName = "E4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0365",
+                            RoomId = "R005",
+                            SeatName = "E5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0366",
+                            RoomId = "R005",
+                            SeatName = "E6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0367",
+                            RoomId = "R005",
+                            SeatName = "E7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0368",
+                            RoomId = "R005",
+                            SeatName = "E8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0369",
+                            RoomId = "R005",
+                            SeatName = "E9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0370",
+                            RoomId = "R005",
+                            SeatName = "E10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0371",
+                            RoomId = "R005",
+                            SeatName = "F1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0372",
+                            RoomId = "R005",
+                            SeatName = "F2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0373",
+                            RoomId = "R005",
+                            SeatName = "F3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0374",
+                            RoomId = "R005",
+                            SeatName = "F4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0375",
+                            RoomId = "R005",
+                            SeatName = "F5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0376",
+                            RoomId = "R005",
+                            SeatName = "F6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0377",
+                            RoomId = "R005",
+                            SeatName = "F7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0378",
+                            RoomId = "R005",
+                            SeatName = "F8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0379",
+                            RoomId = "R005",
+                            SeatName = "F9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0380",
+                            RoomId = "R005",
+                            SeatName = "F10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0381",
+                            RoomId = "R005",
+                            SeatName = "G1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0382",
+                            RoomId = "R005",
+                            SeatName = "G2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0383",
+                            RoomId = "R005",
+                            SeatName = "G3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0384",
+                            RoomId = "R005",
+                            SeatName = "G4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0385",
+                            RoomId = "R005",
+                            SeatName = "G5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0386",
+                            RoomId = "R005",
+                            SeatName = "G6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0387",
+                            RoomId = "R005",
+                            SeatName = "G7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0388",
+                            RoomId = "R005",
+                            SeatName = "G8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0389",
+                            RoomId = "R005",
+                            SeatName = "G9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0390",
+                            RoomId = "R005",
+                            SeatName = "G10"
+                        },
+                        new
+                        {
+                            SeatId = "SE0391",
+                            RoomId = "R005",
+                            SeatName = "H1"
+                        },
+                        new
+                        {
+                            SeatId = "SE0392",
+                            RoomId = "R005",
+                            SeatName = "H2"
+                        },
+                        new
+                        {
+                            SeatId = "SE0393",
+                            RoomId = "R005",
+                            SeatName = "H3"
+                        },
+                        new
+                        {
+                            SeatId = "SE0394",
+                            RoomId = "R005",
+                            SeatName = "H4"
+                        },
+                        new
+                        {
+                            SeatId = "SE0395",
+                            RoomId = "R005",
+                            SeatName = "H5"
+                        },
+                        new
+                        {
+                            SeatId = "SE0396",
+                            RoomId = "R005",
+                            SeatName = "H6"
+                        },
+                        new
+                        {
+                            SeatId = "SE0397",
+                            RoomId = "R005",
+                            SeatName = "H7"
+                        },
+                        new
+                        {
+                            SeatId = "SE0398",
+                            RoomId = "R005",
+                            SeatName = "H8"
+                        },
+                        new
+                        {
+                            SeatId = "SE0399",
+                            RoomId = "R005",
+                            SeatName = "H9"
+                        },
+                        new
+                        {
+                            SeatId = "SE0400",
+                            RoomId = "R005",
+                            SeatName = "H10"
                         });
                 });
 
@@ -812,26 +3007,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("SeatLocks");
-
-                    b.HasData(
-                        new
-                        {
-                            SeatLockId = "SL001",
-                            ExpiredAt = new DateTime(2026, 6, 10, 9, 55, 0, 0, DateTimeKind.Unspecified),
-                            LockedAt = new DateTime(2026, 6, 10, 9, 50, 0, 0, DateTimeKind.Unspecified),
-                            SeatId = "SE001",
-                            ShowtimeId = "ST001",
-                            UserId = "USR001"
-                        },
-                        new
-                        {
-                            SeatLockId = "SL002",
-                            ExpiredAt = new DateTime(2026, 6, 10, 13, 25, 0, 0, DateTimeKind.Unspecified),
-                            LockedAt = new DateTime(2026, 6, 10, 13, 20, 0, 0, DateTimeKind.Unspecified),
-                            SeatId = "SE006",
-                            ShowtimeId = "ST002",
-                            UserId = "USR001"
-                        });
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Foods.FoodCombo", b =>
@@ -1018,177 +3193,177 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             GenreId = "GEN001",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7653),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Action",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7657)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN002",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7659),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Adventure",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7660)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN003",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7661),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Animation",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7661)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN004",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7663),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Biography",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7663)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN005",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7664),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Comedy",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7665)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN006",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7666),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Crime",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7667)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN007",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7668),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Documentary",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7669)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN008",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7670),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Drama",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7671)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN009",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7672),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Family",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7672)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN010",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7674),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Fantasy",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7674)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN011",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7675),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "History",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7676)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN012",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7677),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Horror",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7678)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN013",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7679),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Music",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7680)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN014",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7681),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Mystery",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7681)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN015",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7682),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Romance",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7693)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN016",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7694),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Sci-Fi",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7694)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN017",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7695),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Sport",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7696)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN018",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7697),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Thriller",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7698)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN019",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7699),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "War",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7699)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN020",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7701),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Western",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7701)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN021",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7702),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Superhero",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7703)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN022",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7704),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Psychological",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7705)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN023",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7706),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Anime",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7707)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN024",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7708),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Disaster",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7708)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             GenreId = "GEN025",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7710),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Martial Arts",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7710)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -1907,7 +4082,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL001",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8011),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MovieId = "MOV001",
                             UserId = "USR001",
                             type = "FAVORITE"
@@ -1915,7 +4090,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL002",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8013),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MovieId = "MOV003",
                             UserId = "USR001",
                             type = "FAVORITE"
@@ -1923,7 +4098,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL003",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8015),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MovieId = "MOV002",
                             UserId = "USR002",
                             type = "WATCH_LATER"
@@ -1931,7 +4106,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL004",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8017),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MovieId = "MOV005",
                             UserId = "USR002",
                             type = "WATCH_LATER"
@@ -1939,7 +4114,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL005",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8019),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MovieId = "MOV004",
                             UserId = "USR003",
                             type = "FAVORITE"
@@ -1947,7 +4122,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL006",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8021),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MovieId = "MOV007",
                             UserId = "USR003",
                             type = "WATCH_LATER"
@@ -1955,7 +4130,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL007",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8022),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MovieId = "MOV006",
                             UserId = "USR004",
                             type = "FAVORITE"
@@ -1963,7 +4138,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL008",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8024),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MovieId = "MOV008",
                             UserId = "USR004",
                             type = "WATCH_LATER"
@@ -1971,7 +4146,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL009",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8026),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MovieId = "MOV009",
                             UserId = "USR005",
                             type = "FAVORITE"
@@ -1979,7 +4154,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             WatchListId = "WL010",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(8028),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MovieId = "MOV010",
                             UserId = "USR005",
                             type = "WATCH_LATER"
@@ -2007,6 +4182,10 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -2063,26 +4242,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.HasIndex("PaymentMethodId");
 
                     b.ToTable("Payments");
-
-                    b.HasData(
-                        new
-                        {
-                            PaymentId = "PAY001",
-                            Amount = 120000.0,
-                            BookingId = "BK001",
-                            CreatedDate = new DateTime(2026, 3, 21, 20, 38, 5, 691, DateTimeKind.Local).AddTicks(8756),
-                            PaymentMethodId = "PM001",
-                            Status = "PAID"
-                        },
-                        new
-                        {
-                            PaymentId = "PAY002",
-                            Amount = 150000.0,
-                            BookingId = "BK002",
-                            CreatedDate = new DateTime(2026, 3, 21, 20, 38, 5, 691, DateTimeKind.Local).AddTicks(8759),
-                            PaymentMethodId = "PM002",
-                            Status = "PAID"
-                        });
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Payments.PaymentMethod", b =>
@@ -2116,29 +4275,29 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             PaymentMethodId = "PM001",
-                            CreatedDate = new DateTime(2026, 3, 21, 20, 38, 5, 691, DateTimeKind.Local).AddTicks(8709),
+                            CreatedDate = new DateTime(2026, 3, 25, 19, 14, 31, 711, DateTimeKind.Local).AddTicks(1915),
                             ImageUrl = "https://example.com/creditcard.png",
                             Name = "Credit Card",
                             Status = "ACTIVE",
-                            UpdatedDate = new DateTime(2026, 3, 21, 20, 38, 5, 691, DateTimeKind.Local).AddTicks(8720)
+                            UpdatedDate = new DateTime(2026, 3, 25, 19, 14, 31, 711, DateTimeKind.Local).AddTicks(1930)
                         },
                         new
                         {
                             PaymentMethodId = "PM002",
-                            CreatedDate = new DateTime(2026, 3, 21, 20, 38, 5, 691, DateTimeKind.Local).AddTicks(8723),
+                            CreatedDate = new DateTime(2026, 3, 25, 19, 14, 31, 711, DateTimeKind.Local).AddTicks(1932),
                             ImageUrl = "https://example.com/momo.png",
                             Name = "Momo",
                             Status = "ACTIVE",
-                            UpdatedDate = new DateTime(2026, 3, 21, 20, 38, 5, 691, DateTimeKind.Local).AddTicks(8723)
+                            UpdatedDate = new DateTime(2026, 3, 25, 19, 14, 31, 711, DateTimeKind.Local).AddTicks(1933)
                         },
                         new
                         {
                             PaymentMethodId = "PM003",
-                            CreatedDate = new DateTime(2026, 3, 21, 20, 38, 5, 691, DateTimeKind.Local).AddTicks(8725),
+                            CreatedDate = new DateTime(2026, 3, 25, 19, 14, 31, 711, DateTimeKind.Local).AddTicks(1935),
                             ImageUrl = "https://example.com/zalopay.png",
                             Name = "ZaloPay",
                             Status = "ACTIVE",
-                            UpdatedDate = new DateTime(2026, 3, 21, 20, 38, 5, 691, DateTimeKind.Local).AddTicks(8726)
+                            UpdatedDate = new DateTime(2026, 3, 25, 19, 14, 31, 711, DateTimeKind.Local).AddTicks(1936)
                         });
                 });
 
@@ -2578,7 +4737,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             UserId = "USR001",
                             AvatarUrl = "https://i.pravatar.cc/150?img=1",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7859),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "john@example.com",
                             FullName = "John Smith",
@@ -2586,13 +4745,13 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             Phone = "0900000001",
                             RoleId = "ROLE002",
                             Status = "ACTIVE",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7860)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             UserId = "USR002",
                             AvatarUrl = "https://i.pravatar.cc/150?img=2",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7863),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "emma@example.com",
                             FullName = "Emma Watson",
@@ -2600,13 +4759,13 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             Phone = "0900000002",
                             RoleId = "ROLE002",
                             Status = "ACTIVE",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7863)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             UserId = "USR003",
                             AvatarUrl = "https://i.pravatar.cc/150?img=3",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7866),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "robert@example.com",
                             FullName = "Robert Downey Jr",
@@ -2614,13 +4773,13 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             Phone = "0900000003",
                             RoleId = "ROLE002",
                             Status = "ACTIVE",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7867)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             UserId = "USR004",
                             AvatarUrl = "https://i.pravatar.cc/150?img=4",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7869),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "scarlett@example.com",
                             FullName = "Scarlett Johansson",
@@ -2628,13 +4787,13 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             Phone = "0900000004",
                             RoleId = "ROLE002",
                             Status = "ACTIVE",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7869)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             UserId = "USR005",
                             AvatarUrl = "https://i.pravatar.cc/150?img=5",
-                            CreatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7872),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "chris@example.com",
                             FullName = "Chris Evans",
@@ -2642,7 +4801,69 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             Phone = "0900000005",
                             RoleId = "ROLE002",
                             Status = "ACTIVE",
-                            UpdatedAt = new DateTime(2026, 3, 21, 13, 38, 5, 691, DateTimeKind.Utc).AddTicks(7872)
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
+            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Vouchers.UserVoucher", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("VoucherId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UsedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserVoucherId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "VoucherId");
+
+                    b.HasIndex("VoucherId");
+
+                    b.ToTable("UserVouchers");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "a08ab0bf-e5d3-41aa-81bf-e6df209b2bab",
+                            VoucherId = "VC001",
+                            Status = "AVAILABLE",
+                            UserVoucherId = "UV001"
+                        },
+                        new
+                        {
+                            UserId = "a08ab0bf-e5d3-41aa-81bf-e6df209b2bab",
+                            VoucherId = "VC002",
+                            Status = "AVAILABLE",
+                            UserVoucherId = "UV002"
+                        },
+                        new
+                        {
+                            UserId = "a08ab0bf-e5d3-41aa-81bf-e6df209b2bab",
+                            VoucherId = "VC003",
+                            Status = "AVAILABLE",
+                            UserVoucherId = "UV003"
+                        },
+                        new
+                        {
+                            UserId = "a08ab0bf-e5d3-41aa-81bf-e6df209b2bab",
+                            VoucherId = "VC004",
+                            Status = "AVAILABLE",
+                            UserVoucherId = "UV004"
+                        },
+                        new
+                        {
+                            UserId = "a08ab0bf-e5d3-41aa-81bf-e6df209b2bab",
+                            VoucherId = "VC005",
+                            Status = "AVAILABLE",
+                            UserVoucherId = "UV005"
                         });
                 });
 
@@ -2673,6 +4894,10 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("Value")
                         .HasColumnType("float");
 
@@ -2690,6 +4915,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             ExpiredDate = new DateTime(2027, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = "ACTIVE",
                             Title = "Welcome Discount",
+                            Type = "PERCENTAGE",
                             Value = 10.0
                         },
                         new
@@ -2701,6 +4927,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             ExpiredDate = new DateTime(2027, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = "ACTIVE",
                             Title = "50K Off",
+                            Type = "FIX_AMOUNT",
                             Value = 50000.0
                         },
                         new
@@ -2712,6 +4939,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             ExpiredDate = new DateTime(2027, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = "ACTIVE",
                             Title = "Weekend Discount",
+                            Type = "PERCENTAGE",
                             Value = 20.0
                         },
                         new
@@ -2723,6 +4951,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             ExpiredDate = new DateTime(2027, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = "ACTIVE",
                             Title = "Student Offer",
+                            Type = "PERCENTAGE",
                             Value = 15.0
                         },
                         new
@@ -2734,6 +4963,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             ExpiredDate = new DateTime(2027, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = "ACTIVE",
                             Title = "Combo Discount",
+                            Type = "PERCENTAGE",
                             Value = 30.0
                         });
                 });
@@ -2871,15 +5101,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Showtimes.Showtime", "Showtime")
-                        .WithMany()
-                        .HasForeignKey("ShowtimeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Room");
-
-                    b.Navigation("Showtime");
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Cinemas.SeatLock", b =>
@@ -3122,6 +5344,25 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Vouchers.UserVoucher", b =>
+                {
+                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Users.User", "User")
+                        .WithMany("UserVouchers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Vouchers.Voucher", "Voucher")
+                        .WithMany("UserVouchers")
+                        .HasForeignKey("VoucherId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+
+                    b.Navigation("Voucher");
+                });
+
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Blogs.BlogPost", b =>
                 {
                     b.Navigation("Comments");
@@ -3252,12 +5493,16 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.Navigation("UserGenres");
 
+                    b.Navigation("UserVouchers");
+
                     b.Navigation("WatchLists");
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Vouchers.Voucher", b =>
                 {
                     b.Navigation("BookingVouchers");
+
+                    b.Navigation("UserVouchers");
                 });
 #pragma warning restore 612, 618
         }

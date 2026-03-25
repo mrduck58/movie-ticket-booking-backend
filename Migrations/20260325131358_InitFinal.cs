@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Movie_Ticket_Booking_Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class InitFinal : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -272,6 +272,25 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Seats",
+                columns: table => new
+                {
+                    SeatId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    SeatName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoomId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Seats", x => x.SeatId);
+                    table.ForeignKey(
+                        name: "FK_Seats_Rooms_RoomId",
+                        column: x => x.RoomId,
+                        principalTable: "Rooms",
+                        principalColumn: "RoomId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Showtimes",
                 columns: table => new
                 {
@@ -331,7 +350,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     MovieRatingId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     MovieId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Value = table.Column<double>(type: "float", nullable: false)
+                    Stars = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -430,30 +449,36 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Seats",
+                name: "SeatLocks",
                 columns: table => new
                 {
+                    SeatLockId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ShowtimeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     SeatId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    SeatName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SeatType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RoomId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ShowtimeId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LockedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ExpiredAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Seats", x => x.SeatId);
+                    table.PrimaryKey("PK_SeatLocks", x => x.SeatLockId);
                     table.ForeignKey(
-                        name: "FK_Seats_Rooms_RoomId",
-                        column: x => x.RoomId,
-                        principalTable: "Rooms",
-                        principalColumn: "RoomId",
+                        name: "FK_SeatLocks_Seats_SeatId",
+                        column: x => x.SeatId,
+                        principalTable: "Seats",
+                        principalColumn: "SeatId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Seats_Showtimes_ShowtimeId",
+                        name: "FK_SeatLocks_Showtimes_ShowtimeId",
                         column: x => x.ShowtimeId,
                         principalTable: "Showtimes",
                         principalColumn: "ShowtimeId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_SeatLocks_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -589,40 +614,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SeatLocks",
-                columns: table => new
-                {
-                    SeatLockId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ShowtimeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    SeatId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LockedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ExpiredAt = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SeatLocks", x => x.SeatLockId);
-                    table.ForeignKey(
-                        name: "FK_SeatLocks_Seats_SeatId",
-                        column: x => x.SeatId,
-                        principalTable: "Seats",
-                        principalColumn: "SeatId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_SeatLocks_Showtimes_ShowtimeId",
-                        column: x => x.ShowtimeId,
-                        principalTable: "Showtimes",
-                        principalColumn: "ShowtimeId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_SeatLocks_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "BookingSeats",
                 columns: table => new
                 {
@@ -712,16 +703,16 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "CastId", "AvatarUrl", "Name" },
                 values: new object[,]
                 {
-                    { "CAST001", "https://image.tmdb.org/t/p/w500/rdj.jpg", "Robert Downey Jr." },
-                    { "CAST002", "https://image.tmdb.org/t/p/w500/cevans.jpg", "Chris Evans" },
-                    { "CAST003", "https://image.tmdb.org/t/p/w500/scarlett.jpg", "Scarlett Johansson" },
-                    { "CAST004", "https://image.tmdb.org/t/p/w500/tomholland.jpg", "Tom Holland" },
-                    { "CAST005", "https://image.tmdb.org/t/p/w500/zendaya.jpg", "Zendaya" },
-                    { "CAST006", "https://image.tmdb.org/t/p/w500/pattinson.jpg", "Robert Pattinson" },
-                    { "CAST007", "https://image.tmdb.org/t/p/w500/zoe.jpg", "Zoë Kravitz" },
-                    { "CAST008", "https://image.tmdb.org/t/p/w500/cumberbatch.jpg", "Benedict Cumberbatch" },
-                    { "CAST009", "https://image.tmdb.org/t/p/w500/olsen.jpg", "Elizabeth Olsen" },
-                    { "CAST010", "https://image.tmdb.org/t/p/w500/reynolds.jpg", "Ryan Reynolds" }
+                    { "CAST001", "https://image.tmdb.org/t/p/w500/1YjdSym1jTG7xjHSI0yGGWEsw5i.jpg", "Robert Downey Jr." },
+                    { "CAST002", "https://image.tmdb.org/t/p/w500/3bOGNsHlrswhyW79uvIHH1V43JI.jpg", "Chris Evans" },
+                    { "CAST003", "https://image.tmdb.org/t/p/w500/6NsMbJXRlDZuDzatN2akFdGuTvx.jpg", "Scarlett Johansson" },
+                    { "CAST004", "https://image.tmdb.org/t/p/w500/2qhIDp44cAqP2clOgt2afQI07X8.jpg", "Tom Holland" },
+                    { "CAST005", "https://image.tmdb.org/t/p/w500/soCzE1b0E4W3F7h2mXc4L0bXc2n.jpg", "Zendaya" },
+                    { "CAST006", "https://image.tmdb.org/t/p/w500/8A4PS5iG7GWEAVFftyqMZKl3lbA.jpg", "Robert Pattinson" },
+                    { "CAST007", "https://image.tmdb.org/t/p/w500/d81K0RH8UX7tZj49tZaQhZ9ewH.jpg", "Zoe Kravitz" },
+                    { "CAST008", "https://image.tmdb.org/t/p/w500/fBEucxECxGLKVHBznO0qHtCGiMO.jpg", "Benedict Cumberbatch" },
+                    { "CAST009", "https://image.tmdb.org/t/p/w500/wIU675y4lOQMj2mc7vo5Wy7Z8bZ.jpg", "Elizabeth Olsen" },
+                    { "CAST010", "https://image.tmdb.org/t/p/w500/4SYTH5FdB0dAORV98Nwg3llgVnY.jpg", "Ryan Reynolds" }
                 });
 
             migrationBuilder.InsertData(
@@ -750,31 +741,31 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "GenreId", "CreatedAt", "Name", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { "GEN001", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1553), "Action", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1556) },
-                    { "GEN002", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1558), "Adventure", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1559) },
-                    { "GEN003", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1561), "Animation", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1561) },
-                    { "GEN004", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1566), "Biography", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1567) },
-                    { "GEN005", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1568), "Comedy", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1569) },
-                    { "GEN006", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1571), "Crime", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1572) },
-                    { "GEN007", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1573), "Documentary", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1574) },
-                    { "GEN008", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1576), "Drama", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1577) },
-                    { "GEN009", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1578), "Family", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1579) },
-                    { "GEN010", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1581), "Fantasy", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1581) },
-                    { "GEN011", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1583), "History", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1584) },
-                    { "GEN012", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1585), "Horror", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1586) },
-                    { "GEN013", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1588), "Music", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1588) },
-                    { "GEN014", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1590), "Mystery", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1591) },
-                    { "GEN015", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1593), "Romance", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1594) },
-                    { "GEN016", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1595), "Sci-Fi", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1596) },
-                    { "GEN017", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1598), "Sport", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1598) },
-                    { "GEN018", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1600), "Thriller", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1601) },
-                    { "GEN019", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1602), "War", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1603) },
-                    { "GEN020", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1605), "Western", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1606) },
-                    { "GEN021", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1619), "Superhero", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1620) },
-                    { "GEN022", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1622), "Psychological", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1623) },
-                    { "GEN023", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1624), "Anime", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1625) },
-                    { "GEN024", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1627), "Disaster", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1627) },
-                    { "GEN025", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1629), "Martial Arts", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1630) }
+                    { "GEN001", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2664), "Action", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2666) },
+                    { "GEN002", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2668), "Adventure", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2668) },
+                    { "GEN003", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2669), "Animation", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2669) },
+                    { "GEN004", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2670), "Biography", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2671) },
+                    { "GEN005", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2672), "Comedy", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2672) },
+                    { "GEN006", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2673), "Crime", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2673) },
+                    { "GEN007", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2674), "Documentary", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2675) },
+                    { "GEN008", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2675), "Drama", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2676) },
+                    { "GEN009", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2677), "Family", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2678) },
+                    { "GEN010", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2678), "Fantasy", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2679) },
+                    { "GEN011", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2680), "History", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2680) },
+                    { "GEN012", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2681), "Horror", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2681) },
+                    { "GEN013", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2682), "Music", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2682) },
+                    { "GEN014", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2683), "Mystery", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2683) },
+                    { "GEN015", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2684), "Romance", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2684) },
+                    { "GEN016", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2685), "Sci-Fi", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2686) },
+                    { "GEN017", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2686), "Sport", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2687) },
+                    { "GEN018", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2688), "Thriller", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2688) },
+                    { "GEN019", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2689), "War", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2689) },
+                    { "GEN020", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2690), "Western", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2690) },
+                    { "GEN021", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2691), "Superhero", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2692) },
+                    { "GEN022", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2693), "Psychological", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2693) },
+                    { "GEN023", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2695), "Anime", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2695) },
+                    { "GEN024", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2696), "Disaster", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2696) },
+                    { "GEN025", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2697), "Martial Arts", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2697) }
                 });
 
             migrationBuilder.InsertData(
@@ -799,9 +790,9 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "PaymentMethodId", "CreatedDate", "ImageUrl", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { "PM001", new DateTime(2026, 3, 18, 1, 37, 40, 322, DateTimeKind.Local).AddTicks(2853), "https://example.com/creditcard.png", "Credit Card", "ACTIVE", new DateTime(2026, 3, 18, 1, 37, 40, 322, DateTimeKind.Local).AddTicks(2863) },
-                    { "PM002", new DateTime(2026, 3, 18, 1, 37, 40, 322, DateTimeKind.Local).AddTicks(2866), "https://example.com/momo.png", "Momo", "ACTIVE", new DateTime(2026, 3, 18, 1, 37, 40, 322, DateTimeKind.Local).AddTicks(2867) },
-                    { "PM003", new DateTime(2026, 3, 18, 1, 37, 40, 322, DateTimeKind.Local).AddTicks(2869), "https://example.com/zalopay.png", "ZaloPay", "ACTIVE", new DateTime(2026, 3, 18, 1, 37, 40, 322, DateTimeKind.Local).AddTicks(2870) }
+                    { "PM001", new DateTime(2026, 3, 25, 20, 13, 58, 13, DateTimeKind.Local).AddTicks(4068), "https://example.com/creditcard.png", "Credit Card", "ACTIVE", new DateTime(2026, 3, 25, 20, 13, 58, 13, DateTimeKind.Local).AddTicks(4077) },
+                    { "PM002", new DateTime(2026, 3, 25, 20, 13, 58, 13, DateTimeKind.Local).AddTicks(4079), "https://example.com/momo.png", "Momo", "ACTIVE", new DateTime(2026, 3, 25, 20, 13, 58, 13, DateTimeKind.Local).AddTicks(4079) },
+                    { "PM003", new DateTime(2026, 3, 25, 20, 13, 58, 13, DateTimeKind.Local).AddTicks(4080), "https://example.com/zalopay.png", "ZaloPay", "ACTIVE", new DateTime(2026, 3, 25, 20, 13, 58, 13, DateTimeKind.Local).AddTicks(4081) }
                 });
 
             migrationBuilder.InsertData(
@@ -819,8 +810,8 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 values: new object[,]
                 {
                     { "TT001", "Standard", "ACTIVE" },
-                    { "TT002", "VIP", "ACTIVE" },
-                    { "TT003", "Couple", "ACTIVE" }
+                    { "TT002", "IMAX", "ACTIVE" },
+                    { "TT003", "Dolby Cinema", "ACTIVE" }
                 });
 
             migrationBuilder.InsertData(
@@ -885,16 +876,16 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "PosterId", "ImageUrl", "MovieId", "Title" },
                 values: new object[,]
                 {
-                    { "POS001", "https://image.tmdb.org/t/p/w500/1.jpg", "MOV001", "Avengers Poster" },
-                    { "POS002", "https://image.tmdb.org/t/p/w500/2.jpg", "MOV002", "Batman Poster" },
-                    { "POS003", "https://image.tmdb.org/t/p/w500/3.jpg", "MOV003", "Titanic Poster" },
-                    { "POS004", "https://image.tmdb.org/t/p/w500/4.jpg", "MOV004", "Conjuring Poster" },
-                    { "POS005", "https://image.tmdb.org/t/p/w500/5.jpg", "MOV005", "Minions Poster" },
-                    { "POS006", "https://image.tmdb.org/t/p/w500/6.jpg", "MOV006", "Interstellar Poster" },
-                    { "POS007", "https://image.tmdb.org/t/p/w500/7.jpg", "MOV007", "Fast X Poster" },
-                    { "POS008", "https://image.tmdb.org/t/p/w500/8.jpg", "MOV008", "Demon Slayer Poster" },
-                    { "POS009", "https://image.tmdb.org/t/p/w500/9.jpg", "MOV009", "Oppenheimer Poster" },
-                    { "POS010", "https://image.tmdb.org/t/p/w500/10.jpg", "MOV010", "2012 Poster" }
+                    { "POS001", "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg", "MOV001", "Avengers Poster" },
+                    { "POS002", "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg", "MOV002", "Spider-Man Poster" },
+                    { "POS003", "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg", "MOV003", "Batman Poster" },
+                    { "POS004", "https://image.tmdb.org/t/p/w500/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg", "MOV004", "Doctor Strange Poster" },
+                    { "POS005", "https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg", "MOV005", "Deadpool Poster" },
+                    { "POS006", "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg", "MOV006", "Joker Poster" },
+                    { "POS007", "https://image.tmdb.org/t/p/w500/wWt4JYXTg5Wr3xBW2phBrMKgp3x.jpg", "MOV007", "Kung Fu Panda Poster" },
+                    { "POS008", "https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg", "MOV008", "Mission Impossible Poster" },
+                    { "POS009", "https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg", "MOV009", "Avatar Poster" },
+                    { "POS010", "https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg", "MOV010", "Top Gun Poster" }
                 });
 
             migrationBuilder.InsertData(
@@ -902,11 +893,21 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "RoomId", "CinemaId", "Name" },
                 values: new object[,]
                 {
-                    { "R001", "C001", "Room 1" },
-                    { "R002", "C001", "Room 2" },
-                    { "R003", "C002", "Room 1" },
-                    { "R004", "C002", "Room 2" },
-                    { "R005", "C003", "Room 1" }
+                    { "R001", "C001", "Auditorium 1" },
+                    { "R002", "C001", "Auditorium 2" },
+                    { "R003", "C001", "Auditorium 3" },
+                    { "R004", "C001", "Auditorium 4" },
+                    { "R005", "C001", "Auditorium 5" },
+                    { "R006", "C002", "Auditorium 1" },
+                    { "R007", "C002", "Auditorium 2" },
+                    { "R008", "C002", "Auditorium 3" },
+                    { "R009", "C002", "Auditorium 4" },
+                    { "R010", "C002", "Auditorium 5" },
+                    { "R011", "C003", "Auditorium 1" },
+                    { "R012", "C003", "Auditorium 2" },
+                    { "R013", "C003", "Auditorium 3" },
+                    { "R014", "C003", "Auditorium 4" },
+                    { "R015", "C003", "Auditorium 5" }
                 });
 
             migrationBuilder.InsertData(
@@ -914,11 +915,11 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "UserId", "AvatarUrl", "CreatedAt", "DateOfBirth", "Email", "FullName", "PasswordHash", "Phone", "RoleId", "Status", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { "USR001", "https://i.pravatar.cc/150?img=1", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1819), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "john@example.com", "John Smith", "123456", "0900000001", "ROLE002", "ACTIVE", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1820) },
-                    { "USR002", "https://i.pravatar.cc/150?img=2", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1825), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "emma@example.com", "Emma Watson", "123456", "0900000002", "ROLE002", "ACTIVE", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1826) },
-                    { "USR003", "https://i.pravatar.cc/150?img=3", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1829), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "robert@example.com", "Robert Downey Jr", "123456", "0900000003", "ROLE002", "ACTIVE", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1829) },
-                    { "USR004", "https://i.pravatar.cc/150?img=4", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1832), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "scarlett@example.com", "Scarlett Johansson", "123456", "0900000004", "ROLE002", "ACTIVE", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1833) },
-                    { "USR005", "https://i.pravatar.cc/150?img=5", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1836), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "chris@example.com", "Chris Evans", "123456", "0900000005", "ROLE002", "ACTIVE", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(1837) }
+                    { "USR001", "https://i.pravatar.cc/150?img=1", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2811), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "john@example.com", "John Smith", "123456", "0900000001", "ROLE002", "ACTIVE", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2812) },
+                    { "USR002", "https://i.pravatar.cc/150?img=2", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2814), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "emma@example.com", "Emma Watson", "123456", "0900000002", "ROLE002", "ACTIVE", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2815) },
+                    { "USR003", "https://i.pravatar.cc/150?img=3", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2816), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "robert@example.com", "Robert Downey Jr", "123456", "0900000003", "ROLE002", "ACTIVE", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2817) },
+                    { "USR004", "https://i.pravatar.cc/150?img=4", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2818), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "scarlett@example.com", "Scarlett Johansson", "123456", "0900000004", "ROLE002", "ACTIVE", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2818) },
+                    { "USR005", "https://i.pravatar.cc/150?img=5", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2821), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "chris@example.com", "Chris Evans", "123456", "0900000005", "ROLE002", "ACTIVE", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2821) }
                 });
 
             migrationBuilder.InsertData(
@@ -926,38 +927,429 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "BlogPostId", "Content", "CreatedDate", "ImageUrl", "Likes", "Title", "UserId" },
                 values: new object[,]
                 {
-                    { "BLOG001", "Marvel movies have changed the superhero genre forever...", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2106), "https://images.unsplash.com/photo-1", 120, "Top 10 Marvel Movies You Must Watch", "USR001" },
-                    { "BLOG002", "Horror movies give audiences a thrilling experience...", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2111), "https://images.unsplash.com/photo-2", 85, "Why Horror Movies Are So Popular", "USR002" },
-                    { "BLOG003", "Science fiction movies explore the future and technology...", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2114), "https://images.unsplash.com/photo-3", 95, "Best Sci-Fi Movies of the Decade", "USR003" },
-                    { "BLOG004", "These romantic films will make your evening unforgettable...", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2116), "https://images.unsplash.com/photo-4", 60, "Romantic Movies Perfect for Date Night", "USR004" },
-                    { "BLOG005", "Many exciting movies are coming to theaters next year...", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2118), "https://images.unsplash.com/photo-5", 150, "Upcoming Blockbusters in 2026", "USR005" }
+                    { "BLOG001", "Marvel movies have changed the superhero genre forever...", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2939), "https://images.unsplash.com/photo-1", 120, "Top 10 Marvel Movies You Must Watch", "USR001" },
+                    { "BLOG002", "Horror movies give audiences a thrilling experience...", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2940), "https://images.unsplash.com/photo-2", 85, "Why Horror Movies Are So Popular", "USR002" },
+                    { "BLOG003", "Science fiction movies explore the future and technology...", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2941), "https://images.unsplash.com/photo-3", 95, "Best Sci-Fi Movies of the Decade", "USR003" },
+                    { "BLOG004", "These romantic films will make your evening unforgettable...", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2942), "https://images.unsplash.com/photo-4", 60, "Romantic Movies Perfect for Date Night", "USR004" },
+                    { "BLOG005", "Many exciting movies are coming to theaters next year...", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2943), "https://images.unsplash.com/photo-5", 150, "Upcoming Blockbusters in 2026", "USR005" }
                 });
 
             migrationBuilder.InsertData(
                 table: "MovieRatings",
-                columns: new[] { "MovieRatingId", "MovieId", "UserId", "Value" },
+                columns: new[] { "MovieRatingId", "MovieId", "Stars", "UserId" },
                 values: new object[,]
                 {
-                    { "RAT001", "MOV001", "USR001", 8.5 },
-                    { "RAT002", "MOV001", "USR002", 9.0 },
-                    { "RAT003", "MOV002", "USR003", 7.7999999999999998 },
-                    { "RAT004", "MOV002", "USR004", 8.1999999999999993 },
-                    { "RAT005", "MOV003", "USR002", 8.5999999999999996 },
-                    { "RAT006", "MOV003", "USR005", 8.9000000000000004 },
-                    { "RAT007", "MOV004", "USR001", 6.9000000000000004 },
-                    { "RAT008", "MOV004", "USR003", 7.4000000000000004 },
-                    { "RAT009", "MOV005", "USR002", 7.7000000000000002 },
-                    { "RAT010", "MOV005", "USR004", 8.0999999999999996 },
-                    { "RAT011", "MOV006", "USR003", 8.6999999999999993 },
-                    { "RAT012", "MOV006", "USR005", 9.1999999999999993 },
-                    { "RAT013", "MOV007", "USR001", 7.5 },
-                    { "RAT014", "MOV007", "USR004", 7.9000000000000004 },
-                    { "RAT015", "MOV008", "USR002", 9.0999999999999996 },
-                    { "RAT016", "MOV008", "USR003", 8.8000000000000007 },
-                    { "RAT017", "MOV009", "USR004", 7.5999999999999996 },
-                    { "RAT018", "MOV009", "USR005", 8.0 },
-                    { "RAT019", "MOV010", "USR001", 8.4000000000000004 },
-                    { "RAT020", "MOV010", "USR002", 8.9000000000000004 }
+                    { "RAT001", "MOV001", 5, "USR001" },
+                    { "RAT002", "MOV001", 4, "USR002" },
+                    { "RAT003", "MOV002", 3, "USR003" },
+                    { "RAT004", "MOV002", 5, "USR004" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Seats",
+                columns: new[] { "SeatId", "RoomId", "SeatName" },
+                values: new object[,]
+                {
+                    { "SE0001", "R001", "A1" },
+                    { "SE0002", "R001", "A2" },
+                    { "SE0003", "R001", "A3" },
+                    { "SE0004", "R001", "A4" },
+                    { "SE0005", "R001", "A5" },
+                    { "SE0006", "R001", "A6" },
+                    { "SE0007", "R001", "A7" },
+                    { "SE0008", "R001", "A8" },
+                    { "SE0009", "R001", "A9" },
+                    { "SE0010", "R001", "A10" },
+                    { "SE0011", "R001", "B1" },
+                    { "SE0012", "R001", "B2" },
+                    { "SE0013", "R001", "B3" },
+                    { "SE0014", "R001", "B4" },
+                    { "SE0015", "R001", "B5" },
+                    { "SE0016", "R001", "B6" },
+                    { "SE0017", "R001", "B7" },
+                    { "SE0018", "R001", "B8" },
+                    { "SE0019", "R001", "B9" },
+                    { "SE0020", "R001", "B10" },
+                    { "SE0021", "R001", "C1" },
+                    { "SE0022", "R001", "C2" },
+                    { "SE0023", "R001", "C3" },
+                    { "SE0024", "R001", "C4" },
+                    { "SE0025", "R001", "C5" },
+                    { "SE0026", "R001", "C6" },
+                    { "SE0027", "R001", "C7" },
+                    { "SE0028", "R001", "C8" },
+                    { "SE0029", "R001", "C9" },
+                    { "SE0030", "R001", "C10" },
+                    { "SE0031", "R001", "D1" },
+                    { "SE0032", "R001", "D2" },
+                    { "SE0033", "R001", "D3" },
+                    { "SE0034", "R001", "D4" },
+                    { "SE0035", "R001", "D5" },
+                    { "SE0036", "R001", "D6" },
+                    { "SE0037", "R001", "D7" },
+                    { "SE0038", "R001", "D8" },
+                    { "SE0039", "R001", "D9" },
+                    { "SE0040", "R001", "D10" },
+                    { "SE0041", "R001", "E1" },
+                    { "SE0042", "R001", "E2" },
+                    { "SE0043", "R001", "E3" },
+                    { "SE0044", "R001", "E4" },
+                    { "SE0045", "R001", "E5" },
+                    { "SE0046", "R001", "E6" },
+                    { "SE0047", "R001", "E7" },
+                    { "SE0048", "R001", "E8" },
+                    { "SE0049", "R001", "E9" },
+                    { "SE0050", "R001", "E10" },
+                    { "SE0051", "R001", "F1" },
+                    { "SE0052", "R001", "F2" },
+                    { "SE0053", "R001", "F3" },
+                    { "SE0054", "R001", "F4" },
+                    { "SE0055", "R001", "F5" },
+                    { "SE0056", "R001", "F6" },
+                    { "SE0057", "R001", "F7" },
+                    { "SE0058", "R001", "F8" },
+                    { "SE0059", "R001", "F9" },
+                    { "SE0060", "R001", "F10" },
+                    { "SE0061", "R001", "G1" },
+                    { "SE0062", "R001", "G2" },
+                    { "SE0063", "R001", "G3" },
+                    { "SE0064", "R001", "G4" },
+                    { "SE0065", "R001", "G5" },
+                    { "SE0066", "R001", "G6" },
+                    { "SE0067", "R001", "G7" },
+                    { "SE0068", "R001", "G8" },
+                    { "SE0069", "R001", "G9" },
+                    { "SE0070", "R001", "G10" },
+                    { "SE0071", "R001", "H1" },
+                    { "SE0072", "R001", "H2" },
+                    { "SE0073", "R001", "H3" },
+                    { "SE0074", "R001", "H4" },
+                    { "SE0075", "R001", "H5" },
+                    { "SE0076", "R001", "H6" },
+                    { "SE0077", "R001", "H7" },
+                    { "SE0078", "R001", "H8" },
+                    { "SE0079", "R001", "H9" },
+                    { "SE0080", "R001", "H10" },
+                    { "SE0081", "R002", "A1" },
+                    { "SE0082", "R002", "A2" },
+                    { "SE0083", "R002", "A3" },
+                    { "SE0084", "R002", "A4" },
+                    { "SE0085", "R002", "A5" },
+                    { "SE0086", "R002", "A6" },
+                    { "SE0087", "R002", "A7" },
+                    { "SE0088", "R002", "A8" },
+                    { "SE0089", "R002", "A9" },
+                    { "SE0090", "R002", "A10" },
+                    { "SE0091", "R002", "B1" },
+                    { "SE0092", "R002", "B2" },
+                    { "SE0093", "R002", "B3" },
+                    { "SE0094", "R002", "B4" },
+                    { "SE0095", "R002", "B5" },
+                    { "SE0096", "R002", "B6" },
+                    { "SE0097", "R002", "B7" },
+                    { "SE0098", "R002", "B8" },
+                    { "SE0099", "R002", "B9" },
+                    { "SE0100", "R002", "B10" },
+                    { "SE0101", "R002", "C1" },
+                    { "SE0102", "R002", "C2" },
+                    { "SE0103", "R002", "C3" },
+                    { "SE0104", "R002", "C4" },
+                    { "SE0105", "R002", "C5" },
+                    { "SE0106", "R002", "C6" },
+                    { "SE0107", "R002", "C7" },
+                    { "SE0108", "R002", "C8" },
+                    { "SE0109", "R002", "C9" },
+                    { "SE0110", "R002", "C10" },
+                    { "SE0111", "R002", "D1" },
+                    { "SE0112", "R002", "D2" },
+                    { "SE0113", "R002", "D3" },
+                    { "SE0114", "R002", "D4" },
+                    { "SE0115", "R002", "D5" },
+                    { "SE0116", "R002", "D6" },
+                    { "SE0117", "R002", "D7" },
+                    { "SE0118", "R002", "D8" },
+                    { "SE0119", "R002", "D9" },
+                    { "SE0120", "R002", "D10" },
+                    { "SE0121", "R002", "E1" },
+                    { "SE0122", "R002", "E2" },
+                    { "SE0123", "R002", "E3" },
+                    { "SE0124", "R002", "E4" },
+                    { "SE0125", "R002", "E5" },
+                    { "SE0126", "R002", "E6" },
+                    { "SE0127", "R002", "E7" },
+                    { "SE0128", "R002", "E8" },
+                    { "SE0129", "R002", "E9" },
+                    { "SE0130", "R002", "E10" },
+                    { "SE0131", "R002", "F1" },
+                    { "SE0132", "R002", "F2" },
+                    { "SE0133", "R002", "F3" },
+                    { "SE0134", "R002", "F4" },
+                    { "SE0135", "R002", "F5" },
+                    { "SE0136", "R002", "F6" },
+                    { "SE0137", "R002", "F7" },
+                    { "SE0138", "R002", "F8" },
+                    { "SE0139", "R002", "F9" },
+                    { "SE0140", "R002", "F10" },
+                    { "SE0141", "R002", "G1" },
+                    { "SE0142", "R002", "G2" },
+                    { "SE0143", "R002", "G3" },
+                    { "SE0144", "R002", "G4" },
+                    { "SE0145", "R002", "G5" },
+                    { "SE0146", "R002", "G6" },
+                    { "SE0147", "R002", "G7" },
+                    { "SE0148", "R002", "G8" },
+                    { "SE0149", "R002", "G9" },
+                    { "SE0150", "R002", "G10" },
+                    { "SE0151", "R002", "H1" },
+                    { "SE0152", "R002", "H2" },
+                    { "SE0153", "R002", "H3" },
+                    { "SE0154", "R002", "H4" },
+                    { "SE0155", "R002", "H5" },
+                    { "SE0156", "R002", "H6" },
+                    { "SE0157", "R002", "H7" },
+                    { "SE0158", "R002", "H8" },
+                    { "SE0159", "R002", "H9" },
+                    { "SE0160", "R002", "H10" },
+                    { "SE0161", "R003", "A1" },
+                    { "SE0162", "R003", "A2" },
+                    { "SE0163", "R003", "A3" },
+                    { "SE0164", "R003", "A4" },
+                    { "SE0165", "R003", "A5" },
+                    { "SE0166", "R003", "A6" },
+                    { "SE0167", "R003", "A7" },
+                    { "SE0168", "R003", "A8" },
+                    { "SE0169", "R003", "A9" },
+                    { "SE0170", "R003", "A10" },
+                    { "SE0171", "R003", "B1" },
+                    { "SE0172", "R003", "B2" },
+                    { "SE0173", "R003", "B3" },
+                    { "SE0174", "R003", "B4" },
+                    { "SE0175", "R003", "B5" },
+                    { "SE0176", "R003", "B6" },
+                    { "SE0177", "R003", "B7" },
+                    { "SE0178", "R003", "B8" },
+                    { "SE0179", "R003", "B9" },
+                    { "SE0180", "R003", "B10" },
+                    { "SE0181", "R003", "C1" },
+                    { "SE0182", "R003", "C2" },
+                    { "SE0183", "R003", "C3" },
+                    { "SE0184", "R003", "C4" },
+                    { "SE0185", "R003", "C5" },
+                    { "SE0186", "R003", "C6" },
+                    { "SE0187", "R003", "C7" },
+                    { "SE0188", "R003", "C8" },
+                    { "SE0189", "R003", "C9" },
+                    { "SE0190", "R003", "C10" },
+                    { "SE0191", "R003", "D1" },
+                    { "SE0192", "R003", "D2" },
+                    { "SE0193", "R003", "D3" },
+                    { "SE0194", "R003", "D4" },
+                    { "SE0195", "R003", "D5" },
+                    { "SE0196", "R003", "D6" },
+                    { "SE0197", "R003", "D7" },
+                    { "SE0198", "R003", "D8" },
+                    { "SE0199", "R003", "D9" },
+                    { "SE0200", "R003", "D10" },
+                    { "SE0201", "R003", "E1" },
+                    { "SE0202", "R003", "E2" },
+                    { "SE0203", "R003", "E3" },
+                    { "SE0204", "R003", "E4" },
+                    { "SE0205", "R003", "E5" },
+                    { "SE0206", "R003", "E6" },
+                    { "SE0207", "R003", "E7" },
+                    { "SE0208", "R003", "E8" },
+                    { "SE0209", "R003", "E9" },
+                    { "SE0210", "R003", "E10" },
+                    { "SE0211", "R003", "F1" },
+                    { "SE0212", "R003", "F2" },
+                    { "SE0213", "R003", "F3" },
+                    { "SE0214", "R003", "F4" },
+                    { "SE0215", "R003", "F5" },
+                    { "SE0216", "R003", "F6" },
+                    { "SE0217", "R003", "F7" },
+                    { "SE0218", "R003", "F8" },
+                    { "SE0219", "R003", "F9" },
+                    { "SE0220", "R003", "F10" },
+                    { "SE0221", "R003", "G1" },
+                    { "SE0222", "R003", "G2" },
+                    { "SE0223", "R003", "G3" },
+                    { "SE0224", "R003", "G4" },
+                    { "SE0225", "R003", "G5" },
+                    { "SE0226", "R003", "G6" },
+                    { "SE0227", "R003", "G7" },
+                    { "SE0228", "R003", "G8" },
+                    { "SE0229", "R003", "G9" },
+                    { "SE0230", "R003", "G10" },
+                    { "SE0231", "R003", "H1" },
+                    { "SE0232", "R003", "H2" },
+                    { "SE0233", "R003", "H3" },
+                    { "SE0234", "R003", "H4" },
+                    { "SE0235", "R003", "H5" },
+                    { "SE0236", "R003", "H6" },
+                    { "SE0237", "R003", "H7" },
+                    { "SE0238", "R003", "H8" },
+                    { "SE0239", "R003", "H9" },
+                    { "SE0240", "R003", "H10" },
+                    { "SE0241", "R004", "A1" },
+                    { "SE0242", "R004", "A2" },
+                    { "SE0243", "R004", "A3" },
+                    { "SE0244", "R004", "A4" },
+                    { "SE0245", "R004", "A5" },
+                    { "SE0246", "R004", "A6" },
+                    { "SE0247", "R004", "A7" },
+                    { "SE0248", "R004", "A8" },
+                    { "SE0249", "R004", "A9" },
+                    { "SE0250", "R004", "A10" },
+                    { "SE0251", "R004", "B1" },
+                    { "SE0252", "R004", "B2" },
+                    { "SE0253", "R004", "B3" },
+                    { "SE0254", "R004", "B4" },
+                    { "SE0255", "R004", "B5" },
+                    { "SE0256", "R004", "B6" },
+                    { "SE0257", "R004", "B7" },
+                    { "SE0258", "R004", "B8" },
+                    { "SE0259", "R004", "B9" },
+                    { "SE0260", "R004", "B10" },
+                    { "SE0261", "R004", "C1" },
+                    { "SE0262", "R004", "C2" },
+                    { "SE0263", "R004", "C3" },
+                    { "SE0264", "R004", "C4" },
+                    { "SE0265", "R004", "C5" },
+                    { "SE0266", "R004", "C6" },
+                    { "SE0267", "R004", "C7" },
+                    { "SE0268", "R004", "C8" },
+                    { "SE0269", "R004", "C9" },
+                    { "SE0270", "R004", "C10" },
+                    { "SE0271", "R004", "D1" },
+                    { "SE0272", "R004", "D2" },
+                    { "SE0273", "R004", "D3" },
+                    { "SE0274", "R004", "D4" },
+                    { "SE0275", "R004", "D5" },
+                    { "SE0276", "R004", "D6" },
+                    { "SE0277", "R004", "D7" },
+                    { "SE0278", "R004", "D8" },
+                    { "SE0279", "R004", "D9" },
+                    { "SE0280", "R004", "D10" },
+                    { "SE0281", "R004", "E1" },
+                    { "SE0282", "R004", "E2" },
+                    { "SE0283", "R004", "E3" },
+                    { "SE0284", "R004", "E4" },
+                    { "SE0285", "R004", "E5" },
+                    { "SE0286", "R004", "E6" },
+                    { "SE0287", "R004", "E7" },
+                    { "SE0288", "R004", "E8" },
+                    { "SE0289", "R004", "E9" },
+                    { "SE0290", "R004", "E10" },
+                    { "SE0291", "R004", "F1" },
+                    { "SE0292", "R004", "F2" },
+                    { "SE0293", "R004", "F3" },
+                    { "SE0294", "R004", "F4" },
+                    { "SE0295", "R004", "F5" },
+                    { "SE0296", "R004", "F6" },
+                    { "SE0297", "R004", "F7" },
+                    { "SE0298", "R004", "F8" },
+                    { "SE0299", "R004", "F9" },
+                    { "SE0300", "R004", "F10" },
+                    { "SE0301", "R004", "G1" },
+                    { "SE0302", "R004", "G2" },
+                    { "SE0303", "R004", "G3" },
+                    { "SE0304", "R004", "G4" },
+                    { "SE0305", "R004", "G5" },
+                    { "SE0306", "R004", "G6" },
+                    { "SE0307", "R004", "G7" },
+                    { "SE0308", "R004", "G8" },
+                    { "SE0309", "R004", "G9" },
+                    { "SE0310", "R004", "G10" },
+                    { "SE0311", "R004", "H1" },
+                    { "SE0312", "R004", "H2" },
+                    { "SE0313", "R004", "H3" },
+                    { "SE0314", "R004", "H4" },
+                    { "SE0315", "R004", "H5" },
+                    { "SE0316", "R004", "H6" },
+                    { "SE0317", "R004", "H7" },
+                    { "SE0318", "R004", "H8" },
+                    { "SE0319", "R004", "H9" },
+                    { "SE0320", "R004", "H10" },
+                    { "SE0321", "R005", "A1" },
+                    { "SE0322", "R005", "A2" },
+                    { "SE0323", "R005", "A3" },
+                    { "SE0324", "R005", "A4" },
+                    { "SE0325", "R005", "A5" },
+                    { "SE0326", "R005", "A6" },
+                    { "SE0327", "R005", "A7" },
+                    { "SE0328", "R005", "A8" },
+                    { "SE0329", "R005", "A9" },
+                    { "SE0330", "R005", "A10" },
+                    { "SE0331", "R005", "B1" },
+                    { "SE0332", "R005", "B2" },
+                    { "SE0333", "R005", "B3" },
+                    { "SE0334", "R005", "B4" },
+                    { "SE0335", "R005", "B5" },
+                    { "SE0336", "R005", "B6" },
+                    { "SE0337", "R005", "B7" },
+                    { "SE0338", "R005", "B8" },
+                    { "SE0339", "R005", "B9" },
+                    { "SE0340", "R005", "B10" },
+                    { "SE0341", "R005", "C1" },
+                    { "SE0342", "R005", "C2" },
+                    { "SE0343", "R005", "C3" },
+                    { "SE0344", "R005", "C4" },
+                    { "SE0345", "R005", "C5" },
+                    { "SE0346", "R005", "C6" },
+                    { "SE0347", "R005", "C7" },
+                    { "SE0348", "R005", "C8" },
+                    { "SE0349", "R005", "C9" },
+                    { "SE0350", "R005", "C10" },
+                    { "SE0351", "R005", "D1" },
+                    { "SE0352", "R005", "D2" },
+                    { "SE0353", "R005", "D3" },
+                    { "SE0354", "R005", "D4" },
+                    { "SE0355", "R005", "D5" },
+                    { "SE0356", "R005", "D6" },
+                    { "SE0357", "R005", "D7" },
+                    { "SE0358", "R005", "D8" },
+                    { "SE0359", "R005", "D9" },
+                    { "SE0360", "R005", "D10" },
+                    { "SE0361", "R005", "E1" },
+                    { "SE0362", "R005", "E2" },
+                    { "SE0363", "R005", "E3" },
+                    { "SE0364", "R005", "E4" },
+                    { "SE0365", "R005", "E5" },
+                    { "SE0366", "R005", "E6" },
+                    { "SE0367", "R005", "E7" },
+                    { "SE0368", "R005", "E8" },
+                    { "SE0369", "R005", "E9" },
+                    { "SE0370", "R005", "E10" },
+                    { "SE0371", "R005", "F1" },
+                    { "SE0372", "R005", "F2" },
+                    { "SE0373", "R005", "F3" },
+                    { "SE0374", "R005", "F4" },
+                    { "SE0375", "R005", "F5" },
+                    { "SE0376", "R005", "F6" },
+                    { "SE0377", "R005", "F7" },
+                    { "SE0378", "R005", "F8" },
+                    { "SE0379", "R005", "F9" },
+                    { "SE0380", "R005", "F10" },
+                    { "SE0381", "R005", "G1" },
+                    { "SE0382", "R005", "G2" },
+                    { "SE0383", "R005", "G3" },
+                    { "SE0384", "R005", "G4" },
+                    { "SE0385", "R005", "G5" },
+                    { "SE0386", "R005", "G6" },
+                    { "SE0387", "R005", "G7" },
+                    { "SE0388", "R005", "G8" },
+                    { "SE0389", "R005", "G9" },
+                    { "SE0390", "R005", "G10" },
+                    { "SE0391", "R005", "H1" },
+                    { "SE0392", "R005", "H2" },
+                    { "SE0393", "R005", "H3" },
+                    { "SE0394", "R005", "H4" },
+                    { "SE0395", "R005", "H5" },
+                    { "SE0396", "R005", "H6" },
+                    { "SE0397", "R005", "H7" },
+                    { "SE0398", "R005", "H8" },
+                    { "SE0399", "R005", "H9" },
+                    { "SE0400", "R005", "H10" }
                 });
 
             migrationBuilder.InsertData(
@@ -965,12 +1357,20 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "ShowtimeId", "CreatedAt", "EndTime", "MovieId", "RoomId", "StartTime", "Status", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { "ST001", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 10, 13, 1, 0, 0, DateTimeKind.Unspecified), "MOV001", "R001", new DateTime(2026, 6, 10, 10, 0, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { "ST002", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 10, 15, 58, 0, 0, DateTimeKind.Unspecified), "MOV002", "R002", new DateTime(2026, 6, 10, 13, 30, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { "ST003", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 10, 19, 26, 0, 0, DateTimeKind.Unspecified), "MOV003", "R003", new DateTime(2026, 6, 10, 16, 30, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { "ST004", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 10, 22, 6, 0, 0, DateTimeKind.Unspecified), "MOV004", "R001", new DateTime(2026, 6, 10, 20, 0, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { "ST005", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 11, 13, 12, 0, 0, DateTimeKind.Unspecified), "MOV009", "R002", new DateTime(2026, 6, 11, 10, 0, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { "ST006", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 11, 16, 11, 0, 0, DateTimeKind.Unspecified), "MOV010", "R003", new DateTime(2026, 6, 11, 14, 0, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { "ST001", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 10, 12, 0, 0, 0, DateTimeKind.Unspecified), "MOV001", "R001", new DateTime(2026, 6, 10, 10, 0, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "ST002", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 10, 14, 30, 0, 0, DateTimeKind.Unspecified), "MOV001", "R001", new DateTime(2026, 6, 10, 12, 30, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "ST003", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 10, 17, 0, 0, 0, DateTimeKind.Unspecified), "MOV001", "R001", new DateTime(2026, 6, 10, 15, 0, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "ST004", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 10, 19, 30, 0, 0, DateTimeKind.Unspecified), "MOV001", "R001", new DateTime(2026, 6, 10, 17, 30, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "ST005", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 10, 13, 0, 0, 0, DateTimeKind.Unspecified), "MOV001", "R002", new DateTime(2026, 6, 10, 11, 0, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "ST006", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 10, 15, 0, 0, 0, DateTimeKind.Unspecified), "MOV001", "R002", new DateTime(2026, 6, 10, 13, 0, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "ST007", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 10, 14, 0, 0, 0, DateTimeKind.Unspecified), "MOV001", "R003", new DateTime(2026, 6, 10, 12, 0, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "ST008", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 23, 12, 0, 0, 0, DateTimeKind.Unspecified), "MOV001", "R001", new DateTime(2026, 6, 23, 10, 0, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "ST009", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 23, 14, 30, 0, 0, DateTimeKind.Unspecified), "MOV001", "R001", new DateTime(2026, 6, 23, 12, 30, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "ST010", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 23, 13, 0, 0, 0, DateTimeKind.Unspecified), "MOV001", "R002", new DateTime(2026, 6, 23, 11, 0, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "ST011", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 23, 14, 0, 0, 0, DateTimeKind.Unspecified), "MOV001", "R003", new DateTime(2026, 6, 23, 12, 0, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "ST012", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 24, 12, 0, 0, 0, DateTimeKind.Unspecified), "MOV001", "R001", new DateTime(2026, 6, 24, 10, 0, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "ST013", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 24, 13, 0, 0, 0, DateTimeKind.Unspecified), "MOV001", "R002", new DateTime(2026, 6, 24, 11, 0, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "ST014", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 24, 14, 0, 0, 0, DateTimeKind.Unspecified), "MOV001", "R003", new DateTime(2026, 6, 24, 12, 0, 0, 0, DateTimeKind.Unspecified), "AVAILABLE", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -978,25 +1378,16 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "WatchListId", "CreatedAt", "MovieId", "UserId", "type" },
                 values: new object[,]
                 {
-                    { "WL001", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2034), "MOV001", "USR001", "FAVORITE" },
-                    { "WL002", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2037), "MOV003", "USR001", "FAVORITE" },
-                    { "WL003", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2040), "MOV002", "USR002", "WATCH_LATER" },
-                    { "WL004", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2042), "MOV005", "USR002", "WATCH_LATER" },
-                    { "WL005", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2044), "MOV004", "USR003", "FAVORITE" },
-                    { "WL006", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2047), "MOV007", "USR003", "WATCH_LATER" },
-                    { "WL007", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2049), "MOV006", "USR004", "FAVORITE" },
-                    { "WL008", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2051), "MOV008", "USR004", "WATCH_LATER" },
-                    { "WL009", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2054), "MOV009", "USR005", "FAVORITE" },
-                    { "WL010", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2056), "MOV010", "USR005", "WATCH_LATER" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Bookings",
-                columns: new[] { "BookingId", "CreatedAt", "ShowtimeId", "Status", "TotalAmount", "UserId" },
-                values: new object[,]
-                {
-                    { "BK001", new DateTime(2026, 6, 10, 9, 30, 0, 0, DateTimeKind.Unspecified), "ST001", "PAID", 15.5, "USR001" },
-                    { "BK002", new DateTime(2026, 6, 10, 12, 0, 0, 0, DateTimeKind.Unspecified), "ST002", "PAID", 20.0, "USR002" }
+                    { "WL001", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2899), "MOV001", "USR001", "FAVORITE" },
+                    { "WL002", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2901), "MOV003", "USR001", "FAVORITE" },
+                    { "WL003", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2903), "MOV002", "USR002", "WATCH_LATER" },
+                    { "WL004", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2904), "MOV005", "USR002", "WATCH_LATER" },
+                    { "WL005", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2905), "MOV004", "USR003", "FAVORITE" },
+                    { "WL006", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2907), "MOV007", "USR003", "WATCH_LATER" },
+                    { "WL007", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2909), "MOV006", "USR004", "FAVORITE" },
+                    { "WL008", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2910), "MOV008", "USR004", "WATCH_LATER" },
+                    { "WL009", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2911), "MOV009", "USR005", "FAVORITE" },
+                    { "WL010", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2912), "MOV010", "USR005", "WATCH_LATER" }
                 });
 
             migrationBuilder.InsertData(
@@ -1004,40 +1395,21 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "CommentId", "BlogPostId", "Content", "CreatedDate", "UserId" },
                 values: new object[,]
                 {
-                    { "CMT001", "BLOG001", "Great list! I love Marvel movies.", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2161), "USR002" },
-                    { "CMT002", "BLOG001", "Avengers Endgame is my favorite.", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2164), "USR003" },
-                    { "CMT003", "BLOG001", "Nice recommendations!", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2166), "USR004" },
-                    { "CMT004", "BLOG002", "Horror movies are so thrilling!", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2169), "USR001" },
-                    { "CMT005", "BLOG002", "The Conjuring series is amazing.", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2171), "USR005" },
-                    { "CMT006", "BLOG002", "I love watching horror at night.", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2173), "USR003" },
-                    { "CMT007", "BLOG003", "Interstellar is a masterpiece.", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2174), "USR001" },
-                    { "CMT008", "BLOG003", "Sci-Fi movies inspire imagination.", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2176), "USR002" },
-                    { "CMT009", "BLOG003", "I love futuristic technology.", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2179), "USR005" },
-                    { "CMT010", "BLOG004", "Perfect movies for couples.", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2181), "USR003" },
-                    { "CMT011", "BLOG004", "Titanic will always be iconic.", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2183), "USR002" },
-                    { "CMT012", "BLOG004", "Romantic movies are emotional.", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2185), "USR001" },
-                    { "CMT013", "BLOG005", "Can't wait for next year's movies!", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2187), "USR004" },
-                    { "CMT014", "BLOG005", "So many exciting releases.", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2189), "USR003" },
-                    { "CMT015", "BLOG005", "Hope Marvel releases new films!", new DateTime(2026, 3, 17, 18, 37, 40, 322, DateTimeKind.Utc).AddTicks(2191), "USR002" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Seats",
-                columns: new[] { "SeatId", "RoomId", "SeatName", "SeatType", "ShowtimeId", "Status" },
-                values: new object[,]
-                {
-                    { "SE001", "R001", "A1", "NORMAL", "ST001", "AVAILABLE" },
-                    { "SE002", "R001", "A2", "NORMAL", "ST001", "AVAILABLE" },
-                    { "SE003", "R001", "A3", "VIP", "ST001", "AVAILABLE" },
-                    { "SE004", "R001", "A4", "VIP", "ST001", "AVAILABLE" },
-                    { "SE005", "R002", "B1", "NORMAL", "ST002", "AVAILABLE" },
-                    { "SE006", "R002", "B2", "NORMAL", "ST002", "AVAILABLE" },
-                    { "SE007", "R002", "B3", "VIP", "ST002", "AVAILABLE" },
-                    { "SE008", "R002", "B4", "VIP", "ST002", "AVAILABLE" },
-                    { "SE009", "R003", "C1", "NORMAL", "ST003", "AVAILABLE" },
-                    { "SE010", "R003", "C2", "NORMAL", "ST003", "AVAILABLE" },
-                    { "SE011", "R003", "C3", "VIP", "ST003", "AVAILABLE" },
-                    { "SE012", "R003", "C4", "VIP", "ST003", "AVAILABLE" }
+                    { "CMT001", "BLOG001", "Great list! I love Marvel movies.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2977), "USR002" },
+                    { "CMT002", "BLOG001", "Avengers Endgame is my favorite.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2978), "USR003" },
+                    { "CMT003", "BLOG001", "Nice recommendations!", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2979), "USR004" },
+                    { "CMT004", "BLOG002", "Horror movies are so thrilling!", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2980), "USR001" },
+                    { "CMT005", "BLOG002", "The Conjuring series is amazing.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2981), "USR005" },
+                    { "CMT006", "BLOG002", "I love watching horror at night.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2982), "USR003" },
+                    { "CMT007", "BLOG003", "Interstellar is a masterpiece.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2983), "USR001" },
+                    { "CMT008", "BLOG003", "Sci-Fi movies inspire imagination.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2985), "USR002" },
+                    { "CMT009", "BLOG003", "I love futuristic technology.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2986), "USR005" },
+                    { "CMT010", "BLOG004", "Perfect movies for couples.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2987), "USR003" },
+                    { "CMT011", "BLOG004", "Titanic will always be iconic.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2988), "USR002" },
+                    { "CMT012", "BLOG004", "Romantic movies are emotional.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2989), "USR001" },
+                    { "CMT013", "BLOG005", "Can't wait for next year's movies!", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2990), "USR004" },
+                    { "CMT014", "BLOG005", "So many exciting releases.", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2991), "USR003" },
+                    { "CMT015", "BLOG005", "Hope Marvel releases new films!", new DateTime(2026, 3, 25, 13, 13, 58, 13, DateTimeKind.Utc).AddTicks(2992), "USR002" }
                 });
 
             migrationBuilder.InsertData(
@@ -1045,58 +1417,20 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "ShowtimeTicketTypeId", "Price", "ShowtimeId", "TicketTypeId" },
                 values: new object[,]
                 {
-                    { "STT001", 80000.0, "ST001", "TT001" },
-                    { "STT002", 120000.0, "ST001", "TT002" },
-                    { "STT003", 85000.0, "ST002", "TT001" },
-                    { "STT004", 125000.0, "ST002", "TT002" },
-                    { "STT005", 90000.0, "ST003", "TT001" },
-                    { "STT006", 130000.0, "ST003", "TT002" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "BookingFoodCombos",
-                columns: new[] { "BookingFoodComboId", "BookingId", "FoodComboId", "Quantity" },
-                values: new object[,]
-                {
-                    { "BFC001", "BK001", "FC001", 1 },
-                    { "BFC002", "BK002", "FC002", 2 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "BookingSeats",
-                columns: new[] { "BookingSeatId", "BookingId", "CheckinTime", "Price", "QrCode", "SeatId", "ShowtimeTicketTypeId", "Status" },
-                values: new object[,]
-                {
-                    { "BKS001", "BK001", new DateTime(2026, 6, 10, 10, 0, 0, 0, DateTimeKind.Unspecified), 7.5, "QR001", "SE001", "STT001", "BOOKED" },
-                    { "BKS002", "BK001", new DateTime(2026, 6, 10, 10, 0, 0, 0, DateTimeKind.Unspecified), 8.0, "QR002", "SE002", "STT001", "BOOKED" },
-                    { "BKS003", "BK002", new DateTime(2026, 6, 10, 13, 0, 0, 0, DateTimeKind.Unspecified), 10.0, "QR003", "SE003", "STT002", "BOOKED" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "BookingVouchers",
-                columns: new[] { "BookingId", "VoucherId" },
-                values: new object[,]
-                {
-                    { "BK001", "VC001" },
-                    { "BK002", "VC002" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Payments",
-                columns: new[] { "PaymentId", "Amount", "BookingId", "CreatedDate", "PaymentMethodId", "Status" },
-                values: new object[,]
-                {
-                    { "PAY001", 120000.0, "BK001", new DateTime(2026, 3, 18, 1, 37, 40, 322, DateTimeKind.Local).AddTicks(2908), "PM001", "PAID" },
-                    { "PAY002", 150000.0, "BK002", new DateTime(2026, 3, 18, 1, 37, 40, 322, DateTimeKind.Local).AddTicks(2912), "PM002", "PAID" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "SeatLocks",
-                columns: new[] { "SeatLockId", "ExpiredAt", "LockedAt", "SeatId", "ShowtimeId", "UserId" },
-                values: new object[,]
-                {
-                    { "SL001", new DateTime(2026, 6, 10, 9, 55, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 10, 9, 50, 0, 0, DateTimeKind.Unspecified), "SE001", "ST001", "USR001" },
-                    { "SL002", new DateTime(2026, 6, 10, 13, 25, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 6, 10, 13, 20, 0, 0, DateTimeKind.Unspecified), "SE006", "ST002", "USR001" }
+                    { "STT001", 120000.0, "ST001", "TT001" },
+                    { "STT002", 120000.0, "ST002", "TT001" },
+                    { "STT003", 120000.0, "ST003", "TT001" },
+                    { "STT004", 120000.0, "ST004", "TT001" },
+                    { "STT005", 170000.0, "ST005", "TT002" },
+                    { "STT006", 170000.0, "ST006", "TT002" },
+                    { "STT007", 220000.0, "ST007", "TT003" },
+                    { "STT008", 120000.0, "ST008", "TT001" },
+                    { "STT009", 120000.0, "ST009", "TT001" },
+                    { "STT010", 170000.0, "ST010", "TT002" },
+                    { "STT011", 220000.0, "ST011", "TT003" },
+                    { "STT012", 120000.0, "ST012", "TT001" },
+                    { "STT013", 170000.0, "ST013", "TT002" },
+                    { "STT014", 220000.0, "ST014", "TT003" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -1240,11 +1574,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 name: "IX_Seats_RoomId",
                 table: "Seats",
                 column: "RoomId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Seats_ShowtimeId",
-                table: "Seats",
-                column: "ShowtimeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Showtimes_MovieId",

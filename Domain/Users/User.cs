@@ -1,8 +1,9 @@
 ﻿using Movie_Ticket_Booking_Backend.Domain.Blogs;
+using Movie_Ticket_Booking_Backend.Domain.Bookings;
 using Movie_Ticket_Booking_Backend.Domain.Cinemas;
 using Movie_Ticket_Booking_Backend.Domain.Movies;
-using Movie_Ticket_Booking_Backend.Domain.Bookings;
 using Movie_Ticket_Booking_Backend.Domain.Notificaions;
+using Movie_Ticket_Booking_Backend.Domain.Vouchers;
 
 
 namespace Movie_Ticket_Booking_Backend.Domain.Users
@@ -47,6 +48,6 @@ namespace Movie_Ticket_Booking_Backend.Domain.Users
         public ICollection<UserGenre> UserGenres { get; set; }
         public ICollection<Notification> Notifications { get; set; }
         public ICollection<PostLike> PostLikes { get; set; }
-
+        public ICollection<UserVoucher> UserVouchers { get; set; }
     }
 }
