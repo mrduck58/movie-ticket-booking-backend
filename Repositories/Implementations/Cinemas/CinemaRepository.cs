@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Movie_Ticket_Booking_Backend.Data;
 using Movie_Ticket_Booking_Backend.Domain.Cinemas;
+using Movie_Ticket_Booking_Backend.Domain.Movies;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas;
 
 public class CinemaRepository : ICinemaRepository
@@ -49,5 +50,13 @@ public class CinemaRepository : ICinemaRepository
     public void UpdateCinema(Cinema cinema)
     {
         _context.Cinemas.Update(cinema);
+    }
+    public async Task<List<Movie>> GetMoviesByCinemaId(string cinemaId)
+    {
+        return await _context.Showtimes
+            .Where(s => s.Room.CinemaId == cinemaId)
+            .Select(s => s.Movie)
+            .Distinct() // Tránh lặp phim nếu phim đó có nhiều suất chiếu
+            .ToListAsync();
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Movie_Ticket_Booking_Backend.Domain.Cinemas;
 using Movie_Ticket_Booking_Backend.DTOs.Cinema;
+using Movie_Ticket_Booking_Backend.DTOs.Movie;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas;
+
 
 public class CinemaService : ICinemaService
 {
@@ -42,7 +44,7 @@ public class CinemaService : ICinemaService
     public async Task<bool> DeleteCinema(string id)
     {
         var cinema = _cinemaRepository.GetCinemaById(id).Result;
-        
+
         if (cinema == null) return false;
 
         _cinemaRepository.DeleteCinema(cinema);
@@ -87,6 +89,25 @@ public class CinemaService : ICinemaService
             CinemaId = c.CinemaId,
             Name = c.Name,
             Location = c.Location
+        }).ToList();
+    }
+    public async Task<List<MovieDto>> GetMoviesByCinema(string cinemaId)
+    {
+        var movies = await _cinemaRepository.GetMoviesByCinemaId(cinemaId);
+
+        return movies.Select(m => new MovieDto
+        {
+            MovieId = m.MovieId,
+            Title = m.Title,
+            TitleVn = m.TitleVn,
+            Duration = m.Duration,
+            Rating = m.Rating,
+            Director = m.Director,
+            PosterUrl = m.Posters?.FirstOrDefault()?.PosterId ?? "link_anh_mac_dinh.jpg",
+            TrailerUrl = m.TrailerUrl,
+            Status = m.Status,
+            Description = m.Description,
+            // Nếu Movie entity có Casts/Genres thì map tiếp vào đây
         }).ToList();
     }
 }
