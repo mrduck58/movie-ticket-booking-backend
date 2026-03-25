@@ -129,10 +129,22 @@ namespace Movie_Ticket_Booking_Backend
 
             builder.Services.AddScoped<IPosterRepository, PosterRepository>();
             builder.Services.AddScoped<IPosterService, PosterService>();
+            builder.Services.AddScoped<IMovieCastRepository, MovieCastRepository>();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    p => p.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+            });
 
+<<<<<<< api_backend_rating
+            
+=======
             builder.Services.AddMemoryCache(); // Để lưu mã OTP tạm thời
             builder.Services.AddScoped<IEmailService, EmailService>();
 
+>>>>>>> develop
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -140,7 +152,10 @@ namespace Movie_Ticket_Booking_Backend
                 app.MapOpenApi();
             }
 
-            app.UseHttpsRedirection();
+            if (!app.Environment.IsDevelopment())
+            {
+                app.UseHttpsRedirection();
+            }
 
             // Enable CORS
             app.UseCors("AllowAll");
@@ -152,6 +167,8 @@ namespace Movie_Ticket_Booking_Backend
             app.MapControllers();
 
             app.Run();
+
+           
         }
     }
 }
