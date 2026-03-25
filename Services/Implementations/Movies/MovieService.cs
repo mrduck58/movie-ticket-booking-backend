@@ -1,5 +1,8 @@
-﻿using Movie_Ticket_Booking_Backend.Domain.Movies;
+﻿using Microsoft.EntityFrameworkCore;
+using Movie_Ticket_Booking_Backend.Data;
+using Movie_Ticket_Booking_Backend.Domain.Movies;
 using Movie_Ticket_Booking_Backend.DTOs.Movie;
+using Movie_Ticket_Booking_Backend.Repositories.Implementations.Movies;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Movies;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Movies;
 
@@ -7,26 +10,53 @@ public class MovieService : IMovieService
 {
     private readonly IMovieRepository _movieRepository;
     private readonly IPosterRepository _posterRepository;
+    private readonly IMovieCastRepository _movieCastRepository;
+    private readonly IMovieGenreRepository _movieGenreRepository;
 
-    public MovieService(IMovieRepository movieRepository, IPosterRepository posterRepository)
+  
+    private readonly AppDbContext _context;
+
+    public MovieService(
+        IMovieRepository movieRepository,
+        IPosterRepository posterRepository,
+        IMovieCastRepository movieCastRepository,
+        IMovieGenreRepository movieGenreRepository,
+        AppDbContext context) 
     {
         _movieRepository = movieRepository;
         _posterRepository = posterRepository;
+        _movieCastRepository = movieCastRepository;
+        _movieGenreRepository = movieGenreRepository;
+        _context = context; 
     }
 
     public async Task<List<MovieDto>> GetMovies()
     {
         var movies = await _movieRepository.GetAllMovies();
 
-        return movies.Select(x => new MovieDto
-        {
-            MovieId = x.MovieId,
-            Title = x.Title,
-            TitleVn = x.TitleVn,
-            Duration = x.Duration,
-            Rating = x.Rating
+        var result = new List<MovieDto>();
 
-        }).ToList();
+        foreach (var x in movies)
+        {
+            //  lấy poster theo từng movie
+            var posters = await _posterRepository.GetPostersByMovieId(x.MovieId);
+
+            result.Add(new MovieDto
+            {
+                MovieId = x.MovieId,
+                Title = x.Title,
+                TitleVn = x.TitleVn,
+                Duration = x.Duration,
+                Rating = x.Rating,
+                Status = x.Status,
+                TrailerUrl = x.TrailerUrl,
+
+
+                PosterUrl = posters.FirstOrDefault()?.ImageUrl
+            });
+        }
+
+        return result;
     }
 
     public async Task<MovieDto?> GetMovie(string id)
@@ -36,6 +66,15 @@ public class MovieService : IMovieService
         if (movie == null) return null;
 
         var posters = await _posterRepository.GetPostersByMovieId(movie.MovieId);
+        var casts = await _movieCastRepository.GetCastsByMovieId(movie.MovieId);
+        var genres = await _movieGenreRepository.GetGenresByMovieId(movie.MovieId);
+
+        var ratings = await _context.MovieRatings
+            .Where(r => r.MovieId == id)
+            .ToListAsync();
+
+        var avgRating = ratings.Any() ? ratings.Average(r => r.Stars) : 0;
+        var totalVotes = ratings.Count();
 
         return new MovieDto
         {
@@ -43,10 +82,29 @@ public class MovieService : IMovieService
             Title = movie.Title,
             TitleVn = movie.TitleVn,
             Duration = movie.Duration,
-            Rating = movie.Rating,
+
+
+            Rating = Math.Round(avgRating, 1),
+            TotalVotes = totalVotes,
+
             PosterUrl = posters.FirstOrDefault()?.ImageUrl,
             ReleaseDate = movie.CreatedAt,
-            Director = movie.Director
+            Director = movie.Director,
+            Status = movie.Status,
+            Description = movie.Description,
+            TrailerUrl = movie.TrailerUrl,
+
+            Casts = casts.Select(c => new CastDto
+            {
+                Name = c.Cast.Name,
+                ImageUrl = c.Cast.AvatarUrl
+            }).ToList(),
+
+            Genres = genres.Select(g => new GenreDto
+            {
+                GenreId = g.GenreId,
+                Name = g.Genre.Name
+            }).ToList()
         };
     }
 
@@ -68,7 +126,6 @@ public class MovieService : IMovieService
         };
 
         await _movieRepository.AddMovie(movie);
-
         await _movieRepository.Save();
 
         return new MovieDto
@@ -77,7 +134,8 @@ public class MovieService : IMovieService
             Title = movie.Title,
             TitleVn = movie.TitleVn,
             Duration = movie.Duration,
-            Rating = movie.Rating
+            Rating = movie.Rating,
+            Description = movie.Description
         };
     }
 
@@ -88,7 +146,6 @@ public class MovieService : IMovieService
         if (movie == null) return false;
 
         _movieRepository.DeleteMovie(movie);
-
         await _movieRepository.Save();
 
         return true;

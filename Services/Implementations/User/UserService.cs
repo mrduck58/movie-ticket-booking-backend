@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Movie_Ticket_Booking_Backend.Data;
 using Movie_Ticket_Booking_Backend.Domain.Movies;
+using Movie_Ticket_Booking_Backend.Domain.Vouchers;
 using Movie_Ticket_Booking_Backend.DTOs.User;
 using System.Net.Http.Json;
 using System.Security.Cryptography;
@@ -21,6 +22,20 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.User
             _jwtService = jwtService;
             _cache = cache;
             _emailService = emailService;
+        }
+        private async Task GiveWelcomeVouchers(string userId)
+        {
+            var vouchers = new List<UserVoucher>
+            {
+                new UserVoucher { UserVoucherId = Guid.NewGuid().ToString(), UserId = userId, VoucherId = "VC001", Status = "AVAILABLE" },
+                new UserVoucher { UserVoucherId = Guid.NewGuid().ToString(), UserId = userId, VoucherId = "VC002", Status = "AVAILABLE" },
+                new UserVoucher { UserVoucherId = Guid.NewGuid().ToString(), UserId = userId, VoucherId = "VC003", Status = "AVAILABLE" },
+                new UserVoucher { UserVoucherId = Guid.NewGuid().ToString(), UserId = userId, VoucherId = "VC004", Status = "AVAILABLE" },
+                new UserVoucher { UserVoucherId = Guid.NewGuid().ToString(), UserId = userId, VoucherId = "VC005", Status = "AVAILABLE" }
+            };
+
+            _context.UserVouchers.AddRange(vouchers);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Domain.Users.User> RegisterUser(RegisterUserRequest dto)
@@ -56,6 +71,8 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.User
             }
 
             await _context.SaveChangesAsync();
+
+            await GiveWelcomeVouchers(userId);
 
             return user;
         }
@@ -108,7 +125,10 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.User
                         UpdatedAt = DateTime.Now
                     };
                     _context.Users.Add(user);
+
                     await _context.SaveChangesAsync();
+
+                    await GiveWelcomeVouchers(user.UserId);
 
                     // Nạp lại Role để tránh lỗi null khi tạo JWT
                     user = await _context.Users.Include(u => u.Role).FirstOrDefaultAsync(u => u.UserId == user.UserId);
@@ -155,7 +175,19 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.User
             return false;
         }
 
+        public async Task<UserHeaderDto?> GetCurrentUser(string userId)
+        {
+            var user = await _context.Users
+                .FirstOrDefaultAsync(x => x.UserId == userId);
 
+            if (user == null) return null;
+
+            return new UserHeaderDto
+            {
+                FullName = user.FullName,
+                AvatarUrl = user.AvatarUrl
+            };
+        }
 
     }
 }

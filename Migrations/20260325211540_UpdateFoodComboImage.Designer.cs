@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Movie_Ticket_Booking_Backend.Data;
 
@@ -11,9 +12,11 @@ using Movie_Ticket_Booking_Backend.Data;
 namespace Movie_Ticket_Booking_Backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260325211540_UpdateFoodComboImage")]
+    partial class UpdateFoodComboImage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3357,7 +3360,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             FoodComboId = "FC001",
                             CreatedDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "1 Large Popcorn + 1 Coke",
-                            ImageUrl = "https://www.bhdstar.vn/wp-content/uploads/2025/06/SINGLE-COMBO-1-1.jpg",
+                            ImageUrl = "https://images.unsplash.com/photo-1585238342024-78d387f4a707",
                             Name = "Popcorn + Coke",
                             Price = 75000.0,
                             Status = "ACTIVE",
@@ -3368,7 +3371,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             FoodComboId = "FC002",
                             CreatedDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "1 Large Popcorn + 2 Drinks",
-                            ImageUrl = "https://www.bhdstar.vn/wp-content/uploads/2025/06/COUPLE-COMBO-1-1.jpg",
+                            ImageUrl = "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
                             Name = "Couple Combo",
                             Price = 120000.0,
                             Status = "ACTIVE",
@@ -3379,7 +3382,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             FoodComboId = "FC003",
                             CreatedDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "2 Large Popcorn + 4 Drinks",
-                            ImageUrl = "https://www.bhdstar.vn/wp-content/uploads/2025/05/TRA-3-VI-2-1.jpg",
+                            ImageUrl = "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b",
                             Name = "Family Combo",
                             Price = 200000.0,
                             Status = "ACTIVE",
@@ -4416,29 +4419,29 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             PaymentMethodId = "PM001",
-                            CreatedDate = new DateTime(2026, 3, 26, 4, 33, 17, 956, DateTimeKind.Local).AddTicks(5084),
+                            CreatedDate = new DateTime(2026, 3, 26, 4, 15, 39, 174, DateTimeKind.Local).AddTicks(2184),
                             ImageUrl = "https://example.com/creditcard.png",
                             Name = "Credit Card",
                             Status = "ACTIVE",
-                            UpdatedDate = new DateTime(2026, 3, 26, 4, 33, 17, 956, DateTimeKind.Local).AddTicks(5095)
+                            UpdatedDate = new DateTime(2026, 3, 26, 4, 15, 39, 174, DateTimeKind.Local).AddTicks(2196)
                         },
                         new
                         {
                             PaymentMethodId = "PM002",
-                            CreatedDate = new DateTime(2026, 3, 26, 4, 33, 17, 956, DateTimeKind.Local).AddTicks(5096),
+                            CreatedDate = new DateTime(2026, 3, 26, 4, 15, 39, 174, DateTimeKind.Local).AddTicks(2198),
                             ImageUrl = "https://example.com/momo.png",
                             Name = "Momo",
                             Status = "ACTIVE",
-                            UpdatedDate = new DateTime(2026, 3, 26, 4, 33, 17, 956, DateTimeKind.Local).AddTicks(5096)
+                            UpdatedDate = new DateTime(2026, 3, 26, 4, 15, 39, 174, DateTimeKind.Local).AddTicks(2199)
                         },
                         new
                         {
                             PaymentMethodId = "PM003",
-                            CreatedDate = new DateTime(2026, 3, 26, 4, 33, 17, 956, DateTimeKind.Local).AddTicks(5097),
+                            CreatedDate = new DateTime(2026, 3, 26, 4, 15, 39, 174, DateTimeKind.Local).AddTicks(2201),
                             ImageUrl = "https://example.com/zalopay.png",
                             Name = "ZaloPay",
                             Status = "ACTIVE",
-                            UpdatedDate = new DateTime(2026, 3, 26, 4, 33, 17, 956, DateTimeKind.Local).AddTicks(5102)
+                            UpdatedDate = new DateTime(2026, 3, 26, 4, 15, 39, 174, DateTimeKind.Local).AddTicks(2201)
                         });
                 });
 

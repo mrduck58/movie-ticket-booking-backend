@@ -33,7 +33,8 @@ namespace Movie_Ticket_Booking_Backend.Controllers.User
             {
                 Token = token,
                 Email = user.Email,
-                Role = user.Role.Name
+                Role = user.Role.Name,
+                UserId = user.UserId
             };
 
             return Ok(response);
