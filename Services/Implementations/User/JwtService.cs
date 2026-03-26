@@ -21,7 +21,10 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.User
             {
                 new Claim(ClaimTypes.Name, user.Email),
                 new Claim(ClaimTypes.Role, user.Role.Name),
-                new Claim("UserId", user.UserId)
+                new Claim("UserId", user.UserId),
+                new Claim("FullName",user.FullName),
+                new Claim("AvatarUrl",user.AvatarUrl)
+               
             };
 
             var key = new SymmetricSecurityKey(

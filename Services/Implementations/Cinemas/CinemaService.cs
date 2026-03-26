@@ -103,7 +103,7 @@ public class CinemaService : ICinemaService
             Duration = m.Duration,
             Rating = m.Rating,
             Director = m.Director,
-            PosterUrl = m.Posters?.FirstOrDefault()?.PosterId ?? "link_anh_mac_dinh.jpg",
+            
             TrailerUrl = m.TrailerUrl,
             Status = m.Status,
             Description = m.Description,
