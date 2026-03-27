@@ -1,9 +1,10 @@
 ﻿namespace Movie_Ticket_Booking_Backend.Repositories.Implementations.BlogPost;
-using Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Movie_Ticket_Booking_Backend.Data;
 using Movie_Ticket_Booking_Backend.Domain.Blogs;
+using Movie_Ticket_Booking_Backend.Domain.Notificaions;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.BlogPost;
+using Repositories.Interfaces;
 
 public class BlogRepository : IBlogRepository
 {
@@ -62,6 +63,12 @@ public class BlogRepository : IBlogRepository
     public async Task UpdatePostAsync(BlogPost post)
     {
         _context.BlogPosts.Update(post);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task AddAsync(Notification notification)
+    {
+        await _context.Notifications.AddAsync(notification);
         await _context.SaveChangesAsync();
     }
 }

@@ -33,10 +33,21 @@ public class CinemaController : ControllerBase
         return Ok(cinema);
     }
 
+
     //[HttpGet("movies/{movieId}/cinemas")]
     //public async Task<IActionResult> GetCinemasByMovie(string movieId)
     //{
     //    var result = await _cinemaService.GetCinemasByMovie(movieId);
     //    return Ok(result);
     //}
+    [HttpGet("{cinemaId}/movies")]
+    public async Task<IActionResult> GetMoviesByCinema(string cinemaId)
+    {
+        var movies = await _cinemaService.GetMoviesByCinema(cinemaId);
+
+        if (movies == null || !movies.Any())
+            return NotFound(new { Message = "Không tìm thấy phim nào tại rạp này." });
+
+        return Ok(movies);
+    }
 }

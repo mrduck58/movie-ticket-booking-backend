@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Movie_Ticket_Booking_Backend.Data;
 
@@ -11,9 +12,11 @@ using Movie_Ticket_Booking_Backend.Data;
 namespace Movie_Ticket_Booking_Backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260326062954_addMoreData")]
+    partial class addMoreData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -419,9 +422,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("OrderCode")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("ShowtimeId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -450,7 +450,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             BookingId = "BK400",
                             CreatedAt = new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified),
-                            OrderCode = 0L,
                             ShowtimeId = "ST001",
                             Status = "CONFIRMED",
                             TotalAmount = 200000.0,
@@ -460,7 +459,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             BookingId = "BK401",
                             CreatedAt = new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified),
-                            OrderCode = 0L,
                             ShowtimeId = "ST002",
                             Status = "CONFIRMED",
                             TotalAmount = 300000.0,
@@ -470,7 +468,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             BookingId = "BK402",
                             CreatedAt = new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified),
-                            OrderCode = 0L,
                             ShowtimeId = "ST003",
                             Status = "CONFIRMED",
                             TotalAmount = 150000.0,
@@ -480,7 +477,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             BookingId = "BK403",
                             CreatedAt = new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified),
-                            OrderCode = 0L,
                             ShowtimeId = "ST004",
                             Status = "CONFIRMED",
                             TotalAmount = 400000.0,
@@ -490,30 +486,9 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         {
                             BookingId = "BK404",
                             CreatedAt = new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified),
-                            OrderCode = 0L,
                             ShowtimeId = "ST005",
                             Status = "CONFIRMED",
                             TotalAmount = 250000.0,
-                            UserId = "USR002"
-                        },
-                        new
-                        {
-                            BookingId = "BK405",
-                            CreatedAt = new DateTime(2026, 3, 26, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            OrderCode = 405001L,
-                            ShowtimeId = "ST015",
-                            Status = "BOOKED",
-                            TotalAmount = 120000.0,
-                            UserId = "USR002"
-                        },
-                        new
-                        {
-                            BookingId = "BK406",
-                            CreatedAt = new DateTime(2026, 3, 27, 15, 30, 0, 0, DateTimeKind.Unspecified),
-                            OrderCode = 406001L,
-                            ShowtimeId = "ST017",
-                            Status = "BOOKED",
-                            TotalAmount = 240000.0,
                             UserId = "USR002"
                         });
                 });
@@ -580,7 +555,8 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
                     b.HasIndex("ShowtimeTicketTypeId");
 
-                    b.HasIndex("SeatId", "ShowtimeTicketTypeId");
+                    b.HasIndex("SeatId", "ShowtimeTicketTypeId")
+                        .IsUnique();
 
                     b.ToTable("BookingSeats");
 
@@ -773,102 +749,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             Name = "BHD Star Pham Ngoc Thach",
                             Rating = "4.4",
                             UpdatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            CinemaId = "C004",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hotline = "02466649019",
-                            Location = "Ha Noi",
-                            Name = "Platinum Cineplex Royal City",
-                            Rating = "4.7",
-                            UpdatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            CinemaId = "C005",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hotline = "1800646420",
-                            Location = "Ha Noi",
-                            Name = "Beta Cinemas Dan Phuong",
-                            Rating = "4.2",
-                            UpdatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            CinemaId = "C006",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hotline = "19002224",
-                            Location = "Ha Noi",
-                            Name = "Galaxy Cinema Mipec",
-                            Rating = "4.3",
-                            UpdatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            CinemaId = "C007",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hotline = "02435141791",
-                            Location = "Ha Noi",
-                            Name = "National Cinema Center",
-                            Rating = "4.1",
-                            UpdatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            CinemaId = "C008",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hotline = "19002224",
-                            Location = "Ho Chi Minh",
-                            Name = "Galaxy Cinema Nguyen Du",
-                            Rating = "4.1",
-                            UpdatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            CinemaId = "C009",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hotline = "19006017",
-                            Location = "Ho Chi Minh",
-                            Name = "CGV Gigamall Thu Duc",
-                            Rating = "4.5",
-                            UpdatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            CinemaId = "C010",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Hotline = "02837402323",
-                            Location = "Ho Chi Minh",
-                            Name = "Lotte Cinema Cantavil",
-                            Rating = "4.2",
-                            UpdatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
-                });
-
-            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Cinemas.FavoriteCinema", b =>
-                {
-                    b.Property<string>("FavoriteCinemaId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CinemaId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("FavoriteCinemaId");
-
-                    b.HasIndex("CinemaId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("FavoriteCinemas");
                 });
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Cinemas.Room", b =>
@@ -980,120 +861,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             RoomId = "R015",
                             CinemaId = "C003",
                             Name = "Auditorium 5"
-                        },
-                        new
-                        {
-                            RoomId = "R016",
-                            CinemaId = "C004",
-                            Name = "Room 1"
-                        },
-                        new
-                        {
-                            RoomId = "R017",
-                            CinemaId = "C004",
-                            Name = "Room 2"
-                        },
-                        new
-                        {
-                            RoomId = "R018",
-                            CinemaId = "C004",
-                            Name = "Room 3"
-                        },
-                        new
-                        {
-                            RoomId = "R019",
-                            CinemaId = "C004",
-                            Name = "Room 4"
-                        },
-                        new
-                        {
-                            RoomId = "R020",
-                            CinemaId = "C004",
-                            Name = "Room 5"
-                        },
-                        new
-                        {
-                            RoomId = "R021",
-                            CinemaId = "C005",
-                            Name = "Room 1"
-                        },
-                        new
-                        {
-                            RoomId = "R022",
-                            CinemaId = "C005",
-                            Name = "Room 2"
-                        },
-                        new
-                        {
-                            RoomId = "R023",
-                            CinemaId = "C005",
-                            Name = "Room 3"
-                        },
-                        new
-                        {
-                            RoomId = "R024",
-                            CinemaId = "C005",
-                            Name = "Room 4"
-                        },
-                        new
-                        {
-                            RoomId = "R025",
-                            CinemaId = "C005",
-                            Name = "Room 5"
-                        },
-                        new
-                        {
-                            RoomId = "R026",
-                            CinemaId = "C006",
-                            Name = "Room 1"
-                        },
-                        new
-                        {
-                            RoomId = "R027",
-                            CinemaId = "C006",
-                            Name = "Room 2"
-                        },
-                        new
-                        {
-                            RoomId = "R028",
-                            CinemaId = "C006",
-                            Name = "Room 3"
-                        },
-                        new
-                        {
-                            RoomId = "R029",
-                            CinemaId = "C006",
-                            Name = "Room 4"
-                        },
-                        new
-                        {
-                            RoomId = "R030",
-                            CinemaId = "C006",
-                            Name = "Room 5"
-                        },
-                        new
-                        {
-                            RoomId = "R031",
-                            CinemaId = "C007",
-                            Name = "Room 1"
-                        },
-                        new
-                        {
-                            RoomId = "R032",
-                            CinemaId = "C008",
-                            Name = "Room 1"
-                        },
-                        new
-                        {
-                            RoomId = "R033",
-                            CinemaId = "C009",
-                            Name = "Room 1"
-                        },
-                        new
-                        {
-                            RoomId = "R034",
-                            CinemaId = "C010",
-                            Name = "Room 1"
                         });
                 });
 
@@ -3516,7 +3283,78 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             SeatId = "SE0400",
                             RoomId = "R005",
                             SeatName = "H10"
-                        },
+                        });
+                });
+
+            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Cinemas.SeatLock", b =>
+                {
+                    b.Property<string>("SeatLockId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("ExpiredAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("LockedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SeatId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ShowtimeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("SeatLockId");
+
+                    b.HasIndex("SeatId");
+
+                    b.HasIndex("ShowtimeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("SeatLocks");
+                });
+
+            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Foods.FoodCombo", b =>
+                {
+                    b.Property<string>("FoodComboId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("FoodComboId");
+
+                    b.ToTable("FoodCombos");
+
+                    b.HasData(
                         new
                         {
                             FoodComboId = "FC001",
@@ -4475,9 +4313,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.Property<string>("BlogPostId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("BookingId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("BookingSeatId")
                         .HasColumnType("nvarchar(450)");
 
@@ -4584,29 +4419,29 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                         new
                         {
                             PaymentMethodId = "PM001",
-                            CreatedDate = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(3355),
+                            CreatedDate = new DateTime(2026, 3, 26, 13, 29, 53, 507, DateTimeKind.Local).AddTicks(3597),
                             ImageUrl = "https://example.com/creditcard.png",
                             Name = "Credit Card",
                             Status = "ACTIVE",
-                            UpdatedDate = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(3358)
+                            UpdatedDate = new DateTime(2026, 3, 26, 13, 29, 53, 507, DateTimeKind.Local).AddTicks(3604)
                         },
                         new
                         {
                             PaymentMethodId = "PM002",
-                            CreatedDate = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(3360),
+                            CreatedDate = new DateTime(2026, 3, 26, 13, 29, 53, 507, DateTimeKind.Local).AddTicks(3606),
                             ImageUrl = "https://example.com/momo.png",
                             Name = "Momo",
                             Status = "ACTIVE",
-                            UpdatedDate = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(3361)
+                            UpdatedDate = new DateTime(2026, 3, 26, 13, 29, 53, 507, DateTimeKind.Local).AddTicks(3607)
                         },
                         new
                         {
                             PaymentMethodId = "PM003",
-                            CreatedDate = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(3364),
+                            CreatedDate = new DateTime(2026, 3, 26, 13, 29, 53, 507, DateTimeKind.Local).AddTicks(3608),
                             ImageUrl = "https://example.com/zalopay.png",
                             Name = "ZaloPay",
                             Status = "ACTIVE",
-                            UpdatedDate = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(3364)
+                            UpdatedDate = new DateTime(2026, 3, 26, 13, 29, 53, 507, DateTimeKind.Local).AddTicks(3609)
                         });
                 });
 
@@ -4911,138 +4746,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             StartTime = new DateTime(2026, 6, 23, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = "AVAILABLE",
                             UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            ShowtimeId = "ST201",
-                            CreatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1315),
-                            EndTime = new DateTime(2026, 6, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            MovieId = "MOV001",
-                            RoomId = "R001",
-                            StartTime = new DateTime(2026, 6, 25, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "AVAILABLE",
-                            UpdatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1326)
-                        },
-                        new
-                        {
-                            ShowtimeId = "ST202",
-                            CreatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1328),
-                            EndTime = new DateTime(2026, 6, 25, 15, 0, 0, 0, DateTimeKind.Unspecified),
-                            MovieId = "MOV001",
-                            RoomId = "R006",
-                            StartTime = new DateTime(2026, 6, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "AVAILABLE",
-                            UpdatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1329)
-                        },
-                        new
-                        {
-                            ShowtimeId = "ST203",
-                            CreatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1331),
-                            EndTime = new DateTime(2026, 6, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
-                            MovieId = "MOV001",
-                            RoomId = "R011",
-                            StartTime = new DateTime(2026, 6, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "AVAILABLE",
-                            UpdatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1331)
-                        },
-                        new
-                        {
-                            ShowtimeId = "ST204",
-                            CreatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1333),
-                            EndTime = new DateTime(2026, 6, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            MovieId = "MOV002",
-                            RoomId = "R001",
-                            StartTime = new DateTime(2026, 6, 25, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "AVAILABLE",
-                            UpdatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1334)
-                        },
-                        new
-                        {
-                            ShowtimeId = "ST205",
-                            CreatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1336),
-                            EndTime = new DateTime(2026, 6, 25, 14, 30, 0, 0, DateTimeKind.Unspecified),
-                            MovieId = "MOV003",
-                            RoomId = "R006",
-                            StartTime = new DateTime(2026, 6, 25, 12, 30, 0, 0, DateTimeKind.Unspecified),
-                            Status = "AVAILABLE",
-                            UpdatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1336)
-                        },
-                        new
-                        {
-                            ShowtimeId = "ST206",
-                            CreatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1343),
-                            EndTime = new DateTime(2026, 6, 25, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            MovieId = "MOV004",
-                            RoomId = "R011",
-                            StartTime = new DateTime(2026, 6, 25, 15, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "AVAILABLE",
-                            UpdatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1344)
-                        },
-                        new
-                        {
-                            ShowtimeId = "ST207",
-                            CreatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1346),
-                            EndTime = new DateTime(2026, 6, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            MovieId = "MOV005",
-                            RoomId = "R002",
-                            StartTime = new DateTime(2026, 6, 25, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "AVAILABLE",
-                            UpdatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1346)
-                        },
-                        new
-                        {
-                            ShowtimeId = "ST208",
-                            CreatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1348),
-                            EndTime = new DateTime(2026, 6, 25, 15, 0, 0, 0, DateTimeKind.Unspecified),
-                            MovieId = "MOV006",
-                            RoomId = "R007",
-                            StartTime = new DateTime(2026, 6, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "AVAILABLE",
-                            UpdatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1349)
-                        },
-                        new
-                        {
-                            ShowtimeId = "ST209",
-                            CreatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1351),
-                            EndTime = new DateTime(2026, 6, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
-                            MovieId = "MOV007",
-                            RoomId = "R012",
-                            StartTime = new DateTime(2026, 6, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "AVAILABLE",
-                            UpdatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1351)
-                        },
-                        new
-                        {
-                            ShowtimeId = "ST210",
-                            CreatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1353),
-                            EndTime = new DateTime(2026, 6, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            MovieId = "MOV008",
-                            RoomId = "R003",
-                            StartTime = new DateTime(2026, 6, 25, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "AVAILABLE",
-                            UpdatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1354)
-                        },
-                        new
-                        {
-                            ShowtimeId = "ST211",
-                            CreatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1356),
-                            EndTime = new DateTime(2026, 6, 25, 15, 0, 0, 0, DateTimeKind.Unspecified),
-                            MovieId = "MOV009",
-                            RoomId = "R008",
-                            StartTime = new DateTime(2026, 6, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "AVAILABLE",
-                            UpdatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1357)
-                        },
-                        new
-                        {
-                            ShowtimeId = "ST212",
-                            CreatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1359),
-                            EndTime = new DateTime(2026, 6, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
-                            MovieId = "MOV010",
-                            RoomId = "R013",
-                            StartTime = new DateTime(2026, 6, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "AVAILABLE",
-                            UpdatedAt = new DateTime(2026, 3, 26, 14, 10, 24, 99, DateTimeKind.Local).AddTicks(1359)
                         });
                 });
 
@@ -5237,90 +4940,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                             ShowtimeTicketTypeId = "STT110",
                             Price = 120000.0,
                             ShowtimeId = "ST110",
-                            TicketTypeId = "TT001"
-                        },
-                        new
-                        {
-                            ShowtimeTicketTypeId = "STT201",
-                            Price = 120000.0,
-                            ShowtimeId = "ST201",
-                            TicketTypeId = "TT001"
-                        },
-                        new
-                        {
-                            ShowtimeTicketTypeId = "STT202",
-                            Price = 120000.0,
-                            ShowtimeId = "ST202",
-                            TicketTypeId = "TT001"
-                        },
-                        new
-                        {
-                            ShowtimeTicketTypeId = "STT203",
-                            Price = 120000.0,
-                            ShowtimeId = "ST203",
-                            TicketTypeId = "TT001"
-                        },
-                        new
-                        {
-                            ShowtimeTicketTypeId = "STT204",
-                            Price = 120000.0,
-                            ShowtimeId = "ST204",
-                            TicketTypeId = "TT001"
-                        },
-                        new
-                        {
-                            ShowtimeTicketTypeId = "STT205",
-                            Price = 120000.0,
-                            ShowtimeId = "ST205",
-                            TicketTypeId = "TT001"
-                        },
-                        new
-                        {
-                            ShowtimeTicketTypeId = "STT206",
-                            Price = 120000.0,
-                            ShowtimeId = "ST206",
-                            TicketTypeId = "TT001"
-                        },
-                        new
-                        {
-                            ShowtimeTicketTypeId = "STT207",
-                            Price = 120000.0,
-                            ShowtimeId = "ST207",
-                            TicketTypeId = "TT001"
-                        },
-                        new
-                        {
-                            ShowtimeTicketTypeId = "STT208",
-                            Price = 120000.0,
-                            ShowtimeId = "ST208",
-                            TicketTypeId = "TT001"
-                        },
-                        new
-                        {
-                            ShowtimeTicketTypeId = "STT209",
-                            Price = 120000.0,
-                            ShowtimeId = "ST209",
-                            TicketTypeId = "TT001"
-                        },
-                        new
-                        {
-                            ShowtimeTicketTypeId = "STT210",
-                            Price = 120000.0,
-                            ShowtimeId = "ST210",
-                            TicketTypeId = "TT001"
-                        },
-                        new
-                        {
-                            ShowtimeTicketTypeId = "STT211",
-                            Price = 120000.0,
-                            ShowtimeId = "ST211",
-                            TicketTypeId = "TT001"
-                        },
-                        new
-                        {
-                            ShowtimeTicketTypeId = "STT212",
-                            Price = 120000.0,
-                            ShowtimeId = "ST212",
                             TicketTypeId = "TT001"
                         });
                 });
@@ -5800,25 +5419,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.Navigation("Voucher");
                 });
 
-            modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Cinemas.FavoriteCinema", b =>
-                {
-                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Cinemas.Cinema", "Cinema")
-                        .WithMany("FavoriteCinemas")
-                        .HasForeignKey("CinemaId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Movie_Ticket_Booking_Backend.Domain.Users.User", "User")
-                        .WithMany("FavoriteCinemas")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Cinema");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Cinemas.Room", b =>
                 {
                     b.HasOne("Movie_Ticket_Booking_Backend.Domain.Cinemas.Cinema", "Cinema")
@@ -6114,8 +5714,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
             modelBuilder.Entity("Movie_Ticket_Booking_Backend.Domain.Cinemas.Cinema", b =>
                 {
-                    b.Navigation("FavoriteCinemas");
-
                     b.Navigation("Rooms");
                 });
 
@@ -6206,8 +5804,6 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     b.Navigation("Bookings");
 
                     b.Navigation("Comments");
-
-                    b.Navigation("FavoriteCinemas");
 
                     b.Navigation("MovieRatings");
 

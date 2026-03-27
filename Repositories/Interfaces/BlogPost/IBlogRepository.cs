@@ -1,6 +1,7 @@
 ﻿namespace Movie_Ticket_Booking_Backend.Repositories.Interfaces.BlogPost;
 
 using Movie_Ticket_Booking_Backend.Domain.Blogs;
+using Movie_Ticket_Booking_Backend.Domain.Notificaions;
 
 public interface IBlogRepository
 {
@@ -14,4 +15,5 @@ public interface IBlogRepository
     Task RemoveLikeAsync(PostLike like);
 
     Task UpdatePostAsync(BlogPost post);
+    Task AddAsync(Notification notification);
 }
