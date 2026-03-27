@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -13,8 +13,9 @@ using Movie_Ticket_Booking_Backend.Repositories.Implementations.Search;
 using Movie_Ticket_Booking_Backend.Repositories.Implementations.Ticket;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.BlogPost;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas;
-using Movie_Ticket_Booking_Backend.Repositories.Implementations.Vouchers;
-using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas;
+using Movie_Ticket_Booking_Backend.Repositories.Implementations.Cinemas;
+using Movie_Ticket_Booking_Backend.Services.Interfaces.Cinemas;
+using Movie_Ticket_Booking_Backend.Services.Implementations.Cinemas;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Foods;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Movies;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Notifications;
@@ -24,6 +25,7 @@ using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Search;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Ticket;
 using Movie_Ticket_Booking_Backend.Services.Implementations.BlogPost;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Vouchers;
+using Movie_Ticket_Booking_Backend.Repositories.Implementations.Vouchers;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Foods;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Movie;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Movies;
@@ -34,10 +36,7 @@ using Movie_Ticket_Booking_Backend.Services.Implementations.Search;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Ticket;
 using Movie_Ticket_Booking_Backend.Services.Implementations.User;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.BlogPost;
-using Movie_Ticket_Booking_Backend.Services.Interfaces.Cinemas;
-using Movie_Ticket_Booking_Backend.Services.Implementations.User;
 using Movie_Ticket_Booking_Backend.Services.Implementations.Vouchers;
-using Movie_Ticket_Booking_Backend.Services.Interfaces.Cinemas;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Foods;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Movies;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Notifications;
@@ -144,7 +143,12 @@ namespace Movie_Ticket_Booking_Backend
             builder.Services.AddScoped<IShowtimeService, ShowtimeService>();
 
             builder.Services.AddScoped<ISeatRepository, SeatRepository>();
+            builder.Services.AddScoped<ISeatLockRepository, SeatLockRepository>();
             builder.Services.AddScoped<ISeatService, SeatService>();
+
+            // Favorite Cinema
+            builder.Services.AddScoped<IFavoriteCinemaRepository, FavoriteCinemaRepository>();
+            builder.Services.AddScoped<IFavoriteCinemaService, FavoriteCinemaService>();
 
             builder.Services.AddScoped<IComboRepository, ComboRepository>();
             builder.Services.AddScoped<IComboService, ComboService>();
@@ -154,6 +158,8 @@ namespace Movie_Ticket_Booking_Backend
 
             builder.Services.AddScoped<IBookingRepository, BookingRepository>();
             builder.Services.AddScoped<IBookingService, BookingService>();
+            builder.Services.AddScoped<Movie_Ticket_Booking_Backend.Services.Interfaces.Payments.IPayOSService,
+                Movie_Ticket_Booking_Backend.Services.Implementations.Payments.PayOSService>();
 
             builder.Services.AddScoped<IPosterRepository, PosterRepository>();
             builder.Services.AddScoped<IPosterService, PosterService>();
@@ -171,6 +177,9 @@ namespace Movie_Ticket_Booking_Backend
 
             builder.Services.AddMemoryCache(); // Để lưu mã OTP tạm thời
             builder.Services.AddScoped<IEmailService, EmailService>();
+
+            // Register Background Jobs
+            builder.Services.AddHostedService<Movie_Ticket_Booking_Backend.Services.Implementations.BackgroundJobs.SeatLockCleanupService>();
 
             var app = builder.Build();
 

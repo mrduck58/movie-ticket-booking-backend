@@ -1,4 +1,4 @@
-﻿using Movie_Ticket_Booking_Backend.Domain.Blogs;
+using Movie_Ticket_Booking_Backend.Domain.Blogs;
 using Movie_Ticket_Booking_Backend.Domain.Bookings;
 using Movie_Ticket_Booking_Backend.Domain.Movies;
 using Movie_Ticket_Booking_Backend.Domain.Users;
@@ -18,6 +18,7 @@ namespace Movie_Ticket_Booking_Backend.Domain.Notificaions
         public string? CommentId { get; set; }
 
         public string? BookingSeatId { get; set; }
+        public string? BookingId { get; set; }
 
         public string Type { get; set; } = null!;
         public string Message { get; set; }

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Movie_Ticket_Booking_Backend.Data;
 using Movie_Ticket_Booking_Backend.Domain.Cinemas;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas;
@@ -22,7 +22,10 @@ public class SeatRepository : ISeatRepository
     public async Task<List<string>> GetBookedSeatIdsAsync(string showtimeId)
     {
         return await _context.BookingSeats
-            .Where(x => x.ShowtimeTicketType.ShowtimeId == showtimeId)
+            // Ensure cancelled bookings don't block seats, and PENDING bookings only hold seats for 5 minutes
+            .Where(x => x.Booking.ShowtimeId == showtimeId && 
+                        (x.Booking.Status == "PAID" || x.Booking.Status == "BOOKED" || x.Booking.Status == "COMPLETED" || 
+                        (x.Booking.Status == "PENDING" && x.Booking.CreatedAt.AddMinutes(5) > DateTime.UtcNow)))
             .Select(x => x.SeatId)
             .ToListAsync();
     }
@@ -30,8 +33,15 @@ public class SeatRepository : ISeatRepository
     public async Task<List<string>> GetLockedSeatIdsAsync(string showtimeId)
     {
         return await _context.SeatLocks
-            .Where(x => x.ShowtimeId == showtimeId)
+            .Where(x => x.ShowtimeId == showtimeId && x.ExpiredAt > DateTime.UtcNow)
             .Select(x => x.SeatId)
+            .ToListAsync();
+    }
+
+    public async Task<List<SeatLock>> GetActiveSeatLocksAsync(string showtimeId)
+    {
+        return await _context.SeatLocks
+            .Where(x => x.ShowtimeId == showtimeId && x.ExpiredAt > DateTime.UtcNow)
             .ToListAsync();
     }
 

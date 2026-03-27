@@ -1,4 +1,4 @@
-﻿using Movie_Ticket_Booking_Backend.Domain.Bookings;
+using Movie_Ticket_Booking_Backend.Domain.Bookings;
 using Movie_Ticket_Booking_Backend.Domain.Cinemas;
 
 public interface ISeatLockRepository
@@ -7,7 +7,7 @@ public interface ISeatLockRepository
 
     Task AddLock(SeatLock seatLock);
 
-    Task RemoveLock(string seatId);
+    Task RemoveLock(string seatId, string showtimeId);
 
     Task Save();
 }

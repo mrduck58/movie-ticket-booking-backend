@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Movie_Ticket_Booking_Backend.Data;
 using Movie_Ticket_Booking_Backend.Domain.Showtimes;
 
@@ -31,6 +31,7 @@ public class ShowtimeRepository : IShowtimeRepository
     {
         return await _context.Showtimes
             .Include(x => x.Room)
+            .Include(x => x.ShowtimeTicketTypes)
             .FirstAsync(x => x.ShowtimeId == showtimeId);
     }
 

@@ -1,4 +1,4 @@
-﻿using Movie_Ticket_Booking_Backend.Domain.Cinemas;
+using Movie_Ticket_Booking_Backend.Domain.Cinemas;
 using Movie_Ticket_Booking_Backend.DTOs.Cinema;
 using Movie_Ticket_Booking_Backend.DTOs.Seat;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas;
@@ -25,7 +25,7 @@ public class SeatService : ISeatService
         }).ToList();
     }
 
-    public async Task<SeatMapDto> GetSeatMapAsync(string showtimeId)
+    public async Task<SeatMapDto> GetSeatMapAsync(string showtimeId, string? userId)
     {
         var showtime = await _showtimeRepository.GetShowtimeAsync(showtimeId);
 
@@ -33,23 +33,40 @@ public class SeatService : ISeatService
 
         var booked = await _seatRepository.GetBookedSeatIdsAsync(showtimeId);
 
-        var locked = await _seatRepository.GetLockedSeatIdsAsync(showtimeId);
+        var activeLocks = await _seatRepository.GetActiveSeatLocksAsync(showtimeId);
 
         var seatDtos = seats.Select(seat =>
         {
             var status = "AVAILABLE";
 
             if (booked.Contains(seat.SeatId))
-                status = "TAKEN";
+            {
+                status = "BOOKED";
+            }
+            else
+            {
+                var lockRecord = activeLocks.FirstOrDefault(l => l.SeatId == seat.SeatId);
+                if (lockRecord != null)
+                {
+                    if (userId != null && lockRecord.UserId == userId)
+                    {
+                        status = "SELECTED"; // Or LOCKED_BY_YOU
+                    }
+                    else
+                    {
+                        status = "LOCKED";
+                    }
+                }
+            }
 
-            else if (locked.Contains(seat.SeatId))
-                status = "LOCKED";
+            var showtimeTicketTypeId = showtime.ShowtimeTicketTypes.FirstOrDefault()?.ShowtimeTicketTypeId;
 
             return new SeatDto
             {
                 SeatId = seat.SeatId,
                 SeatName = seat.SeatName,
-                Status = status
+                Status = status,
+                ShowtimeTicketTypeId = showtimeTicketTypeId
             };
 
         }).ToList();

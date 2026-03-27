@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Movie_Ticket_Booking_Backend.Domain.Blogs;
 using Movie_Ticket_Booking_Backend.Domain.Bookings;
 using Movie_Ticket_Booking_Backend.Domain.Cinemas;
@@ -38,6 +38,7 @@ namespace Movie_Ticket_Booking_Backend.Data
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Seat> Seats { get; set; }
         public DbSet<SeatLock> SeatLocks { get; set; }
+        public DbSet<FavoriteCinema> FavoriteCinemas { get; set; }
 
         //Showtime and ticket related tables
         public DbSet<Showtime> Showtimes { get; set; }
@@ -161,6 +162,19 @@ namespace Movie_Ticket_Booking_Backend.Data
                 .HasOne(sl => sl.Showtime)
                 .WithMany(st => st.SeatLocks)
                 .HasForeignKey(sl => sl.ShowtimeId);
+
+            // ========================
+            // FAVORITE CINEMA
+            // ========================
+            modelBuilder.Entity<FavoriteCinema>()
+                .HasOne(fc => fc.User)
+                .WithMany(u => u.FavoriteCinemas)
+                .HasForeignKey(fc => fc.UserId);
+
+            modelBuilder.Entity<FavoriteCinema>()
+                .HasOne(fc => fc.Cinema)
+                .WithMany(c => c.FavoriteCinemas)
+                .HasForeignKey(fc => fc.CinemaId);
 
             // ========================
             // SHOWTIME
@@ -378,8 +392,7 @@ namespace Movie_Ticket_Booking_Backend.Data
             // Indexes and constraints
             // ========================
             modelBuilder.Entity<BookingSeat>()
-                .HasIndex(bs => new { bs.SeatId, bs.ShowtimeTicketTypeId })
-                .IsUnique();
+                .HasIndex(bs => new { bs.SeatId, bs.ShowtimeTicketTypeId });
             // ========================
             // SEED MOVIES
             // ========================
@@ -910,8 +923,45 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
                      Hotline = "19002099",
                      CreatedAt = new DateTime(2024, 1, 1),
                      UpdatedAt = new DateTime(2024, 1, 1)
-                 }
-             );
+                 },
+
+                 new Cinema
+                 {
+                     CinemaId = "C004",
+                     Name = "Platinum Cineplex Royal City",
+                     Location = "Ha Noi",
+                     Rating = "4.7",
+                     Hotline = "02466649019",
+                     CreatedAt = new DateTime(2024, 1, 1),
+                     UpdatedAt = new DateTime(2024, 1, 1)
+                 },
+
+                 new Cinema
+                 {
+                     CinemaId = "C005",
+                     Name = "Beta Cinemas Dan Phuong",
+                     Location = "Ha Noi",
+                     Rating = "4.2",
+                     Hotline = "1800646420",
+                     CreatedAt = new DateTime(2024, 1, 1),
+                     UpdatedAt = new DateTime(2024, 1, 1)
+                 },
+
+                 new Cinema
+                 {
+                     CinemaId = "C006",
+                     Name = "Galaxy Cinema Mipec",
+                     Location = "Ha Noi",
+                     Rating = "4.3",
+                     Hotline = "19002224",
+                     CreatedAt = new DateTime(2024, 1, 1),
+                     UpdatedAt = new DateTime(2024, 1, 1)
+                 },
+                 new Cinema { CinemaId = "C007", Name = "National Cinema Center", Location = "Ha Noi", Rating = "4.1", Hotline = "02435141791", CreatedAt = new DateTime(2024, 1, 1), UpdatedAt = new DateTime(2024, 1, 1) },
+                 new Cinema { CinemaId = "C008", Name = "Galaxy Cinema Nguyen Du", Location = "Ho Chi Minh", Rating = "4.1", Hotline = "19002224", CreatedAt = new DateTime(2024, 1, 1), UpdatedAt = new DateTime(2024, 1, 1) },
+                 new Cinema { CinemaId = "C009", Name = "CGV Gigamall Thu Duc", Location = "Ho Chi Minh", Rating = "4.5", Hotline = "19006017", CreatedAt = new DateTime(2024, 1, 1), UpdatedAt = new DateTime(2024, 1, 1) },
+                 new Cinema { CinemaId = "C010", Name = "Lotte Cinema Cantavil", Location = "Ho Chi Minh", Rating = "4.2", Hotline = "02837402323", CreatedAt = new DateTime(2024, 1, 1), UpdatedAt = new DateTime(2024, 1, 1) }
+            );
             modelBuilder.Entity<Room>().HasData(
 
                new Room
@@ -1017,8 +1067,26 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
                    RoomId = "R015",
                    Name = "Auditorium 5",
                    CinemaId = "C003"
-               }
-
+               },
+                new Room { RoomId = "R016", Name = "Room 1", CinemaId = "C004" },
+                new Room { RoomId = "R017", Name = "Room 2", CinemaId = "C004" },
+                new Room { RoomId = "R018", Name = "Room 3", CinemaId = "C004" },
+                new Room { RoomId = "R019", Name = "Room 4", CinemaId = "C004" },
+                new Room { RoomId = "R020", Name = "Room 5", CinemaId = "C004" },
+                new Room { RoomId = "R021", Name = "Room 1", CinemaId = "C005" },
+                new Room { RoomId = "R022", Name = "Room 2", CinemaId = "C005" },
+                new Room { RoomId = "R023", Name = "Room 3", CinemaId = "C005" },
+                new Room { RoomId = "R024", Name = "Room 4", CinemaId = "C005" },
+                new Room { RoomId = "R025", Name = "Room 5", CinemaId = "C005" },
+                new Room { RoomId = "R026", Name = "Room 1", CinemaId = "C006" },
+                new Room { RoomId = "R027", Name = "Room 2", CinemaId = "C006" },
+                new Room { RoomId = "R028", Name = "Room 3", CinemaId = "C006" },
+                 new Room { RoomId = "R029", Name = "Room 4", CinemaId = "C006" },
+                 new Room { RoomId = "R030", Name = "Room 5", CinemaId = "C006" },
+                 new Room { RoomId = "R031", Name = "Room 1", CinemaId = "C007" },
+                 new Room { RoomId = "R032", Name = "Room 1", CinemaId = "C008" },
+                 new Room { RoomId = "R033", Name = "Room 1", CinemaId = "C009" },
+                 new Room { RoomId = "R034", Name = "Room 1", CinemaId = "C010" }
            );
 
             modelBuilder.Entity<Showtime>().HasData(
@@ -1196,8 +1264,34 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
                     Status = "AVAILABLE",
                     CreatedAt = new DateTime(2026, 1, 1),
                     UpdatedAt = new DateTime(2026, 1, 1)
-                }
-
+                },
+                 // More for MOV002
+                 new Showtime { ShowtimeId = "ST015", MovieId = "MOV002", RoomId = "R006", StartTime = new DateTime(2026, 6, 23, 09, 30, 0), EndTime = new DateTime(2026, 6, 23, 11, 30, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+                 new Showtime { ShowtimeId = "ST016", MovieId = "MOV002", RoomId = "R007", StartTime = new DateTime(2026, 6, 23, 10, 30, 0), EndTime = new DateTime(2026, 6, 23, 12, 30, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+                 new Showtime { ShowtimeId = "ST017", MovieId = "MOV003", RoomId = "R011", StartTime = new DateTime(2026, 6, 23, 13, 00, 0), EndTime = new DateTime(2026, 6, 23, 15, 30, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+                 new Showtime { ShowtimeId = "ST018", MovieId = "MOV004", RoomId = "R012", StartTime = new DateTime(2026, 6, 23, 16, 00, 0), EndTime = new DateTime(2026, 6, 23, 18, 00, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+                 new Showtime { ShowtimeId = "ST019", MovieId = "MOV009", RoomId = "R016", StartTime = new DateTime(2026, 6, 23, 19, 00, 0), EndTime = new DateTime(2026, 6, 23, 22, 00, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+                 new Showtime { ShowtimeId = "ST020", MovieId = "MOV010", RoomId = "R021", StartTime = new DateTime(2026, 6, 23, 21, 00, 0), EndTime = new DateTime(2026, 6, 23, 23, 00, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+                 // Tomorrow
+                 new Showtime { ShowtimeId = "ST021", MovieId = "MOV002", RoomId = "R006", StartTime = new DateTime(2026, 6, 24, 09, 30, 0), EndTime = new DateTime(2026, 6, 24, 11, 30, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+                 new Showtime { ShowtimeId = "ST022", MovieId = "MOV003", RoomId = "R011", StartTime = new DateTime(2026, 6, 24, 20, 00, 0), EndTime = new DateTime(2026, 6, 24, 23, 00, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+                 
+                 // March 28 (Today/Tomorrow)
+                 new Showtime { ShowtimeId = "ST023", MovieId = "MOV001", RoomId = "R001", StartTime = new DateTime(2026, 3, 28, 10, 0, 0), EndTime = new DateTime(2026, 3, 28, 13, 0, 0), Status = "AVAILABLE", CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+                 new Showtime { ShowtimeId = "ST024", MovieId = "MOV002", RoomId = "R006", StartTime = new DateTime(2026, 3, 28, 11, 0, 0), EndTime = new DateTime(2026, 3, 28, 13, 30, 0), Status = "AVAILABLE", CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+                 new Showtime { ShowtimeId = "ST025", MovieId = "MOV003", RoomId = "R016", StartTime = new DateTime(2026, 3, 28, 14, 0, 0), EndTime = new DateTime(2026, 3, 28, 16, 30, 0), Status = "AVAILABLE", CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+                 new Showtime { ShowtimeId = "ST026", MovieId = "MOV004", RoomId = "R021", StartTime = new DateTime(2026, 3, 28, 15, 0, 0), EndTime = new DateTime(2026, 3, 28, 17, 0, 0), Status = "AVAILABLE", CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+                 new Showtime { ShowtimeId = "ST027", MovieId = "MOV009", RoomId = "R026", StartTime = new DateTime(2026, 3, 28, 18, 0, 0), EndTime = new DateTime(2026, 3, 28, 21, 0, 0), Status = "AVAILABLE", CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+                 new Showtime { ShowtimeId = "ST028", MovieId = "MOV010", RoomId = "R001", StartTime = new DateTime(2026, 3, 28, 19, 0, 0), EndTime = new DateTime(2026, 3, 28, 21, 30, 0), Status = "AVAILABLE", CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+                 
+                 // March 29
+                 new Showtime { ShowtimeId = "ST029", MovieId = "MOV001", RoomId = "R002", StartTime = new DateTime(2026, 3, 29, 09, 0, 0), EndTime = new DateTime(2026, 3, 29, 12, 0, 0), Status = "AVAILABLE", CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+                 new Showtime { ShowtimeId = "ST030", MovieId = "MOV002", RoomId = "R007", StartTime = new DateTime(2026, 3, 29, 10, 0, 0), EndTime = new DateTime(2026, 3, 29, 12, 30, 0), Status = "AVAILABLE", CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+                 new Showtime { ShowtimeId = "ST031", MovieId = "MOV003", RoomId = "R017", StartTime = new DateTime(2026, 3, 29, 13, 0, 0), EndTime = new DateTime(2026, 3, 29, 15, 30, 0), Status = "AVAILABLE", CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+                 new Showtime { ShowtimeId = "ST101", MovieId = "MOV001", RoomId = "R031", StartTime = new DateTime(2026, 6, 22, 10, 0, 0), EndTime = new DateTime(2026, 6, 22, 12, 30, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+                  new Showtime { ShowtimeId = "ST102", MovieId = "MOV001", RoomId = "R032", StartTime = new DateTime(2026, 6, 22, 14, 0, 0), EndTime = new DateTime(2026, 6, 22, 16, 30, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+                  new Showtime { ShowtimeId = "ST103", MovieId = "MOV001", RoomId = "R033", StartTime = new DateTime(2026, 6, 22, 18, 0, 0), EndTime = new DateTime(2026, 6, 22, 20, 30, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+                  new Showtime { ShowtimeId = "ST104", MovieId = "MOV001", RoomId = "R034", StartTime = new DateTime(2026, 6, 22, 15, 0, 0), EndTime = new DateTime(2026, 6, 22, 17, 30, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) }
             );
 
             modelBuilder.Entity<TicketType>().HasData(
@@ -1336,14 +1430,28 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
                     Price = 170000
                 },
 
-                new ShowtimeTicketType
-                {
-                    ShowtimeTicketTypeId = "STT014",
-                    ShowtimeId = "ST014",
-                    TicketTypeId = "TT003",
-                    Price = 220000
-                }
-
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT014", ShowtimeId = "ST014", TicketTypeId = "TT003", Price = 220000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT015", ShowtimeId = "ST015", TicketTypeId = "TT001", Price = 120000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT016", ShowtimeId = "ST016", TicketTypeId = "TT001", Price = 120000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT017", ShowtimeId = "ST017", TicketTypeId = "TT001", Price = 140000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT018", ShowtimeId = "ST018", TicketTypeId = "TT001", Price = 120000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT019", ShowtimeId = "ST019", TicketTypeId = "TT001", Price = 150000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT020", ShowtimeId = "ST020", TicketTypeId = "TT001", Price = 120000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT021", ShowtimeId = "ST021", TicketTypeId = "TT001", Price = 120000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT022", ShowtimeId = "ST022", TicketTypeId = "TT001", Price = 130000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT023", ShowtimeId = "ST023", TicketTypeId = "TT001", Price = 110000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT024", ShowtimeId = "ST024", TicketTypeId = "TT001", Price = 120000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT025", ShowtimeId = "ST025", TicketTypeId = "TT001", Price = 125000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT026", ShowtimeId = "ST026", TicketTypeId = "TT001", Price = 120000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT027", ShowtimeId = "ST027", TicketTypeId = "TT001", Price = 180000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT028", ShowtimeId = "ST028", TicketTypeId = "TT001", Price = 120000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT029", ShowtimeId = "ST029", TicketTypeId = "TT001", Price = 120000 },
+                new ShowtimeTicketType { ShowtimeTicketTypeId = "STT030", ShowtimeId = "ST030", TicketTypeId = "TT001", Price = 120000 },
+                 new ShowtimeTicketType { ShowtimeTicketTypeId = "STT031", ShowtimeId = "ST031", TicketTypeId = "TT001", Price = 120000 },
+                 new ShowtimeTicketType { ShowtimeTicketTypeId = "STT101", ShowtimeId = "ST101", TicketTypeId = "TT001", Price = 80000 },
+                 new ShowtimeTicketType { ShowtimeTicketTypeId = "STT102", ShowtimeId = "ST102", TicketTypeId = "TT001", Price = 80000 },
+                 new ShowtimeTicketType { ShowtimeTicketTypeId = "STT103", ShowtimeId = "ST103", TicketTypeId = "TT001", Price = 80000 },
+                 new ShowtimeTicketType { ShowtimeTicketTypeId = "STT104", ShowtimeId = "ST104", TicketTypeId = "TT001", Price = 80000 }
             );
             modelBuilder.Entity<FoodCombo>().HasData(
 
@@ -1398,11 +1506,11 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
             var seats = new List<Seat>();
 
             var rows = new[] { "A", "B", "C", "D", "E", "F", "G", "H" };
-            var rooms = new[] { "R001", "R002", "R003", "R004", "R005" };
+            var roomsList = Enumerable.Range(1, 34).Select(i => $"R{i:D3}").ToArray();
 
             int id = 1;
 
-            foreach (var room in rooms)
+            foreach (var room in roomsList)
             {
                 foreach (var row in rows)
                 {
@@ -1557,6 +1665,26 @@ new Booking
     TotalAmount = 250000,
     Status = "CONFIRMED",
     CreatedAt = new DateTime(2026, 3, 25, 18, 59, 03)
+},
+new Booking
+{
+    BookingId = "BK405",
+    UserId = "USR002",
+    ShowtimeId = "ST015",
+    TotalAmount = 120000,
+    Status = "BOOKED",
+    CreatedAt = new DateTime(2026, 3, 26, 10, 0, 0),
+    OrderCode = 405001
+},
+new Booking
+{
+    BookingId = "BK406",
+    UserId = "USR002",
+    ShowtimeId = "ST017",
+    TotalAmount = 240000,
+    Status = "BOOKED",
+    CreatedAt = new DateTime(2026, 3, 27, 15, 30, 0),
+    OrderCode = 406001
 }
 
 );

@@ -1,14 +1,16 @@
-﻿using Movie_Ticket_Booking_Backend.Domain.Cinemas;
+using Movie_Ticket_Booking_Backend.Domain.Cinemas;
 using Movie_Ticket_Booking_Backend.DTOs.Cinema;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Cinemas;
 
 public class CinemaService : ICinemaService
 {
     private readonly ICinemaRepository _cinemaRepository;
+    private readonly IFavoriteCinemaRepository _favoriteRepository;
 
-    public CinemaService(ICinemaRepository cinemaRepository)
+    public CinemaService(ICinemaRepository cinemaRepository, IFavoriteCinemaRepository favoriteRepository)
     {
         _cinemaRepository = cinemaRepository;
+        _favoriteRepository = favoriteRepository;
     }
 
     public async Task<CinemaDto> CreateCinema(CreateCinemaRequest request)
@@ -50,9 +52,17 @@ public class CinemaService : ICinemaService
         return true;
     }
 
-    public async Task<CinemaDto?> GetCinemaById(string id)
+    public async Task<CinemaDto?> GetCinemaById(string id, string? userId = null)
     {
         var cinema = await _cinemaRepository.GetCinemaById(id);
+        if (cinema == null) return null;
+
+        var isFavorite = false;
+        if (!string.IsNullOrEmpty(userId))
+        {
+            var fav = await _favoriteRepository.GetFavorite(userId, id);
+            isFavorite = fav != null;
+        }
 
         return new CinemaDto
         {
@@ -61,12 +71,20 @@ public class CinemaService : ICinemaService
             Location = cinema.Location,
             Rating = cinema.Rating,
             Hotline = cinema.Hotline,
+            IsFavorite = isFavorite
         };
     }
 
-    public async Task<List<CinemaDto>> GetCinemas()
+    public async Task<List<CinemaDto>> GetCinemas(string? userId = null)
     {
         var cinemas = await _cinemaRepository.GetCinemas();
+        var favorites = new HashSet<string>();
+
+        if (!string.IsNullOrEmpty(userId))
+        {
+            var favList = await _favoriteRepository.GetFavoriteCinemas(userId);
+            favorites = favList.Select(f => f.CinemaId).ToHashSet();
+        }
 
         return cinemas.Select(x => new CinemaDto
         {
@@ -75,6 +93,7 @@ public class CinemaService : ICinemaService
             Location = x.Location,
             Rating = x.Rating,
             Hotline = x.Hotline,
+            IsFavorite = favorites.Contains(x.CinemaId)
         }).ToList();
     }
 

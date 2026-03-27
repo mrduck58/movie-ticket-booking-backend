@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Movie_Ticket_Booking_Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -461,6 +461,7 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                     ShowtimeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     TotalAmount = table.Column<double>(type: "float", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OrderCode = table.Column<long>(type: "bigint", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -789,10 +790,10 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "FoodComboId", "CreatedDate", "Description", "ImageUrl", "Name", "Price", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { "FC001", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1 Large Popcorn + 1 Coke", "https://example.com/images/combo_popcorn_coke.jpg", "Popcorn + Coke", 75000.0, "ACTIVE", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { "FC002", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1 Large Popcorn + 2 Drinks", "https://example.com/images/combo_couple.jpg", "Couple Combo", 120000.0, "ACTIVE", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { "FC003", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2 Large Popcorn + 4 Drinks", "https://example.com/images/combo_family.jpg", "Family Combo", 200000.0, "ACTIVE", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { "FC004", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nachos + 1 Coke", "https://example.com/images/combo_nachos.jpg", "Nachos Combo", 85000.0, "ACTIVE", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { "FC001", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1 Large Popcorn + 1 Coke", "https://www.bhdstar.vn/wp-content/uploads/2025/06/SINGLE-COMBO-1-1.jpg", "Popcorn + Coke", 75000.0, "ACTIVE", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "FC002", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1 Large Popcorn + 2 Drinks", "https://www.bhdstar.vn/wp-content/uploads/2025/06/COUPLE-COMBO-1-1.jpg", "Couple Combo", 120000.0, "ACTIVE", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "FC003", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2 Large Popcorn + 4 Drinks", "https://www.bhdstar.vn/wp-content/uploads/2025/05/TRA-3-VI-2-1.jpg", "Family Combo", 200000.0, "ACTIVE", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { "FC004", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nachos + 1 Coke", "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56", "Nachos Combo", 85000.0, "ACTIVE", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -849,9 +850,9 @@ namespace Movie_Ticket_Booking_Backend.Migrations
                 columns: new[] { "PaymentMethodId", "CreatedDate", "ImageUrl", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { "PM001", new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5041), "https://example.com/creditcard.png", "Credit Card", "ACTIVE", new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5051) },
-                    { "PM002", new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5053), "https://example.com/momo.png", "Momo", "ACTIVE", new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5054) },
-                    { "PM003", new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5056), "https://example.com/zalopay.png", "ZaloPay", "ACTIVE", new DateTime(2026, 3, 26, 0, 19, 44, 64, DateTimeKind.Local).AddTicks(5057) }
+                    { "PM001", new DateTime(2026, 3, 27, 23, 46, 24, 291, DateTimeKind.Local).AddTicks(4776), "https://example.com/creditcard.png", "Credit Card", "ACTIVE", new DateTime(2026, 3, 27, 23, 46, 24, 291, DateTimeKind.Local).AddTicks(4785) },
+                    { "PM002", new DateTime(2026, 3, 27, 23, 46, 24, 291, DateTimeKind.Local).AddTicks(4787), "https://example.com/momo.png", "Momo", "ACTIVE", new DateTime(2026, 3, 27, 23, 46, 24, 291, DateTimeKind.Local).AddTicks(4788) },
+                    { "PM003", new DateTime(2026, 3, 27, 23, 46, 24, 291, DateTimeKind.Local).AddTicks(4790), "https://example.com/zalopay.png", "ZaloPay", "ACTIVE", new DateTime(2026, 3, 27, 23, 46, 24, 291, DateTimeKind.Local).AddTicks(4791) }
                 });
 
             migrationBuilder.InsertData(
@@ -1451,14 +1452,14 @@ namespace Movie_Ticket_Booking_Backend.Migrations
 
             migrationBuilder.InsertData(
                 table: "Bookings",
-                columns: new[] { "BookingId", "CreatedAt", "ShowtimeId", "Status", "TotalAmount", "UserId" },
+                columns: new[] { "BookingId", "CreatedAt", "OrderCode", "ShowtimeId", "Status", "TotalAmount", "UserId" },
                 values: new object[,]
                 {
-                    { "BK400", new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified), "ST001", "CONFIRMED", 200000.0, "USR002" },
-                    { "BK401", new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified), "ST002", "CONFIRMED", 300000.0, "USR002" },
-                    { "BK402", new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified), "ST003", "CONFIRMED", 150000.0, "USR002" },
-                    { "BK403", new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified), "ST004", "CONFIRMED", 400000.0, "USR002" },
-                    { "BK404", new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified), "ST005", "CONFIRMED", 250000.0, "USR002" }
+                    { "BK400", new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified), 0L, "ST001", "CONFIRMED", 200000.0, "USR002" },
+                    { "BK401", new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified), 0L, "ST002", "CONFIRMED", 300000.0, "USR002" },
+                    { "BK402", new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified), 0L, "ST003", "CONFIRMED", 150000.0, "USR002" },
+                    { "BK403", new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified), 0L, "ST004", "CONFIRMED", 400000.0, "USR002" },
+                    { "BK404", new DateTime(2026, 3, 25, 18, 59, 3, 0, DateTimeKind.Unspecified), 0L, "ST005", "CONFIRMED", 250000.0, "USR002" }
                 });
 
             migrationBuilder.InsertData(

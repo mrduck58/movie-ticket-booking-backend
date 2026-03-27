@@ -1,4 +1,4 @@
-﻿namespace Movie_Ticket_Booking_Backend.DTOs.Ticket
+namespace Movie_Ticket_Booking_Backend.DTOs.Ticket
 {
     public class TicketItemDto
     {
@@ -12,6 +12,6 @@
         public double Duration { get; set; }
         public double Rating { get; set; }
         public List<string> Genres { get; set; }
-        public string QrData { get; set; }
+        public List<string> QrDatas { get; set; }
     }
 }
