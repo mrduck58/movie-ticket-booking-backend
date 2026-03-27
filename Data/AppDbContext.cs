@@ -1196,8 +1196,100 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
                     Status = "AVAILABLE",
                     CreatedAt = new DateTime(2026, 1, 1),
                     UpdatedAt = new DateTime(2026, 1, 1)
-                }
+                },
+                // ================= MOV002 =================
+new Showtime
+{
+    ShowtimeId = "ST101",
+    MovieId = "MOV002",
+    RoomId = "R001",
+    StartTime = new DateTime(2026, 6, 23, 10, 0, 0),
+    EndTime = new DateTime(2026, 6, 23, 12, 0, 0),
+    Status = "AVAILABLE",
+    CreatedAt = new DateTime(2026, 1, 1),
+    UpdatedAt = new DateTime(2026, 1, 1)
+},
 
+new Showtime
+{
+    ShowtimeId = "ST102",
+    MovieId = "MOV002",
+    RoomId = "R002",
+    StartTime = new DateTime(2026, 6, 23, 13, 0, 0),
+    EndTime = new DateTime(2026, 6, 23, 15, 0, 0),
+    Status = "AVAILABLE",
+    CreatedAt = new DateTime(2026, 1, 1),
+    UpdatedAt = new DateTime(2026, 1, 1)
+},
+
+// ================= MOV003 =================
+new Showtime
+{
+    ShowtimeId = "ST103",
+    MovieId = "MOV003",
+    RoomId = "R003",
+    StartTime = new DateTime(2026, 6, 23, 10, 0, 0),
+    EndTime = new DateTime(2026, 6, 23, 12, 0, 0),
+    Status = "AVAILABLE",
+    CreatedAt = new DateTime(2026, 1, 1),
+    UpdatedAt = new DateTime(2026, 1, 1)
+},
+
+// ================= MOV004 → MOV010 =================
+new Showtime { ShowtimeId = "ST104", MovieId = "MOV004", RoomId = "R001", StartTime = new DateTime(2026, 6, 23, 10, 0, 0), EndTime = new DateTime(2026, 6, 23, 12, 0, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+new Showtime { ShowtimeId = "ST105", MovieId = "MOV005", RoomId = "R002", StartTime = new DateTime(2026, 6, 23, 10, 0, 0), EndTime = new DateTime(2026, 6, 23, 12, 0, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+new Showtime { ShowtimeId = "ST106", MovieId = "MOV006", RoomId = "R003", StartTime = new DateTime(2026, 6, 23, 10, 0, 0), EndTime = new DateTime(2026, 6, 23, 12, 0, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+new Showtime { ShowtimeId = "ST107", MovieId = "MOV007", RoomId = "R001", StartTime = new DateTime(2026, 6, 23, 13, 0, 0), EndTime = new DateTime(2026, 6, 23, 15, 0, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+new Showtime { ShowtimeId = "ST108", MovieId = "MOV008", RoomId = "R002", StartTime = new DateTime(2026, 6, 23, 13, 0, 0), EndTime = new DateTime(2026, 6, 23, 15, 0, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+new Showtime { ShowtimeId = "ST109", MovieId = "MOV009", RoomId = "R003", StartTime = new DateTime(2026, 6, 23, 13, 0, 0), EndTime = new DateTime(2026, 6, 23, 15, 0, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+new Showtime { ShowtimeId = "ST110", MovieId = "MOV010", RoomId = "R001", StartTime = new DateTime(2026, 6, 23, 16, 0, 0), EndTime = new DateTime(2026, 6, 23, 18, 0, 0), Status = "AVAILABLE", CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1) },
+// ===== MOV001 - C001 =====
+new Showtime
+{
+    ShowtimeId = "ST201",
+    MovieId = "MOV001",
+    RoomId = "R001", // C001
+    StartTime = new DateTime(2026, 6, 25, 10, 0, 0),
+    EndTime = new DateTime(2026, 6, 25, 12, 0, 0),
+    Status = "AVAILABLE",
+    CreatedAt = DateTime.Now,
+    UpdatedAt = DateTime.Now
+},
+
+// ===== MOV001 - C002 =====
+new Showtime
+{
+    ShowtimeId = "ST202",
+    MovieId = "MOV001",
+    RoomId = "R006", // C002
+    StartTime = new DateTime(2026, 6, 25, 13, 0, 0),
+    EndTime = new DateTime(2026, 6, 25, 15, 0, 0),
+    Status = "AVAILABLE",
+    CreatedAt = DateTime.Now,
+    UpdatedAt = DateTime.Now
+},
+
+// ===== MOV001 - C003 =====
+new Showtime
+{
+    ShowtimeId = "ST203",
+    MovieId = "MOV001",
+    RoomId = "R011", // C003
+    StartTime = new DateTime(2026, 6, 25, 16, 0, 0),
+    EndTime = new DateTime(2026, 6, 25, 18, 0, 0),
+    Status = "AVAILABLE",
+    CreatedAt = DateTime.Now,
+    UpdatedAt = DateTime.Now
+},
+new Showtime { ShowtimeId = "ST204", MovieId = "MOV002", RoomId = "R001", StartTime = new DateTime(2026, 6, 25, 10, 0, 0), EndTime = new DateTime(2026, 6, 25, 12, 0, 0), Status = "AVAILABLE", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
+new Showtime { ShowtimeId = "ST205", MovieId = "MOV003", RoomId = "R006", StartTime = new DateTime(2026, 6, 25, 12, 30, 0), EndTime = new DateTime(2026, 6, 25, 14, 30, 0), Status = "AVAILABLE", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
+new Showtime { ShowtimeId = "ST206", MovieId = "MOV004", RoomId = "R011", StartTime = new DateTime(2026, 6, 25, 15, 0, 0), EndTime = new DateTime(2026, 6, 25, 17, 0, 0), Status = "AVAILABLE", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
+new Showtime { ShowtimeId = "ST207", MovieId = "MOV005", RoomId = "R002", StartTime = new DateTime(2026, 6, 25, 10, 0, 0), EndTime = new DateTime(2026, 6, 25, 12, 0, 0), Status = "AVAILABLE", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
+new Showtime { ShowtimeId = "ST208", MovieId = "MOV006", RoomId = "R007", StartTime = new DateTime(2026, 6, 25, 13, 0, 0), EndTime = new DateTime(2026, 6, 25, 15, 0, 0), Status = "AVAILABLE", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
+new Showtime { ShowtimeId = "ST209", MovieId = "MOV007", RoomId = "R012", StartTime = new DateTime(2026, 6, 25, 16, 0, 0), EndTime = new DateTime(2026, 6, 25, 18, 0, 0), Status = "AVAILABLE", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
+new Showtime { ShowtimeId = "ST210", MovieId = "MOV008", RoomId = "R003", StartTime = new DateTime(2026, 6, 25, 10, 0, 0), EndTime = new DateTime(2026, 6, 25, 12, 0, 0), Status = "AVAILABLE", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
+new Showtime { ShowtimeId = "ST211", MovieId = "MOV009", RoomId = "R008", StartTime = new DateTime(2026, 6, 25, 13, 0, 0), EndTime = new DateTime(2026, 6, 25, 15, 0, 0), Status = "AVAILABLE", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now },
+new Showtime { ShowtimeId = "ST212", MovieId = "MOV010", RoomId = "R013", StartTime = new DateTime(2026, 6, 25, 16, 0, 0), EndTime = new DateTime(2026, 6, 25, 18, 0, 0), Status = "AVAILABLE", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now }
             );
 
             modelBuilder.Entity<TicketType>().HasData(
@@ -1342,8 +1434,31 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
                     ShowtimeId = "ST014",
                     TicketTypeId = "TT003",
                     Price = 220000
-                }
+                },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT101", ShowtimeId = "ST101", TicketTypeId = "TT001", Price = 120000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT102", ShowtimeId = "ST102", TicketTypeId = "TT002", Price = 170000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT103", ShowtimeId = "ST103", TicketTypeId = "TT003", Price = 220000 },
 
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT104", ShowtimeId = "ST104", TicketTypeId = "TT001", Price = 120000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT105", ShowtimeId = "ST105", TicketTypeId = "TT002", Price = 170000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT106", ShowtimeId = "ST106", TicketTypeId = "TT003", Price = 220000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT107", ShowtimeId = "ST107", TicketTypeId = "TT001", Price = 120000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT108", ShowtimeId = "ST108", TicketTypeId = "TT002", Price = 170000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT109", ShowtimeId = "ST109", TicketTypeId = "TT003", Price = 220000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT110", ShowtimeId = "ST110", TicketTypeId = "TT001", Price = 120000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT201", ShowtimeId = "ST201", TicketTypeId = "TT001", Price = 120000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT202", ShowtimeId = "ST202", TicketTypeId = "TT001", Price = 120000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT203", ShowtimeId = "ST203", TicketTypeId = "TT001", Price = 120000 },
+
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT204", ShowtimeId = "ST204", TicketTypeId = "TT001", Price = 120000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT205", ShowtimeId = "ST205", TicketTypeId = "TT001", Price = 120000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT206", ShowtimeId = "ST206", TicketTypeId = "TT001", Price = 120000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT207", ShowtimeId = "ST207", TicketTypeId = "TT001", Price = 120000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT208", ShowtimeId = "ST208", TicketTypeId = "TT001", Price = 120000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT209", ShowtimeId = "ST209", TicketTypeId = "TT001", Price = 120000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT210", ShowtimeId = "ST210", TicketTypeId = "TT001", Price = 120000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT211", ShowtimeId = "ST211", TicketTypeId = "TT001", Price = 120000 },
+new ShowtimeTicketType { ShowtimeTicketTypeId = "STT212", ShowtimeId = "ST212", TicketTypeId = "TT001", Price = 120000 }
             );
             modelBuilder.Entity<FoodCombo>().HasData(
 
@@ -1354,7 +1469,7 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
          Description = "1 Large Popcorn + 1 Coke",
          Status = "ACTIVE",
          Price = 75000,
-         ImageUrl = "https://www.bhdstar.vn/wp-content/uploads/2025/06/SINGLE-COMBO-1-1.jpg",
+         ImageUrl = "https://image.tmdb.org/t/p/w500/wWt4JYXTg5Wr3xBW2phBrMKgp3x.jpg",
          CreatedDate = new DateTime(2024, 1, 1),
          UpdatedDate = new DateTime(2024, 1, 1)
      },
@@ -1366,7 +1481,7 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
          Description = "1 Large Popcorn + 2 Drinks",
          Status = "ACTIVE",
          Price = 120000,
-         ImageUrl = "https://www.bhdstar.vn/wp-content/uploads/2025/06/COUPLE-COMBO-1-1.jpg",
+         ImageUrl = "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
          CreatedDate = new DateTime(2024, 1, 1),
          UpdatedDate = new DateTime(2024, 1, 1)
      },
@@ -1378,7 +1493,7 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
          Description = "2 Large Popcorn + 4 Drinks",
          Status = "ACTIVE",
          Price = 200000,
-         ImageUrl = "https://www.bhdstar.vn/wp-content/uploads/2025/05/TRA-3-VI-2-1.jpg",
+         ImageUrl = "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
          CreatedDate = new DateTime(2024, 1, 1),
          UpdatedDate = new DateTime(2024, 1, 1)
      },
@@ -1390,7 +1505,7 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
          Description = "Nachos + 1 Coke",
          Status = "ACTIVE",
          Price = 85000,
-         ImageUrl = "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56",
+         ImageUrl = "https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
          CreatedDate = new DateTime(2024, 1, 1),
          UpdatedDate = new DateTime(2024, 1, 1)
      }
