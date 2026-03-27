@@ -1,6 +1,7 @@
 ﻿ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Movie_Ticket_Booking_Backend.Domain.Blogs;
+using Movie_Ticket_Booking_Backend.Domain.Notificaions;
 using Movie_Ticket_Booking_Backend.DTOs.Blog;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.BlogPost;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.BlogPost;
@@ -61,6 +62,23 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.BlogPost
 
                 post.Likes += 1;
                 isLiked = true;
+
+                // ✅ TẠO NOTIFICATION KHI LIKE
+                if (post.UserId != userId) // tránh tự like tự notify
+                {
+                    var notification = new Notification
+                    {
+                        NotificationId = Guid.NewGuid().ToString(),
+                        UserId = post.UserId, // người nhận thông báo
+                        BlogPostId = postId,
+                        Type = "LIKE_POST",
+                        Message = "Your post has been liked",
+                        IsRead = false,
+                        CreatedAt = DateTime.UtcNow
+                    };
+
+                    await _blogRepository.AddAsync(notification);
+                }
             }
 
             await _blogRepository.UpdatePostAsync(post);
