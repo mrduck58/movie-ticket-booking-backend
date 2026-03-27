@@ -1,4 +1,4 @@
-﻿using Movie_Ticket_Booking_Backend.Domain.Blogs;
+using Movie_Ticket_Booking_Backend.Domain.Blogs;
 using Movie_Ticket_Booking_Backend.Domain.Bookings;
 using Movie_Ticket_Booking_Backend.Domain.Cinemas;
 using Movie_Ticket_Booking_Backend.Domain.Movies;
@@ -49,5 +49,6 @@ namespace Movie_Ticket_Booking_Backend.Domain.Users
         public ICollection<Notification> Notifications { get; set; }
         public ICollection<PostLike> PostLikes { get; set; }
         public ICollection<UserVoucher> UserVouchers { get; set; }
+        public ICollection<FavoriteCinema> FavoriteCinemas { get; set; }
     }
 }

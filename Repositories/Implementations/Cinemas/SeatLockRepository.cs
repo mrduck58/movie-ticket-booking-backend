@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Movie_Ticket_Booking_Backend.Data;
 using Movie_Ticket_Booking_Backend.Domain.Bookings;
 using Movie_Ticket_Booking_Backend.Domain.Cinemas;
@@ -26,10 +26,10 @@ public class SeatLockRepository : ISeatLockRepository
         await _context.SeatLocks.AddAsync(seatLock);
     }
 
-    public async Task RemoveLock(string seatId)
+    public async Task RemoveLock(string seatId, string showtimeId)
     {
         var lockSeat = await _context.SeatLocks
-            .FirstOrDefaultAsync(x => x.SeatId == seatId);
+            .FirstOrDefaultAsync(x => x.SeatId == seatId && x.ShowtimeId == showtimeId);
 
         if (lockSeat != null)
             _context.SeatLocks.Remove(lockSeat);

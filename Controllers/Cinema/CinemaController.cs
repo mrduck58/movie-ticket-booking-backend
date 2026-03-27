@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Movie_Ticket_Booking_Backend.Domain.Movies;
 
 [ApiController]
@@ -15,7 +15,8 @@ public class CinemaController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetCinemas()
     {
-        var cinemas = await _cinemaService.GetCinemas();
+        var userId = User.FindFirst("id")?.Value ?? User.FindFirst("UserId")?.Value;
+        var cinemas = await _cinemaService.GetCinemas(userId);
 
         return Ok(cinemas);
     }
@@ -23,7 +24,8 @@ public class CinemaController : ControllerBase
     [HttpGet("{cinemaId}")]
     public async Task<IActionResult> GetCinemaById(string cinemaId)
     {
-        var cinema = await _cinemaService.GetCinemaById(cinemaId);
+        var userId = User.FindFirst("id")?.Value ?? User.FindFirst("UserId")?.Value;
+        var cinema = await _cinemaService.GetCinemaById(cinemaId, userId);
 
         if (cinema == null)
             return NotFound();

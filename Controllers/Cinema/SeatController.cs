@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Movie_Ticket_Booking_Backend.DTOs.Seat;
 
 [ApiController]
@@ -22,7 +22,8 @@ public class SeatController : ControllerBase
     [HttpGet("showtime/{showtimeId}")]
     public async Task<IActionResult> GetSeatMap(string showtimeId)
     {
-        var seats = await _seatService.GetSeatMapAsync(showtimeId);
+        var userId = User.FindFirst("id")?.Value ?? User.FindFirst("UserId")?.Value;
+        var seats = await _seatService.GetSeatMapAsync(showtimeId, userId);
         return Ok(seats);
     }
 

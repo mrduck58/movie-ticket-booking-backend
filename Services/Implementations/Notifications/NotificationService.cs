@@ -1,4 +1,4 @@
-﻿using Movie_Ticket_Booking_Backend.Domain.Notificaions;
+using Movie_Ticket_Booking_Backend.Domain.Notificaions;
 using Movie_Ticket_Booking_Backend.DTOs.Notifications;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Notifications;
 using Movie_Ticket_Booking_Backend.Services.Interfaces.Notifications;
@@ -24,7 +24,8 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.Notifications
                 Message = n.Message,
                 IsRead = n.IsRead,
                 CreatedAt = n.CreatedAt,
-                Type = n.Type
+                Type = n.Type,
+                RelatedId = n.BookingId
             }).ToList();
         }
 
@@ -72,6 +73,7 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.Notifications
                 BlogPostId = dto.BlogPostId,
                 CommentId = dto.CommentId,
                 BookingSeatId = dto.BookingSeatId,
+                BookingId = dto.BookingId,
                 Message = dto.Message
             };
 

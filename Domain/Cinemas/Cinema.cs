@@ -1,4 +1,4 @@
-﻿namespace Movie_Ticket_Booking_Backend.Domain.Cinemas
+namespace Movie_Ticket_Booking_Backend.Domain.Cinemas
 {
     public class Cinema
     {
@@ -11,5 +11,6 @@
         public DateTime UpdatedAt { get; set; }
 
         public ICollection<Room> Rooms { get; set; }
+        public ICollection<FavoriteCinema> FavoriteCinemas { get; set; }
     }
 }

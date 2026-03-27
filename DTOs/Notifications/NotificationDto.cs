@@ -1,4 +1,4 @@
-﻿namespace Movie_Ticket_Booking_Backend.DTOs.Notifications
+namespace Movie_Ticket_Booking_Backend.DTOs.Notifications
 {
     public class NotificationDto
     {
@@ -7,5 +7,6 @@
         public bool IsRead { get; set; }
         public DateTime CreatedAt { get; set; }
         public string Type { get; set; }
+        public string? RelatedId { get; set; }
     }
 }

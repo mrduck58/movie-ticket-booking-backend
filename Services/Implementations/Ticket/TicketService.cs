@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Movie_Ticket_Booking_Backend.Data;
 using Movie_Ticket_Booking_Backend.DTOs.Ticket;
 using Movie_Ticket_Booking_Backend.Repositories.Interfaces.Ticket;
@@ -52,7 +52,9 @@ namespace Movie_Ticket_Booking_Backend.Services.Implementations.Ticket
                     Duration = movie.Duration,
                     Rating = movie.Rating,
                     Genres = genres,
-                    QrData = booking.BookingSeats.FirstOrDefault()?.QrCode
+                    QrDatas = booking.BookingSeats
+                        .Select(bs => bs.QrCode)
+                        .ToList()
                 });
             }
 

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Movie_Ticket_Booking_Backend.Data;
 using Movie_Ticket_Booking_Backend.Domain.Movies;
 using Movie_Ticket_Booking_Backend.DTOs.Movie;
@@ -40,6 +40,7 @@ public class MovieService : IMovieService
         {
             //  lấy poster theo từng movie
             var posters = await _posterRepository.GetPostersByMovieId(x.MovieId);
+            var genres = await _movieGenreRepository.GetGenresByMovieId(x.MovieId);
 
             result.Add(new MovieDto
             {
@@ -50,9 +51,13 @@ public class MovieService : IMovieService
                 Rating = x.Rating,
                 Status = x.Status,
                 TrailerUrl = x.TrailerUrl,
-
-
-                PosterUrl = posters.FirstOrDefault()?.ImageUrl
+                Director = x.Director,
+                PosterUrl = posters.FirstOrDefault()?.ImageUrl,
+                Genres = genres.Select(g => new GenreDto
+                {
+                    GenreId = g.GenreId,
+                    Name = g.Genre.Name
+                }).ToList()
             });
         }
 

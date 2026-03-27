@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Movie_Ticket_Booking_Backend.DTOs.Showtime;
 
 [ApiController]
@@ -34,9 +34,34 @@ public class ShowtimeController : ControllerBase
     [HttpGet("{showtimeId}/seats")]
     public async Task<IActionResult> GetSeats(string showtimeId)
     {
-        var result = await _seatService.GetSeatMapAsync(showtimeId);
+        var userId = User.FindFirst("id")?.Value ?? User.FindFirst("UserId")?.Value;
+        var result = await _seatService.GetSeatMapAsync(showtimeId, userId);
 
         return Ok(result);
+    }
+
+    public class LockSeatBody
+    {
+        public List<string> SeatIds { get; set; }
+    }
+
+    [HttpPost("{showtimeId}/lock-seats")]
+    public async Task<IActionResult> LockSeats(string showtimeId, [FromBody] LockSeatBody body, [FromServices] IBookingService bookingService)
+    {
+        var userId = User.FindFirst("id")?.Value ?? User.FindFirst("UserId")?.Value ?? "mock-user";
+
+        var lockRequest = new Movie_Ticket_Booking_Backend.DTOs.Booking.LockSeatRequest
+        {
+            ShowtimeId = showtimeId,
+            SeatIds = body.SeatIds
+        };
+
+        var success = await bookingService.LockSeats(userId, lockRequest);
+
+        if (!success)
+            return BadRequest(new { message = "Ghế đã có người chọn" });
+
+        return Ok(new { message = "Khóa ghế thành công" });
     }
 
     //[HttpGet("movie/{movieId}")]

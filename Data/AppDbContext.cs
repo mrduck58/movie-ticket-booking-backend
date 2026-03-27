@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Movie_Ticket_Booking_Backend.Domain.Blogs;
 using Movie_Ticket_Booking_Backend.Domain.Bookings;
 using Movie_Ticket_Booking_Backend.Domain.Cinemas;
@@ -38,6 +38,7 @@ namespace Movie_Ticket_Booking_Backend.Data
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Seat> Seats { get; set; }
         public DbSet<SeatLock> SeatLocks { get; set; }
+        public DbSet<FavoriteCinema> FavoriteCinemas { get; set; }
 
         //Showtime and ticket related tables
         public DbSet<Showtime> Showtimes { get; set; }
@@ -161,6 +162,19 @@ namespace Movie_Ticket_Booking_Backend.Data
                 .HasOne(sl => sl.Showtime)
                 .WithMany(st => st.SeatLocks)
                 .HasForeignKey(sl => sl.ShowtimeId);
+
+            // ========================
+            // FAVORITE CINEMA
+            // ========================
+            modelBuilder.Entity<FavoriteCinema>()
+                .HasOne(fc => fc.User)
+                .WithMany(u => u.FavoriteCinemas)
+                .HasForeignKey(fc => fc.UserId);
+
+            modelBuilder.Entity<FavoriteCinema>()
+                .HasOne(fc => fc.Cinema)
+                .WithMany(c => c.FavoriteCinemas)
+                .HasForeignKey(fc => fc.CinemaId);
 
             // ========================
             // SHOWTIME
@@ -378,8 +392,7 @@ namespace Movie_Ticket_Booking_Backend.Data
             // Indexes and constraints
             // ========================
             modelBuilder.Entity<BookingSeat>()
-                .HasIndex(bs => new { bs.SeatId, bs.ShowtimeTicketTypeId })
-                .IsUnique();
+                .HasIndex(bs => new { bs.SeatId, bs.ShowtimeTicketTypeId });
             // ========================
             // SEED MOVIES
             // ========================
@@ -910,8 +923,45 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
                      Hotline = "19002099",
                      CreatedAt = new DateTime(2024, 1, 1),
                      UpdatedAt = new DateTime(2024, 1, 1)
-                 }
-             );
+                 },
+
+                 new Cinema
+                 {
+                     CinemaId = "C004",
+                     Name = "Platinum Cineplex Royal City",
+                     Location = "Ha Noi",
+                     Rating = "4.7",
+                     Hotline = "02466649019",
+                     CreatedAt = new DateTime(2024, 1, 1),
+                     UpdatedAt = new DateTime(2024, 1, 1)
+                 },
+
+                 new Cinema
+                 {
+                     CinemaId = "C005",
+                     Name = "Beta Cinemas Dan Phuong",
+                     Location = "Ha Noi",
+                     Rating = "4.2",
+                     Hotline = "1800646420",
+                     CreatedAt = new DateTime(2024, 1, 1),
+                     UpdatedAt = new DateTime(2024, 1, 1)
+                 },
+
+                 new Cinema
+                 {
+                     CinemaId = "C006",
+                     Name = "Galaxy Cinema Mipec",
+                     Location = "Ha Noi",
+                     Rating = "4.3",
+                     Hotline = "19002224",
+                     CreatedAt = new DateTime(2024, 1, 1),
+                     UpdatedAt = new DateTime(2024, 1, 1)
+                 },
+                 new Cinema { CinemaId = "C007", Name = "National Cinema Center", Location = "Ha Noi", Rating = "4.1", Hotline = "02435141791", CreatedAt = new DateTime(2024, 1, 1), UpdatedAt = new DateTime(2024, 1, 1) },
+                 new Cinema { CinemaId = "C008", Name = "Galaxy Cinema Nguyen Du", Location = "Ho Chi Minh", Rating = "4.1", Hotline = "19002224", CreatedAt = new DateTime(2024, 1, 1), UpdatedAt = new DateTime(2024, 1, 1) },
+                 new Cinema { CinemaId = "C009", Name = "CGV Gigamall Thu Duc", Location = "Ho Chi Minh", Rating = "4.5", Hotline = "19006017", CreatedAt = new DateTime(2024, 1, 1), UpdatedAt = new DateTime(2024, 1, 1) },
+                 new Cinema { CinemaId = "C010", Name = "Lotte Cinema Cantavil", Location = "Ho Chi Minh", Rating = "4.2", Hotline = "02837402323", CreatedAt = new DateTime(2024, 1, 1), UpdatedAt = new DateTime(2024, 1, 1) }
+            );
             modelBuilder.Entity<Room>().HasData(
 
                new Room
@@ -1017,8 +1067,26 @@ new Poster { PosterId = "POS010", Title = "Top Gun Poster", ImageUrl = "https://
                    RoomId = "R015",
                    Name = "Auditorium 5",
                    CinemaId = "C003"
-               }
-
+               },
+                new Room { RoomId = "R016", Name = "Room 1", CinemaId = "C004" },
+                new Room { RoomId = "R017", Name = "Room 2", CinemaId = "C004" },
+                new Room { RoomId = "R018", Name = "Room 3", CinemaId = "C004" },
+                new Room { RoomId = "R019", Name = "Room 4", CinemaId = "C004" },
+                new Room { RoomId = "R020", Name = "Room 5", CinemaId = "C004" },
+                new Room { RoomId = "R021", Name = "Room 1", CinemaId = "C005" },
+                new Room { RoomId = "R022", Name = "Room 2", CinemaId = "C005" },
+                new Room { RoomId = "R023", Name = "Room 3", CinemaId = "C005" },
+                new Room { RoomId = "R024", Name = "Room 4", CinemaId = "C005" },
+                new Room { RoomId = "R025", Name = "Room 5", CinemaId = "C005" },
+                new Room { RoomId = "R026", Name = "Room 1", CinemaId = "C006" },
+                new Room { RoomId = "R027", Name = "Room 2", CinemaId = "C006" },
+                new Room { RoomId = "R028", Name = "Room 3", CinemaId = "C006" },
+                 new Room { RoomId = "R029", Name = "Room 4", CinemaId = "C006" },
+                 new Room { RoomId = "R030", Name = "Room 5", CinemaId = "C006" },
+                 new Room { RoomId = "R031", Name = "Room 1", CinemaId = "C007" },
+                 new Room { RoomId = "R032", Name = "Room 1", CinemaId = "C008" },
+                 new Room { RoomId = "R033", Name = "Room 1", CinemaId = "C009" },
+                 new Room { RoomId = "R034", Name = "Room 1", CinemaId = "C010" }
            );
 
             modelBuilder.Entity<Showtime>().HasData(
@@ -1513,11 +1581,11 @@ new ShowtimeTicketType { ShowtimeTicketTypeId = "STT212", ShowtimeId = "ST212", 
             var seats = new List<Seat>();
 
             var rows = new[] { "A", "B", "C", "D", "E", "F", "G", "H" };
-            var rooms = new[] { "R001", "R002", "R003", "R004", "R005" };
+            var roomsList = Enumerable.Range(1, 34).Select(i => $"R{i:D3}").ToArray();
 
             int id = 1;
 
-            foreach (var room in rooms)
+            foreach (var room in roomsList)
             {
                 foreach (var row in rows)
                 {
@@ -1672,6 +1740,26 @@ new Booking
     TotalAmount = 250000,
     Status = "CONFIRMED",
     CreatedAt = new DateTime(2026, 3, 25, 18, 59, 03)
+},
+new Booking
+{
+    BookingId = "BK405",
+    UserId = "USR002",
+    ShowtimeId = "ST015",
+    TotalAmount = 120000,
+    Status = "BOOKED",
+    CreatedAt = new DateTime(2026, 3, 26, 10, 0, 0),
+    OrderCode = 405001
+},
+new Booking
+{
+    BookingId = "BK406",
+    UserId = "USR002",
+    ShowtimeId = "ST017",
+    TotalAmount = 240000,
+    Status = "BOOKED",
+    CreatedAt = new DateTime(2026, 3, 27, 15, 30, 0),
+    OrderCode = 406001
 }
 
 );

@@ -1,4 +1,4 @@
-﻿namespace Movie_Ticket_Booking_Backend.DTOs.Notifications
+namespace Movie_Ticket_Booking_Backend.DTOs.Notifications
 {
     public class CreateNotificationDto
     {
@@ -9,6 +9,7 @@
         public string? BlogPostId { get; set; }
         public string? CommentId { get; set; }
         public string? BookingSeatId { get; set; }
+        public string? BookingId { get; set; }
 
         public string Message { get; set; }
     }
