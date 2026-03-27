@@ -54,9 +54,11 @@ public class CinemaRepository : ICinemaRepository
     public async Task<List<Movie>> GetMoviesByCinemaId(string cinemaId)
     {
         return await _context.Showtimes
-            .Where(s => s.Room.CinemaId == cinemaId)
-            .Select(s => s.Movie)
-            .Distinct() // Tránh lặp phim nếu phim đó có nhiều suất chiếu
-            .ToListAsync();
+        .Where(s => s.Room.CinemaId == cinemaId)
+        // Gọi Include TRƯỚC khi Select, thông qua navigation path
+        .Include(s => s.Movie.Posters)
+        .Select(s => s.Movie)
+        .Distinct()
+        .ToListAsync();
     }
 }

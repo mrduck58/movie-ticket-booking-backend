@@ -103,7 +103,7 @@ public class CinemaService : ICinemaService
             Duration = m.Duration,
             Rating = m.Rating,
             Director = m.Director,
-            
+            PosterUrl = m.Posters.FirstOrDefault()?.ImageUrl ?? "https://via.placeholder.com/300",
             TrailerUrl = m.TrailerUrl,
             Status = m.Status,
             Description = m.Description,
